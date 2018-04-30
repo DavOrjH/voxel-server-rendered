@@ -1,0 +1,269 @@
+.public-cnt{
+  margin-bottom:30px;
+}
+.body-pg{
+  max-width: 1240px;
+  margin: auto;
+  padding-left:5%;
+  padding-right:5%;
+}
+
+.info-row{
+  font-family: 'Varela Round', sans-serif;
+  display:flex;
+  justify-content: center;
+}
+
+.info-column{
+text-align: center;
+padding: 2%;
+}
+
+.thirty-three{
+  width:33.3%
+}
+
+.twenty-five{
+  width:25%
+}
+
+.img-cnt{
+  width:100%;
+  height:184px;
+  overflow:hidden;  
+}
+
+.projects-sliders-cnt>h3{
+  font-family: 'Montserrat', sans-serif;
+  text-align:center;
+  font-weight: bold; 
+  color:  rgb(114, 116, 117);
+}
+
+.info-column>h3,h4{
+  text-align: center;
+  color:  rgb(114, 116, 117);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold; 
+}
+
+.info-column>p{
+  text-align: center;
+  color: rgb(171,171,171);
+  font-size:14px;
+}
+
+.test-div{
+  width:100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom:50px;
+  padding-left:5%;
+  padding-right:5%;
+}
+
+.test-cnt{
+  max-width: 1240px;
+  margin: auto;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.test-cnt>h3{
+  font-family: 'Montserrat', sans-serif;
+  text-align:center;
+  font-weight: bold; 
+  color:  rgb(114, 116, 117);
+}
+
+.brand-slider-cnt{
+  position:relative;
+  max-width:90%;
+  height:110px;
+  margin-left:5%;
+  margin-right:5%;
+  margin: auto;
+  overflow: hidden;
+  margin:auto;   
+}
+
+.brand-slider-sec{
+  margin-bottom:50px; 
+}
+
+.brand-slider-sec>h3{
+  text-align: center;
+  color:  rgb(114, 116, 117);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold; 
+}
+
+.full{
+  height:100%;
+  box-sizing: border-box;
+}
+.back-txt>p{
+  color: rgb(255,255,255);
+  font-size: 14px;
+}
+
+.back-img{  
+  
+  background-image: url("http://assets.voxel3d.net/top-images/Servicios3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+   width: 100%;
+   position:relative;
+   overflow: hidden;
+   min-height:300px;
+   display:flex;
+   align-items:center;
+   margin-bottom:50px;
+
+}
+
+.twenty-five {
+  -moz-transition: height 1s ease-in-out, left 1.5s ease-in-out;
+  -webkit-transition: height 1s ease-in-out, left 1.5s ease-in-out;
+  -moz-transition: height 1s ease-in-out, left 1.5s ease-in-out;
+  -o-transition: height 1s ease-in-out, left 1.5s ease-in-out;
+  transition: height 1s ease-in-out, left 1.5s ease-in-out;
+}
+
+
+.back-img>.back-dark{
+top:0;
+left:0;
+width:100%;
+min-height:300px;
+box-sizing: border-box;
+background-color: rgba(0,0,0,0.5);
+display:flex;  
+}
+
+.back-dark>.body-pg>.info-row>.info-column>p{
+  font-size:20px;
+}
+
+.back-img::after{
+  display: block;
+  position: absolute;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
+  bottom:0;
+  height: 50px;
+  width: 100%;
+  content: '';
+}
+
+.back-img::before{
+  display: block;
+  position: absolute;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0) 0, #fff 100%);
+  top:0;
+  height: 50px;
+  width: 100%;
+  content: '';
+  z-index:3;
+}
+
+.slider-3d{  
+  margin-bottom:50px;
+  max-width:1240px;
+  margin:auto;
+}
+
+.slider-3d>h3{
+  font-family: 'Montserrat', sans-serif;
+  text-align:center;
+  font-weight: bold; 
+  color:  rgb(114, 116, 117);
+}
+
+.plus{
+  font-size : 25px;
+  font-weight: bold;
+  color: rgb(255,255,255); 
+  text-decoration:none;
+}
+
+app-pretty-photo-viewer{
+ height:200px;
+}
+
+.photo-slider-cnt{
+  max-height:200px;
+}
+
+
+@media screen and (max-width: 942px){
+
+  .body-pg{
+    padding-left:10%;
+    padding-right:10%;
+  }
+
+  .thirty-three, .twenty-five{
+    width:100%;
+  }
+
+
+  .info-row{
+    display:block;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding-top:50px;
+  }
+
+  .info-column{
+    text-align: center;
+    padding: 2%;   
+    }
+
+  .img-cnt{
+    width:100%;
+    height:auto;
+    display: block;
+    overflow:hidden;  
+  }
+
+  .back-img{    
+     width: auto;
+     position:relative;    
+     min-height:auto;
+     display:block;     
+     margin-bottom:50px;
+     background-image: url("http://assets.voxel3d.net/top-images/Servicios3.jpg");  
+  }
+
+  .projects-sliders-cnt>.info-row{
+    padding-top:20px;
+  }
+
+  .back-img>.back-dark{
+    display:block;
+    min-height:auto;
+    position:relative; 
+    width: auto;
+  }
+  .brand-slider-cnt{
+    max-width:60%;
+    position:relative;
+  }
+
+  .back-img>.back-dark>.body-pg>.info-row{
+    padding-bottom:30px;
+    margin-bottom:0px;
+  }
+
+  .back-img>img{
+    display:none  
+
+  }
+  
+
+}
+  
+
+
+

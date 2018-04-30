@@ -1,0 +1,109 @@
+.body-pg{
+    max-width: 1240px;
+    margin:auto;
+    font-family: 'Varela Round', sans-serif;
+    padding-left:30px;
+    padding-right:30px;   
+}
+
+.top-img{
+    background-image: url('http://assets.voxel3d.net/top-images/sectores.jpg');
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display:block;
+}
+
+.page-title{
+    font-size:30px;
+    font-weight:bold;
+    padding-top:60px;
+    padding-bottom:60px;
+    color: rgb(255,159,10);
+}
+
+.info-cnt, .info-cnt>p{
+    float:left;
+    width:100%;    
+    color: rgb(179,179,179);
+    font-size:16px;
+    text-align: justify;
+}
+
+.img-section, .video-section{
+    float:left;
+    width:100%;
+    clear:both;
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+.img-cnt{
+    float:left;       
+   
+}
+
+.img-cnt>img{
+    width:100%;
+    height:auto;
+}
+
+.vert-align{
+    width:50%;
+    padding:10px;
+}
+
+.hor-align{
+    width:100%;
+    padding:20px;
+    clear:both;
+}
+
+.video-cnt{
+float:left;
+width:50%
+}
+
+.info-video{
+    float:left;
+    width:50%;
+    padding-left:5%;
+  
+}
+
+.info-video>p, .info-video>ul {
+    color: rgb(179,179,179);
+    font-size:16px;
+    text-align: justify;  
+}
+
+.info-video>h3{
+    color: rgb(179,179,179);
+    text-align: left; 
+    margin-top:0px; 
+    
+}
+
+@media screen and (max-width: 942px){
+    
+        .vert-align{
+            width:100%;
+            padding:10px;
+            clear:both;
+        }
+    
+        .products-title-h{
+            text-align: center;
+        }
+    
+        .top-img{
+            display:none;
+        }
+
+        .info-video{
+            width: 100%;
+        }
+    
+    }
+    
+    

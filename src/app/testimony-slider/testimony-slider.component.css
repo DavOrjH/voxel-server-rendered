@@ -1,0 +1,175 @@
+
+  .slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      /*background: #e6e6e6;
+      border: 20px solid #FFF;*/
+      float: left;
+  }
+
+  .center {
+      margin: auto;
+  }
+  
+  .slide {
+      top: 0;
+      left: 0;
+      /*width: 100%;*/
+      height: 100%;
+  }
+  
+  .test-left{
+    position: absolute;    
+    left:0;
+    top:0;
+    bottom:0;
+    width:27px;
+    text-align: center;
+    color: rgb(0,0,0);
+    font-size:20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .test-right{
+    position: absolute; 
+    right:0;
+    top:0;
+    bottom:0;
+    width:27px;
+    text-align: center;
+    color: rgb(0,0,0);
+    font-size:16px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  
+  .image-carousel{
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+   
+  .align-right{
+    text-align: right;
+  }
+
+  .info-cnt{
+    width:100%;
+    min-height:200px;
+    padding-left: 35px;
+    padding-right: 35px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Varela Round', sans-serif;
+  }
+
+  .img-cnt{
+    width:15%;
+    display:block;
+    justify-content: center;
+  }
+
+  .img-cnt>img{
+    border-radius: 50%;
+  }
+
+  .txt-cnt{
+    width:85%;
+    height:100%;    
+  }
+
+   .txt-cnt>a{
+    width:100%;
+    clear:both;
+    float:left;
+    text-align:right;    
+    text-decoration:none;
+  }
+
+blockquote {
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  text-align:left;
+  color: rgb(171,171,171);
+  font-size:14px;
+}
+
+blockquote:before {
+  color: rgb(71,71,71);
+  content: open-quote;
+  font-size: 2em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote:after {
+    color: rgb(71,71,71);
+    content: close-quote;
+    font-size: 2em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+
+  .name{
+    font-size:14px;
+    font-weight: bold;
+    color:rgb(114, 116, 117);
+  }
+
+  .note{
+    color: rgb(171,171,171);
+  }
+
+  .note{
+    font-size:12px;
+  }
+
+  .inside-quote{
+    text-decoration:none;
+    color: rgb(114, 116, 117);
+    font-weight: bold;     
+  }
+
+  @media screen and (max-width: 942px){
+
+    .info-cnt{
+       display:block;        
+      }
+
+    .img-cnt{
+     width:100%;
+     clear: both;
+     display:flex;
+    }
+
+    .txt-cnt{
+        width:100%;
+        clear: both;
+       }
+
+    .glyphicon{
+        visibility:hidden;
+    }
+    
+
+
+  }
+
+
+
+
+  
+
+
+

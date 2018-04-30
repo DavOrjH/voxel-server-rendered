@@ -1,0 +1,304 @@
+<div class="title-img-cnt">
+  <img class="img-responsive" src="http://assets.voxel3d.net/licences/RHINO.jpg" alt="">
+</div>
+<div class="options-cnt">
+  <div class="option-button" [ngClass]="{'option-inactive': getInfoView() != 'global-vision','option-active':getInfoView() == 'global-vision'}" (click)="setInfoView('global-vision')"><a >Visión de conjunto</a></div>
+  <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'specifications' ,'option-active':getInfoView() == 'specifications'}" (click)="setInfoView('specifications')"><a >Especificaciones</a></div>
+  <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'software' ,'option-active':getInfoView() == 'software' }" (click)="setInfoView('software')"><a >Productos</a> </div>   
+</div>
+<hr>
+<div class="info-cnt" >
+  <div class="global-vision" *ngIf="getInfoView() == 'global-vision'">
+
+    <h1 class="first-title">        
+        La más poderosa herramienta de modelado 3D en NURBS con soporte total de McNeel, también incluye Grasshopper. En el futuro, podrá usar Rhino 6 como una licencia dual 
+        (para Windows y Mac). Manténgase al tanto.
+    </h1>
+    <p>
+        Rhino 6.0 con Grasshopper incluido en el software líder del mercado en diseño industrial y CAD. Distintas figuras de gran complejidad pueden ser directamnete modeladas y adquiridas a 
+        través de sus digitalizadores. Con el poderoso motor basado en NURBS que posee Rhino 6.0 puede crear, editar, analizar y convertir curvas, superficies y sólidos. No existen límites de
+        complejidad, tamaño o graduación.     
+    </p>
+    <p>
+        Rhino 6.0 también soporta mallas poligonales y nubes de puntos para una cobertura bastante amplia de distintos tipos de geometrías. Con su incomparable poder de modelado, Rhino le permite
+        enfocarse en diseñar, mas no en soluciones de enorme compeljidad.        
+    </p>
+    <div class="video-cnt">
+      <iframe width="{{videoWidth}}" height="{{videoHeight}}" src="https://www.youtube.com/embed/V6zL_rxsrWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>      
+    </div>
+    <h1 class="info-title">Características y beneficios</h1>
+    <ul>
+      <li><strong>Herramientas de modelado en 3D</strong> sin inhibiciones de forma libre, como las que se encuentran solo en sistemas de gama alta. Modela cualquier forma que puedas imaginar.</li>
+      <li><strong>Precisión</strong> necesaria para diseñar, prototipar, diseñar, analizar y fabricar cualquier cosa, desde un avión hasta joyas.</li>
+      <li><strong>Compatibilidad</strong> con todos sus otros software de diseño, dibujo, CAM , ingeniería, análisis, renderizado, animación e ilustración.</li>
+      <li><strong>Lea y repare</strong> archivos IGES extremadamente desafiantes .</li>
+      <li><strong>Accesible</strong>. Tan fácil de aprender y usar que puede enfocarse en el diseño y la visualización sin distraerse con el software.</li>
+      <li><strong>Rápido</strong>, incluso en una computadora portátil ordinaria. No se necesita hardware especial.</li>
+      <li><strong>Plataforma de desarrollo</strong>  para cientos de productos 3D especiales.</li>
+      <li><strong>Hardware ordinario</strong>. Curva de aprendizaje corta Con un precio similar al de otros programas de Windows. Sin cargos de mantenimiento.</li>
+    </ul>
+    
+    <h1 class="info-title">Lo nuevo en Rhino 6.0</h1>
+    <h2 class="info-subtitle">Visión de conjunto</h2>
+    <p class="sub-paragraf"> En Rhino 6.0, McNeel abrazó completamente a Grasshopper - el lenguaje de programación enormemente popular - al "hornearlo". Grasshopper ya no se encuentra más en versión
+        beta; es un entorno de programación estable. McNeel también ha reescrito algunas características y renovó varios flujos de trabajo que necesitaban reparaciones fundamentales para 
+        volverse realmente productivo.
+    </p>
+    <h2 class="info-subtitle">Grasshopper</h2>
+    <p class="sub-paragraf"> El largo período beta ha terminado: Grasshopper, el lenguaje de programación más hermoso del mundo, ahora es una parte completa de Rhino. Utilizado en algunos de los proyectos de diseño
+        más ambiciosos de la última década, Grasshopper, como Rhino, se ha convertido en una sólida plataforma de desarrollo. Grasshopper proporciona la base sólida para muchos componentes increíbles
+        de terceros que van desde el análisis ambiental hasta el control robótico.
+    </p>
+    <h2 class="info-subtitle">Presentación</h2>
+    <p class="sub-paragraf"> El largo período beta ha terminado: Grasshopper, el lenguaje de programación más hermoso del mundo, ahora es una parte completa de Rhino. Utilizado en algunos de los proyectos de diseño
+        más ambiciosos de la última década, Grasshopper, como Rhino, se ha convertido en una sólida plataforma de desarrollo. Grasshopper proporciona la base sólida para muchos componentes increíbles
+        de terceros que van desde el análisis ambiental hasta el control robótico.
+    </p>
+    <h2 class="info-subtitle">Visualización</h2>
+    <p class="sub-paragraf"> 
+      Los nuevos pipeline de visalizuación de Rhino 6.0 son más rápidos, más estables, y usan características encontradas en hardware modernos de gráficos, como shaders sensitivos de GPU y
+      optimizadores de memoria. Esto se traduce en menos errores de visualización de GPU y mayor consistencia, belleza y más frecuencia de frames, incluso para modelos de gran complejidad. En algunas
+      condiciones la velocidad de visualización pude incrementarse hasta en un 300%.
+    </p>
+  </div>
+  <div class="specifications" *ngIf="getInfoView() == 'specifications'">
+    <h1 class="info-title">Información del producto</h1>
+    <div class="table-cnt">
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Nombre del producto</a>
+        </div>
+        <div class="column-cell">
+          <a>Rhinoceros 6.0 con Grasshopper incluido</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Versión</a>
+        </div>
+        <div class="column-cell">
+          <a>6.0</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Fabricante</a>
+        </div>
+        <div class="column-cell">
+          <a>McNeel & Associates</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Plataformas</a>
+        </div>
+        <div class="column-cell">
+          <a>Windows</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Soporte y mantenimiento</a>
+        </div>
+        <div class="column-cell">
+          <a>Contacta a nuestros asesores comerciales para obtener más información</a>
+        </div>
+      </div>    
+  </div>
+
+    <h1 class="info-title">Requisitos del sistema</h1>
+    <div class="table-cnt">
+      <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Espacio en disco</a>
+          </div>
+          <div class="column-cell">
+            <a>600 MB</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Memoria RAM</a>
+          </div>
+          <div class="column-cell">
+            <a>8 GB (Recomendado)</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Sistemas operativos</a>
+          </div>
+          <div class="column-cell">
+            <a>Windows 10, Windows 8.1, Windows 7</a>
+          </div>
+        </div>
+    </div>
+
+    <h1 class="info-title">Información adicional para Windows</h1>
+    <div class="table-cnt">
+      <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Hardware</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>Tiene compatibilidad para máquinas de Apple con Bootcamp </li>
+              <li>Procesadores con no más de 63 núcleos</li>
+              <li>Se recomienda el uso de mouse con múltiples botones (incluido el scroll)</li>
+              <li>Soporta SpaceNavigator</li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Tarjeta gráfica</a>
+          </div>
+          <div class="column-cell">
+            <a>Se recomienda una tarjeta compatible con OpenGL 4.1 </a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Modelado en Nurbs</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Lee y repara archivos IGES</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Soporte de digitalización 3D</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>MicroScribe </li>
+              <li>FaroArm</li>
+              <li>Romer/Cimcore</li>              
+            </ul>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Dispositivos de entrada</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>SpaceMouse </li>
+              <li>SpaceNavigator</li>             
+            </ul>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Idiomas soportados</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>Español</li>
+              <li>Inglés</li>
+              <li>Francés</li>
+              <li>Alemán</li>
+              <li>Italiano</li>
+              <li>Checo</li>                 
+            </ul>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Formatos de archivos de importación soportados</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>SolidWorks: partes y ensamblados (.sldprt, .sldasm)</li>
+              <li>Microestaciones de Bentley (.dgn)</li>
+              <li>Archivos de dibujo de AutoCAD (.dwg)</li>
+              <li>Formato de intercambio de dibujos en AutoCAD (.dxf)</li>
+              <li>Archivos de patrones de sombreado en AutoCAD (.pat)</li>
+              <li>MotionBuilder (.fbx)</li>
+              <li>3D Studio (.3ds)</li>
+              <li>Abobe PDF (.pdf)</li>
+              <li>LightWave (.lwo)</li>
+              <li>STEP(.step .stp)</li>
+              <li>IGES(.igs .iges)</li>
+              <li>Mallas poligonales de triángulos (.raw)</li>
+              <li>Estereolitografía (.stl)</li>
+              <li>VDA (.vda)</li>
+              <li>Adobe Ilustrator (.ai)</li>
+              <li>Archivos de puntos (.txt, .asc, .xyz, .csv, .cg_ascii, .cgo_asci)</li>                                   
+              <li>Alias Wavefront (.obj)</li> 
+              <li>GEometrías GHS (.gf, .gft)</li> 
+              <li>WAMIT (.gdf)</li> 
+              <li>archivos de reconocimiento M y PTS (.m, .pts)</li>
+              <li>archivos SLC (.slc)</li>  
+              <li>Zcorp (.zpr)</li>                 
+              <li>DirectX (.x)</li>  
+              <li>Google SketchUp (.skp)</li>  
+              <li>WRML (.wrl, .wrml)</li>  
+              <li>PLY Polygon File Format (.ply)</li>  
+            </ul>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Formatos de archivos de exportación disponibles</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>ACIS (.sat)</li>
+              <li>Adobe Ilustrator (.ai)</li>
+              <li>Malla poligonal de triángulos (.raw)</li>
+              <li>Estereolitografía (.stl)</li>
+              <li>LightWave (.lwo)</li>
+              <li>Windows Metafile(.wmf)</li>
+              <li>WRML (.wrl, .wrml)</li>
+              <li>Wavefront (.obj)</li>
+              <li>Adobe Ilustrator (.ai)</li>
+              <li>XGL (.xgl)</li>
+              <li>Archivo de puntos (.txt)</li>
+              <li>Mallas POV-RAy (.pov)</li>
+              <li>archivo de exportación GHS (.gf)</li>
+              <li>RenderMan (.rib)</li>
+              <li>STEP (.stp .step)</li>
+              <li>IGES (.igs .iges)</li>                                   
+              <li>VDA (.vda)</li> 
+              <li>SLC (.slc)</li> 
+              <li>Moray UDO (.udo)</li> 
+              <li>Archivos de dibujo de AutoCAD (.dwg)</li>
+              <li>Formato de intercambio de dibujos en AutoCAD (.dxf)</li>  
+              <li>Viewpoint (.mts .mtx)</li>                 
+              <li>Collada digital asset exchange (.dae))</li>  
+              <li>Data 3D a archivos de AutoDesk de diseño Web (.dwf)</li>  
+              <li>Achivos de formato mejorado de SMicrosoft (.emf)</li>  
+              <li>Archivos de superficies trianguladas GNU (.gts)</li>
+              <li>Archivos KMZ de Google Earth (.kmz)</li>
+              <li>PDF (.pdf)</li>
+              <li>Archivos de SketchUp (.skp)</li>
+              <li>Archivos de Consortium Web3d (.xedv)</li>
+              <li>Archivos de aplicaciones extensibles en lenguaje de marcado (.xaml)</li>    
+            </ul>
+          </div>
+        </div>
+    </div>
+    
+
+  </div>
+  <div class="software" *ngIf="getInfoView() == 'software'">
+    <div class="product-cnt" *ngFor="let product of licenceDataModel;index as i">
+      <div class="img-cnt">
+          <img class="img-responsive" src="{{product.imageURL}}" alt="">
+      </div>
+      <div class="info-cnt">
+          <a>{{product.name}}</a>
+          <a [routerLink]="['/product-detail', product.productId]" class="redirect-button">Ver producto</a>  
+      </div>    
+    </div>      
+  </div>  
+</div>

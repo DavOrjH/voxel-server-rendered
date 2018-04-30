@@ -1,0 +1,101 @@
+<div class="pretty-slider-cnt" [@pretty-slider-act] = "getPrettySliderState()" >
+  <div class="escape-button" (click) = "inactivePrettyState()" >
+    <a>
+      <img class="img-responsive escape-icon"src="../../assets/icons/close.png" alt="">
+    </a>
+  </div>    
+   
+    <app-pretty-slider [images] = 'getGalleryId()' [index] = '0' *ngIf="isGalleryActive" > </app-pretty-slider>
+    <app-pretty-book [pagesCnt] = 'getBookId()' *ngIf="isBookActive" > </app-pretty-book>   
+      
+</div>
+
+<div class="top-img">
+</div>
+
+<div class="body-pg" id="body-page">
+    <div class="cert-inf">
+      <h1 class="prod-des-h">ESPACIO Y ARQUITECTURA</h1>
+      <img class="prod-des-img" src="http://assets.voxel3d.net/courses/frt/frt1.png" alt="">
+      <div class="cert-inf-cnt">
+        <p>¡Hemos entrenado más de 2000 usuarios de Rhino provenientes de más de 10 paises!</p>
+        <br>
+        <p>Voxel S.A.S es el primer Centro Autorizado de Entrenamiento de Rhinoceros - ARTC - Authorized Rhinoceros Training Center - establecido en Bogotá. Hemos sido reconocidos permanentemente como pioneros en la calidad de los cursos y por el nivel de los instructores que integran nuestro equipo.</p>
+        <br>
+        <p>Somos distribuidores Oficiales de Rhinoceros, V-Ray, RhinoCAM, VisualARQ, RhinoGold, lo que nos permite ofrecer capacitación de primer nivel. Nuestra experiencia y conocimiento nos convierte en la mejor elección para las empresas y profesionales que requieran entrenamiento oficial y del mejor nivel para optimizar sus procesos de Diseño y Producción.
+        Nuestros instructores son profesionales del sector real que aplican sus conocimientos en el fortalecimiento constante de nuestros cursos. Son especialistas en sus diferentes áreas: Render, Joyería, Calzado, Arquitectura, etc.
+        Los cursos de Voxel se dictan - tanto en modalidad grupal como personalizados - en nuestras sedes en Bogotá o Bucaramanga, en las instalaciones del cliente o vía Online. Contáctenos para conocer sus requerimientos específicos.
+        </p>
+      </div>
+    </div>
+  
+    <div class="courses-info">
+      <div class="courses-title">
+        <h1 class="courses-title-h"><span>CURSOS AFINES</span></h1>
+      </div>
+  
+      <div id="courses-beg"></div>
+      <div class="course-container" *ngFor="let courses of courses ;index as j" id="{{'course'+ j}}">
+        <div [@itemState]=" getState1(j)">
+          <div class="course-brand-mobile">
+              <img class="img-responsive" src="{{courses.getImgLabel()}}" alt="">              
+            </div>
+            <div class="course-dielo">
+              <div class="course-img">
+                <img class="img-responsive" src="{{courses.getImgCnt()}}">
+                <a href="{{courses.getContentPdf()}}" target="_blank" >Descarga el contenido de este curso</a>
+              </div>
+              <div class="course-content">
+                <div class="course-brand">
+                  <img class="img-responsive" src="{{courses.getImgLabel()}}" alt="">
+                </div>
+                <p innerHtml="{{courses.getTextCnt()}}">                  
+                </p>
+        
+                <div class="course-options-ghost" >
+                  <a (click) = "setPrettySliderState(courses.getGalCnt())">Galería de imágenes</a>              
+                  <a> Curso virtual </a>
+                  <a> Curso Presencial </a>
+                </div>
+        
+                <div class="course-options" >                     
+                    <a (click) = "setPrettySliderState(courses.getGalCnt())">Galería de imágenes</a>              
+                    <a [routerLink]="['/course', courses.getIdCourse()]" (click)="scrollTop()" *ngIf="courses.getHasVirtual()" > Curso virtual </a>
+                    <a [routerLink]="['/product-detail', courses.getProductId()]" (click)="scrollTop()">  Curso Presencial </a>
+                </div>
+              </div>
+            </div>
+            <div class="detail-cnt">
+              <div class="detail-img">
+                  <img class="img-responsive" src="http://assets.voxel3d.net/graph-resources/objectives.png" alt="">
+              </div>
+              <div class="detail-info">
+                <h4>Objetivos:</h4>
+                  <p *ngFor="let goal of courses.getGoal()" innerHtml="{{goal}}"></p>
+              </div>                  
+            </div>
+            <div class="detail-cnt">
+              <div class="detail-img">
+                  <img class="img-responsive" src="http://assets.voxel3d.net/graph-resources/addressedTo.png" alt="">
+              </div>
+              <div class="detail-info">
+                  <h4>Dirigido a:</h4>
+                  <p innerHtml="{{courses.getAddressedTo()}}"></p>
+              </div>
+            </div>
+            <div class="detail-cnt">
+              <div class="detail-img">
+                  <img  class="img-responsive" src="http://assets.voxel3d.net/graph-resources/syllabus.png" alt="">
+              </div>
+              <div class="detail-info">
+                  <h4>Temario:</h4>
+                  <p *ngFor="let topic of courses.getTopics();index as i">{{i+1}}. {{topic.name}}</p>
+              </div>
+            </div>   
+            <hr>
+        </div>
+
+      </div>     
+      
+    </div>
+  </div>

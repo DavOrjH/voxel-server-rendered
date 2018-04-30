@@ -1,0 +1,28 @@
+.top-img{
+    background-image: url('http://assets.voxel3d.net/conditions/header.jpg');
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.body-pg{
+    max-width: 1240px;
+    margin:auto;
+    font-family: 'Varela Round', sans-serif;
+    padding-left:30px;
+    padding-right:30px;
+    padding-bottom:30px;
+  }
+
+  .conditions-h{
+    padding-top:60px;
+    padding-bottom:60px;
+    color: rgb(255,159,10);
+    }
+
+    p, li, h3,h2{
+        color: rgb(179,179, 179);
+        text-align: justify;
+    }
+
+    

@@ -1,0 +1,258 @@
+.options-cnt, .info-cnt{
+   font-family: 'Varela Round', sans-serif;
+}
+
+.title-img-cnt{
+    max-width:1240px;
+    margin:auto;
+}
+
+.options-cnt{
+    width:100%;
+    max-width:1240px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px 20px 0px 20px;
+}
+
+.option-button, .option-button:hover {
+    margin: 0 8% 0 8% ;
+    border-radius: 13px;
+    padding:3px 8px 3px 8px;
+}
+.option-button>a, .option-button>a:hover{
+    text-decoration:none;
+    text-align:center;
+}
+
+
+.option-active, .option-active:hover {
+    background-color:rgb(255,159,10);
+    border: 3px solid  rgb(255,159,10);
+    cursor:pointer;   
+}
+.option-active>a, .option-active>a:hover{
+    color:rgb(255,255,255); 
+}
+
+.option-inactive, .option-inactive:hover {
+    border: 3px solid  rgb(255,159,10);
+    background-color:rgb(255,255,255);
+    cursor:pointer;    
+}
+
+.option-inactive>a, .option-inactive>a:hover{
+    color:rgb(255,159,10);
+
+}
+
+.info-cnt{
+    max-width:1240px;
+    margin:auto;
+    padding-left:50px;
+    padding-right:50px;
+    margin-bottom:50px;
+}
+
+.video-cnt{
+    width:100%;
+    padding-top:20px;
+    padding-bottom:20px;
+    margin:auto;
+    display:flex;
+    justify-content: center;
+}
+
+.first-title{
+    color:rgb(77,77,77);
+    text-align:justify;
+    font-size:30px;
+}
+
+.info-cnt>div>p{
+    color:rgb(128,128,128);
+    text-align: justify;
+}
+
+.info-cnt>div>ul {
+    color:rgb(128,128,128);
+    width:90%;
+    padding-left:0px;
+    margin-left:auto;
+    list-style-type: none;  
+}
+
+.info-cnt>div>ul>li{
+    margin-bottom:5px;
+}
+
+.info-title, .info-title::before{
+    font-size: 30px;
+    color:rgb(77,77,77);
+    clear:both;
+}
+
+.info-title::before {
+    content: '\25ba';
+    padding-right: 0.5em;
+}
+
+.info-subtitle{
+    width:90%;
+    font-size:25px;
+    margin-left:auto;
+    color:rgb(77,77,77);
+}
+
+p.sub-paragraf{
+    width:90%;
+    margin-left:auto;
+}
+
+.table-cnt{
+    max-width:80%;
+    margin:auto;
+    padding:10px;    
+    width:100%;  
+}
+
+.column-cell{
+    margin-bottom:10px;
+}
+
+.column-cell{    
+    border: 3px solid  rgb(204,204,204);
+    border-radius: 13px;
+    padding:3px 8px 3px 8px;
+    width:60%;
+}
+.column-cell>a, .column-cell>a:hover{
+    color:rgb(153,153,153);
+    text-decoration:none;
+}
+.column-cell>ul, .column-cell>ul>li{
+    list-style-type: none;
+    padding-left:0;
+    color:rgb(153,153,153);
+    text-decoration:none;
+}
+
+.column-title{
+    background-color:rgb(254, 183, 42);
+    border: 3px solid  rgb(254, 183, 42);
+    border-radius: 13px;
+    padding:3px 8px 3px 8px;
+    margin-right:20px;
+    width:calc(40% - 20px);
+}
+
+.column-title>a, .column-title>a:hover{
+    color:rgb(255,255,255);
+    text-decoration:none;
+}
+
+.table-row{
+    display: flex;    
+    justify-content:center;
+    width:100%;
+}
+
+.product-cnt{
+    max-width:700px;
+    margin:auto;
+    padding-left:20px;
+    padding-right:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom: 20px;
+}
+
+.product-cnt>.img-cnt{
+    width:40%;       
+}
+
+.product-cnt>.info-cnt{
+    width:60%;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.product-cnt>.info-cnt>a{
+    width:70%;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration: none; 
+    color:rgb(102,102,102);
+    font-size:20px;   
+}
+
+a.redirect-button{
+    background-color:rgb(255,145,35);
+    color:rgb(255,255,255) !important;
+    padding: 5px;
+    border-radius: 13px;
+    font-size:14px !important;
+    
+}
+
+
+
+@media screen and (max-width: 942px){
+    .options-cnt{
+        display:block;
+        position:relative;
+    }
+
+    .option-button, .option-button:hover {
+        width:100%;        
+        margin: 0 0 0 0 ;
+        margin-bottom: 10px;
+        border-radius: 13px;
+        padding:3px 8px 3px 8px;       
+        text-decoration:none;
+        text-align:center;
+    }
+
+    .table-row{
+        display: block;
+    }
+
+    .column-title, .column-cell {
+        margin-right:0px;
+        width:100%;
+    }
+
+    .product-cnt{
+        padding:0;
+    }
+
+    .product-cnt>.info-cnt{
+        width:60%;
+        margin:0;
+        display:block;
+        padding:0;
+    }
+
+    .product-cnt>.info-cnt>a{
+        width:100%;
+        margin-top:5px;
+        margin-bottom:5px;
+        float:left;
+        
+    }
+
+    a.redirect-button{
+        font-size:12px !important;        
+    }
+    
+    
+}
+    
+

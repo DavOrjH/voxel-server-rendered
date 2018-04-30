@@ -1,0 +1,224 @@
+<div class="title-img-cnt">
+  <img class="img-responsive" src="http://assets.voxel3d.net/licences/VRAY.jpg" alt="">
+</div>
+<div class="options-cnt">
+  <div class="option-button" [ngClass]="{'option-inactive': getInfoView() != 'global-vision','option-active':getInfoView() == 'global-vision'}" (click)="setInfoView('global-vision')"><a >Visión de conjunto</a></div>
+  <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'specifications' ,'option-active':getInfoView() == 'specifications'}" (click)="setInfoView('specifications')"><a >Especificaciones</a></div>
+  <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'software' ,'option-active':getInfoView() == 'software' }" (click)="setInfoView('software')"><a >Productos</a> </div>   
+</div>
+<hr>
+<div class="info-cnt" >
+  <div class="global-vision" *ngIf="getInfoView() == 'global-vision'">
+
+    <h1 class="first-title">
+      Trazado de rayos avanzado para Rhino.
+    </h1>
+    <p>
+      V-ray para Rhino ofrece una visualización profesional del estado del arte, solución que genera imágenes
+      de alta calidad de realismo incomparable. Usuarios de Rhino en todos los campos - desde ingeniería 
+      y diseño de producto hasta animación 3D - dependen de V-Ray para Rhino como la herramienta más rápida,
+      fácil y de mejor relación costo-beneficio para conseguir imágenes de gran impacto visual. 
+     
+    </p>
+    <!-- <div class="video-cnt">
+      <iframe width="{{videoWidth}}" height="{{videoHeight}}" src="https://www.youtube.com/embed/V6zL_rxsrWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>      
+    </div> -->
+
+    <h1 class="info-title">Lo más destacado</h1>
+
+    <ul>
+      <li><strong>Fácil de usar: </strong> Fácil de aprender y fácil de usar, V-ray trabaja sin problemas con las herramientas versátiles de modelado 3D de Rhino.</li>
+      <li><strong>Calidad: </strong> V-Ray permite renderizar las imágenes con la mayor calidad posible - en Rhino.</li>
+      <li><strong>Poder: </strong>V-Ray da el poder para renderizar todo lo que pueda imaginar - desde conceptos rápidos hasta los más complejos y detallados modelos 3D.</li>
+      <li><strong>Velocidad: </strong> Renderice rápido, diseñe mucho más rápido. V-ray para Rhino le permite
+      invertir más tiempo en el diseño y menos en la espera. </li>
+      <li><strong>Control de la creatividad: </strong> Enfóquese en diseñar, con un conjunto completo de herramientas creativas de luces, materiales y renderizados.</li>
+      <li><strong>El estándar de la industria: </strong> Los diseñadores de más alta competencia confían en V-Ray todos los días para generar visulaizaciones de clase mundial de
+        productos, diseños arquitectónicos y mucho más.  </li>       
+    </ul>
+    <h1 class="info-title">Nuevas características</h1>
+    <ul>
+      <li><strong>Renderizador GPU más potente: </strong> Más rápido, el renderizador GPU añade soporte para el mapeo mip requerido,
+      perspectivas aéreas, desplazamiento, transmisión difusa de luz, mates/sombras y más.</li>
+      <li><strong>Renderizado híbrido GPU + CPU: </strong> Ahora el GPU de V-Ray que corre en los núcleos
+      CUDA de NVIDIA puede tomar total ventaja de todo el hardware disponible, incluyendo GPU y CPU al mismo tiempo.</li>
+      <li><strong>Luces adaptativas: </strong> En escenarios con muchas luces, el nuevo modo de luces adaptativas puede ayudar a aumentar la velocidad de renderizado 
+      hasta en un 700%.</li>
+      <li><strong>Instancias de luz: </strong> las luces ahora pueden ser definidas y controladas como una sola luz en el editor de recursos.</li>
+      <li><strong>Interfaz de usuario simplificada: </strong> Toda la interfaz de V-ray para Rhino ha sido simplificada y actualizada para ser más intuitiva y amigable con el usuario. </li>
+      <li><strong>Administrador de archivos: </strong> Administre todos sus archivos de escenas en un solo lugar. Establezca rutas de archivo,
+      cree nuevos archivos de escena, y guarde librerías de recursos como texturas, archivos IES, y objetos proxy.</li>
+      <li><strong>Selección de color en V-Ray: </strong> La nueva opción de selección de color permite escoger valores de color en Pantalla sRGB(0-255) o 
+      espacio de color del renderizado (0.0-1.0) </li>
+      <li><strong>Importar escenas:</strong> Importe y renderice escenas de V-Ray (.vrscene) desde otras aplicaciones como 3DSMAx, Revit y Sketchup </li>
+      <li><strong>Niebla: </strong> Aporte a sus escenes profundidad la nueva opción realística de Niebla 3D y efectos de trasmisión de luz. </li>
+      <li><strong>Nuevos mapas de texturas: </strong>Mejore el estilo de sus escenas con los nuevos mapas de texturas: gradientes, de temperaturas de color, y de ruido.
+      </li>
+      <li><strong>Desplazamiento en 2D: </strong> Rápidamente agregue detalles a la superficie sin tener que modelar de más usando el nuevo Desplazamiento
+      2D optimizado. Es perfecto para materiales arquitectónicos como ladrillo y piedra.</li>
+      <li><strong>Objetos proxy animados: </strong> Añada fácilemnte objetos 3D preanimados como gente caminando y árboles ondeando al viento con los objetos
+      proxy de V-Ray animados.</li>
+      <li><strong>Previsualizaciones de proxy: </strong> Controle la apariencia de los proxy de V-Ray en la pantalla de Rhino. Seleccione para malla completa
+      caja delimitadora, punto (origen), previsualización personalizada, y un nuevo modo de previsualización de proxy de pocos polígonos.</li>
+      <li><strong>Eliminación de ruido mejorada: </strong>El eliminador de ruido de V-Ray es ahora más fácil de inicializar y se pueden afinar detalles incluso después de finalizado el render.</li>
+      <li><strong>Animaciones: </strong> V-Ray para Rhino introduce un nuevo espacio de trabajo simplificado para renderizar estudios de luz,
+        plataformas giratorias, y animaciones aéreas.
+      </li>
+      <li><strong>V-Ray para Grasshopper: </strong> El V-Ray para Grasshopper es ahora más rápido y sencillo con una librería preestablecida de luces y materiales. Los objetos generados
+        desde Grasshopper pueden ser renderizados directamente como parte de una escena de Rhino sin necesidad de hornearlos previamente. 
+      </li>      
+    </ul>
+
+    <h1 class="info-title">Aspectos clave</h1>
+    <ul>
+      <li><strong>Doble rendimiento del motor: </strong> V-Ray viene con dos potentes motores de renderizado. Con aceleración de CPU o GPU, puede escoger el más conveniente para sus prestaciones de hardware.</li>
+      <li><strong>Render interactivo: </strong> Renderice mientras diseña. Observe los resultados instantáneamente a la par que ajusta luces, materiales y cámaras.</li>
+      <li><strong>Iluminación global: </strong> Renderice espacios e interiores con gran realismo con la potente y rápida opción de iluminación global de V-Ray.</li>
+      <li><strong>Precisión de iluminación: </strong>Renderice con iluminación natural y/o artificial con un amplio rango de tipos de iluminación incorporados.</li>
+      <li><strong>Iluminación ambiental: </strong> Ilumine sus escenas con imágenes de alto rango dinámico (HDRI) del ambiente deseado.</li>
+      <li><strong>Sol y Cielo: </strong> Renderice de manera acertada la iluminación solar según la hora del día y la localización geográfica.</li>
+      <li><strong>Cámaras: </strong> Trabaje como un fotógrafo controlando la exposición, balance de blancos y la profundidad de campo. </li>
+      <li><strong>Materiales físicos: </strong> Cree materiales que simulan a los de la vida real.</li>
+      <li><strong>Texturas detalladas: </strong> Cree materiales únicos y detallados usando mapas de texturas o una de las texturas procedurales incorporadas en V-Ray.</li>
+      <li><strong>Objetos proxy: </strong> Agregue objetos complejos y altamente detallados como césped, árboles y carros con modelos proxy de bajo
+      consumo de memoria. </li>
+      <li><strong>Renderizar elementos: </strong> Renderice en capas separadas para un mayor control de edición artística en un software de edición de imagen.</li>
+      <li><strong>Almacenamiento de frames</strong> Enliste su historial de renders y afine colores, exposición y más opciones directamente en el frame buffer.</li>
+      <li><strong>Renderizado por nodos: </strong> Integre una red de ordenadores con V-ray por medio de una licencia de renderizado por nodos y obtenga una mejora en la velocidad del render. Esta opción es compatible con todas las aplicaciones de V-Ray 3.6 para Rhino.</li>
+      <li><strong>Exportar escenas de V-Ray: </strong> Comparta en su totalidad archivos listos para renderizar con V-Ray 3.4 o alguna otra aplicación más reciente.</li>
+          
+    </ul>  
+  </div>
+  <div class="specifications" *ngIf="getInfoView() == 'specifications'">
+    <h1 class="info-title">Información del producto</h1>
+    <div class="table-cnt">
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Nombre del producto</a>
+        </div>
+        <div class="column-cell">
+          <a>V-ray 3.6 para Rhino</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Versión</a>
+        </div>
+        <div class="column-cell">
+          <a>3.6</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Fabricante</a>
+        </div>
+        <div class="column-cell">
+          <a>ChaosGroup</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Plataformas</a>
+        </div>
+        <div class="column-cell">
+          <a>Windows</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Soporte y mantenimiento</a>
+        </div>
+        <div class="column-cell">
+          <a>Contacta a nuestros asesores comerciales para obtener más información</a>
+        </div>
+      </div>    
+  </div>
+
+    <h1 class="info-title">Requisitos del sistema</h1>
+    <div class="table-cnt">
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>CPU</a>
+        </div>
+        <div class="column-cell">
+          <a>Intel Pentium IV o procesadores compatibles con soporte SSE3</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Espacio en disco</a>
+        </div>
+        <div class="column-cell">
+          <a>600 MB de espacio en disco.</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Memoria RAM</a>
+        </div>
+        <div class="column-cell">
+          <a>4 GB y 4GB de espacio de intercambio en disco mínimo (8GB o más recomendado)</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Sistemas operativos</a>
+        </div>
+        <div class="column-cell">
+         <ul>   
+           <li>Windows 7</li>
+           <li>Windows 8.1</li>
+           <li>Windows 10 (solo en versión de 64 bits)</li>
+         </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="info-title">Información adicional</h1>
+    <div class="table-cnt">
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>TCP/IP</a>
+        </div>
+        <div class="column-cell">
+         <a>Solo IPv4 es compatible. IPv6 por ahora no lo es.</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Rhino</a>
+        </div>
+        <div class="column-cell">
+          <a>Rhino 5 o superior (solo en versiones de 64 bits).</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Windows</a>
+        </div>
+        <div class="column-cell">
+          <a>Si</a>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="column-cell column-title">
+          <a>Requerimientos de instalación</a>
+        </div>
+        <div class="column-cell">
+          <a class="cursor" [routerLink]="['/rhinoceros']">Rhinoceros</a>
+        </div>
+      </div>
+    </div>  
+
+  <div class="software" *ngIf="getInfoView() == 'software'">
+    <div class="product-cnt" *ngFor="let product of licenceDataModel;index as i">
+      <div class="img-cnt">
+          <img class="img-responsive" src="{{product.imageURL}}" alt="">
+      </div>
+      <div class="info-cnt">
+          <a>{{product.name}}</a>
+          <a [routerLink]="['/product-detail', product.productId]" class="redirect-button">Ver producto</a>  
+      </div>    
+    </div>      
+  </div>  
+</div>

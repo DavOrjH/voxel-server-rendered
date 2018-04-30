@@ -1,0 +1,5 @@
+{
+    "connectionString": "mongodb://dba:Dba2017@ds127883.mlab.com:27883/voxel",
+    "apiUrl": "http://localhost:3000",
+    "secret": "El arte de amarte (By Napa)"
+}

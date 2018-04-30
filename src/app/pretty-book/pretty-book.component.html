@@ -1,0 +1,21 @@
+<div class="book-top">    
+</div>
+<div class="book-cnt">
+    <a class="left" (click)="activeLeft()"><img class="img-responsive" src="../../assets/icons/prev-button.png" alt=""></a>
+    <a class="right" (click)="activeRight()"><img class="img-responsive" src="../../assets/icons/next-button.png" alt=""></a>
+  <div class="scroll-book" >  
+    <div id="book">
+        <canvas id="pageflip-canvas"></canvas>
+        <div id="pages">
+          <section *ngFor="let page of getImages();index as i">
+            <div> 
+              <a>{{page}}</a>
+              <!-- <img src="{{pagesCnt.getPagesImages()}}" alt=""> -->
+              <img  src="../../assets/pretty-book/probe.jpg" alt="">
+              
+            </div>
+          </section>
+        </div>
+      </div>
+  </div>  
+</div>

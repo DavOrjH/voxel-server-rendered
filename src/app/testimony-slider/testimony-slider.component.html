@@ -1,0 +1,42 @@
+<div id="{{id}}"  class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner backg" role="listbox">
+    <div class="item active"  >
+      
+      <div class="info-cnt">
+        <div class="img-cnt">
+          <img class="img-responsive" src="{{testimonyFirst.getImgURL()}}" alt="">
+        </div>
+        <div class="txt-cnt">
+          <blockquote innerHtml="{{testimonyFirst.getDesc()}}"></blockquote>
+          <a class="name"> — {{testimonyFirst.getName()}}</a>
+          <a class="note" *ngIf = "testimonyFirst.getNote()">{{testimonyFirst.getNote()}}</a>
+        </div>
+          
+      </div>       
+    </div>
+    
+    <div class="item" *ngFor="let test of testimony" >
+      <div class="info-cnt">
+        <div class="img-cnt">
+            <img class="img-responsive" src="{{test.getImgURL()}}" alt="">
+        </div>
+        <div class="txt-cnt">
+            <blockquote innerHtml="{{test.getDesc()}}"></blockquote>
+            <a class="name"> — {{test.getName()}}</a>
+            <a class="note" *ngIf = "test.getNote()">{{test.getNote()}}</a>
+        </div>          
+      </div>
+
+        
+    </div>
+    <a class="test-left" [attr.href]="'#'+id" (click)="prevSlide()"role="button" data-slide="prev">
+     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+     <span class="sr-only">Previous</span>
+    </a>
+    <a class="test-right" [attr.href]="'#'+id" (click)="nextSlide()"role="button" data-slide="next">
+     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+     <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+  

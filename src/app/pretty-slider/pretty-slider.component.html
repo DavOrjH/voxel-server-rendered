@@ -1,0 +1,26 @@
+<div class="slider-content">
+  <div *ngFor="let item of getItems();index as i" [ngClass]="{'item-content':true,'inactive':setActive(i)}">
+    <div class="item-scroll">
+      <div class="image-slider center" >
+        <div class="data-slider">
+          <p *ngIf="item.isProjectNameHere()">Nombre del proyecto: {{item.getProjectNames()}}</p>
+          <p *ngIf="item.isProjectAuthorHere()" >Autor: {{item.getDesignedBy()}}</p>
+        </div>
+        <img class="img-fluid img-thumbnail"src="{{item.getImages()}}" alt="">
+      </div>
+    </div>
+
+  </div>
+  <ol>
+    <li *ngFor="let item of getItems();index as i" [ngClass]="{'':true,'it-act':setActive(i)}"></li>
+  </ol>
+
+  <a class="left carousel-control" (click) = "setIndexMinus()">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+
+  <a class="right carousel-control" (click) = "setIndexPlus()">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>

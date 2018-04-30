@@ -1,0 +1,222 @@
+<div class="title-img-cnt">
+    <img class="img-responsive" src="http://assets.voxel3d.net/licences/PENGUIN.jpg" alt="">
+  </div>
+  <div class="options-cnt">
+    <div class="option-button" [ngClass]="{'option-inactive': getInfoView() != 'global-vision','option-active':getInfoView() == 'global-vision'}" (click)="setInfoView('global-vision')"><a >Visión de conjunto</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'specifications' ,'option-active':getInfoView() == 'specifications'}" (click)="setInfoView('specifications')"><a >Especificaciones</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'software' ,'option-active':getInfoView() == 'software' }" (click)="setInfoView('software')"><a >Productos</a> </div>   
+  </div>
+  <hr>
+  <div class="info-cnt" >
+    <div class="global-vision" *ngIf="getInfoView() == 'global-vision'">
+  
+      <h1 class="first-title">
+        Plugin de renderizado no fotorrealista para Rhino y AutoCAD.
+      </h1>
+      <p>
+        Penguin ofrece la posibilidad de bosquejar de forma sencilla y rápida, en estilos como acuarelas y cariatura a través de Rhino o AutoCAD.
+      </p>
+      <p>
+        Penguin es un renderizador conceptual no fotorrealístico con posibilidades de esbozar y crear escenas estilo caricatura.
+        Con penguin se pueden generar imágenes estilizadas de cualquier modelo con un aspecto artístico con el fin de generar
+        atractivo visual o mejoramiento de la imagen. 
+      </p>
+      <p>
+        Penguin trabaja con rhino y con la mayoría de versiones de AutoCAD.
+      </p>
+      <!-- <div class="video-cnt">
+        <iframe width="{{videoWidth}}" height="{{videoHeight}}" src="https://www.youtube.com/embed/V6zL_rxsrWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>      
+      </div> -->
+      <h1 class="info-title">Características y beneficios</h1>
+      <ul>
+        <li><strong>Render Conceptual</strong> no fotorrealístico<li>
+        <li><strong>Fácil de usar</strong>, integrado a la funcionalidad de Rhino, y ofrece un sinfín de características que aceleran y simplifican el renderizado de imágenes para diseño conceptual o con propósito de ilustrar.</li>
+        <li><strong>Rápido</strong>. Genera imágenes con gran velocidad en la resolución deseada.</li>
+        <li><strong>Renderizado por lotes</strong> a través de scripts.</li>
+        <li><strong>Anti-aliasing</strong>. con control de usuarios.</li>
+        <li><strong>Puede combinarse</strong> con Flamingo o AccuRender para resultados realmente artísticos.</li>
+        <li><strong>Capacidad de creación de estilos de renderizado propios</strong>basados en los modos de render del software</li>        
+      </ul>
+    </div>
+    <div class="specifications" *ngIf="getInfoView() == 'specifications'">
+      <h1 class="info-title">Información del producto</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Nombre del producto</a>
+          </div>
+          <div class="column-cell">
+            <a>Penguin 2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Versión</a>
+          </div>
+          <div class="column-cell">
+            <a>2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Fabricante</a>
+          </div>
+          <div class="column-cell">
+            <a>McNeel & Associates</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Plataformas</a>
+          </div>
+          <div class="column-cell">
+            <a>Windows</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Soporte y mantenimiento</a>
+          </div>
+          <div class="column-cell">
+            <a>Contacta a nuestros asesores comerciales para obtener más información</a>
+          </div>
+        </div>    
+    </div>
+  
+      <h1 class="info-title">Requisitos del sistema</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>CPU</a>
+          </div>
+          <div class="column-cell">
+            <a>Intel PEntium IV o superior</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Espacio en disco</a>
+          </div>
+          <div class="column-cell">
+            <a>600 MB de espacio en disco.</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Memoria RAM</a>
+          </div>
+          <div class="column-cell">
+            <a>Al menos 8GB (recomendado)</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Sistemas operativos</a>
+          </div>
+          <div class="column-cell">
+           <ul>
+             <li>Windows 2000 SP4</li>
+             <li>Windows XP Pro(SP2+)</li>
+             <li>Windows XP Home (SP2+)</li>
+             <li>Windows Vista (requiere Rhino 4.0 SR7 o superior)</li>
+             <li>Windows 7 (requiere Rhino 4.0 SR7 o superior)</li>
+             <li>BootCamp en Intel MAc</li>
+           </ul>
+          </div>
+        </div>
+      </div>
+  
+      <h1 class="info-title">Información adicional</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 2.0</a>
+          </div>
+          <div class="column-cell">
+           <a>No</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 3.0</a>
+          </div>
+          <div class="column-cell">
+            <a>No</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 4.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 5.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si, solo en modo de 32 bits</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Versiones de AutoCAD</a>
+          </div>
+          <div class="column-cell">
+            <a>Todas las versiones de AutoCAD desde 2004 hasta 2012, incluyendo AutoCAD Architecture y AutoCAD MEchanical</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Renderizado modo bosquejo</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Renderizado modo caricatura</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Formatos de importación de archivos</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>Mapas de bits de Windows (.BMP, .DIB)</li>
+              <li>Imágenes Joint Photographic Experts Group (.JPG, .JPEG)</li>
+              <li>Zsoft PC Paintbrush (.PCX)</li>
+              <li>Imágenes con transparencia (.PNG)</li>
+              <li>TARGA, Adaptador avanzado de rasterizado gráfico (.TGA) </li>
+            </ul>
+          </div>
+        </div>  
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Requerimeintos de instalación</a>
+          </div>
+          <div class="column-cell">
+            <a class="cursor" [routerLink]="['/rhinoceros']">Rhinoceros</a>
+          </div>
+        </div>
+      </div>  
+    </div>
+    <div class="software" *ngIf="getInfoView() == 'software'">
+      <div class="product-cnt" *ngFor="let product of licenceDataModel;index as i">
+        <div class="img-cnt">
+            <img class="img-responsive" src="{{product.imageURL}}" alt="">
+        </div>
+        <div class="info-cnt">
+            <a>{{product.name}}</a>
+            <a [routerLink]="['/product-detail', product.productId]" class="redirect-button">Ver producto</a>  
+        </div>    
+      </div>      
+    </div>  
+  </div>

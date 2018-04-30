@@ -1,0 +1,141 @@
+<div class="account-title">
+  <h1>Mi Cuenta</h1>
+</div>
+
+<div class="body-pg">
+  <div class="active account-info" *ngIf="!getEditStatus()">    
+
+    <div class="image-cnt">
+      <img class="img-responsive" src="{{(user | async)?.photoURL}}" alt="">
+    </div>
+
+      <div class="info-cnt">
+        <div>
+          <label>Nombre: </label>
+          <a class="info-user">{{ currentUser?.getFirstName()}}</a>
+        </div>
+        <div *ngIf="model.lastName != 0 " >
+          <label>Apellidos: </label>
+          <a class="info-user">{{model.lastName}} </a>
+        </div>
+        <div>
+          <label>Correo electrónico: </label>
+          <a class="info-user">{{ model.email}}</a>
+        </div>
+        <div *ngIf="model.email2 != 0 " >
+          <label>Email alternativo: </label>
+          <a class="info-user">{{model.email2}} </a>
+        </div>
+        <div *ngIf="model.country != 0" >
+          <label>País: </label>
+          <a class="info-user">{{model.country}} </a>
+        </div>
+        <div *ngIf="model.city != 0 " >
+          <label>Ciudad: </label>
+          <a class="info-user">{{model.city}} </a>
+        </div>
+        <div *ngIf="model.phone != 0 " >
+          <label>Teléfono 1: </label>
+          <a class="info-user">{{model.phone}} </a>
+        </div>
+        <div *ngIf="model.phone2 != 0 " >
+          <label>Teléfono 2: </label>
+          <a class="info-user">{{model.phone2}} </a>
+        </div>
+      <button name="edit-info" (click) = "setEditStatus()">Editar información</button> 
+    </div>
+  </div>
+
+    <div class="active account-info" *ngIf="getEditStatus()">      
+
+      <div class="image-cnt">
+        <img class="img-responsive" src="{{(user | async)?.photoURL}}" alt="">
+      </div>
+
+        <div class="info-cnt" >
+        <form name="form" (ngSubmit)="f.form.valid && updateData()" #f="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+            <label for="firstName">Nombres</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">Nombres requeridos</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }" >
+            <label for="lastName">Apellidos</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required/>
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Apellidos requeridos</div>
+          </div>
+          <div class="form-group" >
+            <label for="emailn2">Correo electrónico alternativo</label>
+            <input type="email" class="form-control" name="emailn2" [(ngModel)]="model.email2" #emailn2="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !country.valid }" >
+            <label for="country">País</label>
+            <input type="text" class="form-control" name="country" [(ngModel)]="model.country" #country="ngModel" required />
+            <div *ngIf="f.submitted && !country.valid" class="help-block">Se requiere el país</div>
+        </div>
+        <div class="form-group"  [ngClass]="{ 'has-error': f.submitted && !city.valid }">
+            <label for="city">Ciudad</label>
+            <input type="text" class="form-control" name="city" [(ngModel)]="model.city" #city="ngModel" required />
+            <div *ngIf="f.submitted && !city.valid" class="help-block">Se requiere la ciudad</div>
+        </div> 
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted &&  phone != 0}">
+            <label for="phone">Teléfono 1</label>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required />
+            <div *ngIf="f.submitted && phone != 0" class="help-block">Se requiere el teléfono</div>
+        </div>
+        <div class="form-group" >
+            <label for="phone2">Teléfono 2</label>
+            <input type="text" class="form-control" name="phone2" [(ngModel)]="model.phone2" #phone="ngModel" />
+         </div>   
+          <div class="form-group" > 
+            <button type="submit" class="btn" >Guardar cambios</button>
+            <a (click)="cancelOption()" class="btn btn-link">Cancelar</a>
+          </div>
+          
+        </form>     
+        </div>
+      </div>
+ 
+<div class="my-courses">
+  <div class="section-title">
+    <img class="img-responsive" src="http://assets.voxel3d.net/graph-resources/courses.jpeg" alt="">
+    <h1><span>Mis cursos</span></h1>
+  </div> 
+
+  <div class="my-courses-info">
+    <div class="course-data" *ngFor="let course of courses">
+      <a [routerLink]="['/course/'+course.id]">
+        <div class="main-img-cnt" >
+          <img class="img-responsive" src="{{course.mainImageURL}}" alt="">
+        </div>
+        <div class="cenefa-cnt">
+          <img class="img-responsive" src="{{course.cenefaURL}}" alt="">
+        </div>
+      </a>     
+    </div>
+  </div>
+
+</div>
+<div class="my-buys">
+  <div class="section-title">
+    <img class="img-responsive" src="http://assets.voxel3d.net/graph-resources/buy.png" alt="">
+    <h1><span>Mis compras</span></h1>
+  </div>  
+
+  <div class="my-buys-info">
+      <div class="buy-data">
+        <a>
+          <div class="main-img-cnt" >
+            <img class="img-responsive" src="" alt="">
+          </div>
+          <div class="cenefa-cnt">
+            <img class="img-responsive" src="" alt="">
+          </div>
+        </a>     
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+

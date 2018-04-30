@@ -1,0 +1,26 @@
+
+
+<div id="{{id}}"  class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner backg" role="listbox" *ngIf="slides">
+    <div class="item active" >
+      <a [routerLink]="[slides.getFirst().getUrl()]">      
+        <img class="center image-carousel" src="{{slides.getFirst().getImage()}}">         
+      </a>
+         
+    </div>
+    <div class="item" *ngFor="let slide of slides.getSlides();index as i" >    
+      <a [routerLink]="[slide.getUrl()]">
+        <img class="center image-carousel" src="{{slide.getImage()}}">                 
+      </a>
+          
+    </div>
+    <a class="left carousel-control slide-control" [attr.href]="'#'+id" (click)="prevSlide()"role="button" data-slide="prev" *ngIf="slides.getSlides()[0]">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control slide-control" [attr.href]="'#'+id" (click)="nextSlide()"role="button" data-slide="next" *ngIf="slides.getSlides()[0]">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>

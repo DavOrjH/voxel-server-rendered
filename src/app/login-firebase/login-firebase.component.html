@@ -1,0 +1,102 @@
+<div class="body-pg">
+
+<div class="login-modal" *ngIf="isLogin" >
+    <h2>Inicia sesión</h2>
+    <h3>para continuar</h3>
+    <form name="form" (ngSubmit)="f1.form.valid && loginUserPswd()" #f1="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !email1.valid }">
+            <label for="email1">Correo Electrónico</label>
+            <input type="email" class="form-control" name="email1" [(ngModel)]="model.email1" #email1="ngModel" required />
+            <div *ngIf="f1.submitted && !checkEmail(model.email1)" class="help-block">Correo electrónico no válido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !password.valid }">
+            <label for="password1">Contraseña</label>
+            <input type="password" class="form-control" name="password1" [(ngModel)]="model.password1" #password1="ngModel" required />
+            <div *ngIf="f1.submitted && !password1.valid" class="help-block">Contraseña requerida</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Iniciar sesión</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a (click)="setIsLogin()" class="btn btn-link">Registrarse</a>
+        </div>
+        <a href="">¿Olvidaste tu contraseña?</a>
+    </form>
+
+    <h3>Conéctate más rápido con: </h3>
+
+    <div class="google-signin">
+      <!-- <a (click)="loginGoogle()"> <img src="../assets/icons/media.ico" alt=""></a> -->
+      <div class="btn-group">
+            <a class='btn btn-danger disabled'><i class="fa fa-google-plus" style="width:16px; height:20px"></i></a>
+            <a class='btn btn-danger' style="width:12em;" (click)="loginGoogle()">Login con Google</a>
+        </div>
+    </div>
+
+    <div class="google-signin">
+      <!-- <a (click)="loginFacebook()"> <img src="../assets/icons/facebook.png" alt=""></a> -->
+      <div class="btn-group">
+            <a class='btn btn-primary disabled'><i class="fa fa-facebook" style="width:16px; height:20px"></i></a>
+            <a class='btn btn-primary ' style="width:12em" (click)="loginFacebook()">Login con facebook</a>
+        </div>	
+    </div>
+  </div>
+
+  <div class="login-modal" *ngIf="!isLogin">
+    <h2>Registro de nuevo usuario</h2>
+    <form name="form" (ngSubmit)="f.form.valid && onFormSubmit(f)" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+            <label for="firstName">Nombres*</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">Se requiere el nombre(s)</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+            <label for="lastName">Apellidos*</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Se requieren los apellidos</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <label for="email">Correo electrónico*</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+            <div *ngIf="f.submitted && !checkEmail(model.email)" class="help-block">Correo electrónico inválido</div>
+        </div>
+        <div class="form-group" >
+            <label for="emailn2">Correo electrónico alternativo</label>
+            <input type="email" class="form-control" name="emailn2" [(ngModel)]="model.emailn2" #emailn2="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !country.valid }">
+            <label for="country">País*</label>
+            <input type="text" class="form-control" name="country" [(ngModel)]="model.country" #country="ngModel" required />
+            <div *ngIf="f.submitted && !country.valid" class="help-block">Se requiere el país</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !city.valid }" >
+            <label for="city">Ciudad*</label>
+            <input type="text" class="form-control" name="city" [(ngModel)]="model.city" #city="ngModel" required />
+            <div *ngIf="f.submitted && !city.valid" class="help-block">Se requiere la ciudad</div>
+        </div> 
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted &&  phone != 0 }" >
+            <label for="phone">Teléfono 1*</label>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required />
+            <div *ngIf="f.submitted && phone != 0" class="help-block">Se requiere el teléfono</div>
+        </div>
+        <div class="form-group" >
+            <label for="phone2">Teléfono 2</label>
+            <input type="text" class="form-control" name="phone2" [(ngModel)]="model.phone2" #phone="ngModel" />
+         </div>         
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Contraseña*</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Se requiere contraseña</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password2">Confirmar contraseña*</label>
+            <input type="password" class="form-control" name="password2" [(ngModel)]="model.password2" #password2="ngModel" required />
+            <div *ngIf="f.submitted && !checkPassword(model.password, model.password2)" class="help-block">Las contraseñas no coinciden</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Registrarse</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a (click)="setIsLogin()" class="btn btn-link">Cancelar</a>
+        </div>
+    </form>
+  </div>
+</div>

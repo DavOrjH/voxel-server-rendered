@@ -1,0 +1,27 @@
+<div class="body-pg" > 
+  
+<form #form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="2K9LBEV8CKRZA">
+    <input type="hidden" name="return" value="https://localhost:4200/" />
+<input type="hidden" name="cancel_return" value="https://localhost:4200/" />
+<input name="notify_url" value="https://angular.voxel3d.net/#/publicidad" type="hidden"><br/><br/>
+
+<input (click)="form.submit()" type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+
+<!-- <my-script [src]="'https://www.paypalobjects.com/api/checkout.js'"></my-script> -->
+
+<div id="paypal-button-container">
+</div>
+
+
+
+
+
+</div>
+

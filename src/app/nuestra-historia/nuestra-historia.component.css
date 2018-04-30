@@ -1,0 +1,32 @@
+.body-pg{
+  padding-left: 30px;
+  padding-right: 30px;
+  max-width:1240px;
+  margin:auto;
+  position:relative;
+  display:block;
+  font-family: 'Varela Round', sans-serif;
+  margin:auto;
+}
+
+.title{
+  padding-top:60px;
+  padding-bottom:60px;
+  width:100%;
+  color: rgb(255,159,10);
+  font-family: 'Varela Round', sans-serif;
+  text-align:left;
+}
+
+.top-img{
+  background-image: url('http://assets.voxel3d.net/top-images/nosotros.jpg');
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (max-width: 942px){
+  .top-img{
+    display:none;
+  }
+}

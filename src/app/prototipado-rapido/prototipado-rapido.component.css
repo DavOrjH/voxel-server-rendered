@@ -1,0 +1,205 @@
+.body-pg{
+    max-width: 1240px;
+    margin:auto;
+    font-family: 'Varela Round', sans-serif;
+    padding-left:30px;
+    padding-right:30px;
+}
+
+.top-img{
+    background-image: url('http://assets.voxel3d.net/top-images/sectores.jpg');
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display:block;
+}
+
+.page-title{
+    padding-top:60px;
+    font-size:30px;
+    font-weight:bold;
+    padding-bottom:60px;
+    color: rgb(255,159,10);
+}
+
+.info-cnt, .info-cnt>p{
+    float:left;
+    width:100%;    
+    color: rgb(179,179,179);
+    font-size:16px;
+    text-align: justify;
+}
+
+.img-section{
+    float:left;
+    width:100%;
+    clear:both;
+    margin-top:30px;
+}
+
+.img-cnt{
+    float:left;       
+   
+}
+
+.img-cnt>img{
+    width:100%;
+    height:auto;
+}
+
+.vert-align{
+    width:50%;
+    padding:10px;
+}
+
+.hor-align{
+    width:100%;
+    padding:20px;
+    clear:both;
+}
+
+.sliders-row{
+    position:relative;
+    float:left;
+    display:flex;
+    align-items:center;
+    width:100%;
+    margin-bottom:20px;
+}
+
+.slider-column{
+    width:50%;
+    position:relative;
+    float:left;
+}
+
+.slider-column>h3{
+    color: rgb(179,179,179);
+    text-align: center;
+
+}
+
+.service-form{
+    width:100%;
+    float:left;
+    position:relative;
+    display: flex;
+    justify-content: center;
+}
+
+.service-form>form{
+    width:60%;
+}
+
+.slider-column>a{
+    float:left;
+    width:100%;
+    text-align: center;
+    color: rgb(179,179,179);
+    text-decoration:none;
+}
+
+.slider-column>a:hover{
+    color: rgb(255,159,10);
+    cursor:pointer;
+}
+
+
+.slider-cnt{
+    padding:50px;
+}
+
+form, form>h3, form>h4{
+    float:left;
+    width:100%;
+    position:relative;
+    color:rgb(179,179,179);
+    margin-top:30px;
+    margin-bottom:20px; 
+}
+
+.agreement{
+    text-decoration:none;
+    color:rgb(179,179,179);  
+}
+
+.agreement:hover{
+    cursor: pointer;
+    color: rgb(255,159,10);
+    
+}
+
+.form-btn{
+    cursor: pointer;
+    background-color: rgb(255,159,10);
+    border-color: rgb(255,159,10);
+    
+}
+
+form>div>label, form>label, form>h4, form>h3, form>div>a>label, .slider-column>h3{
+    font-weight: normal;
+    color: rgb(114,116,117);
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+
+form>div>input, form>div>textarea{
+    font-weight: normal;    
+    background-color: rgb(242,242,242);
+    font-family: 'Varela Round', sans-serif;
+}
+
+form>div>select{
+    width:100%;    
+    padding:6px 12px;
+    border-radius: 4px;
+    background-color: rgb(242,242,242);
+    border-color: #ccc;
+    color: #555;    
+}
+
+
+@media screen and (max-width: 942px){
+
+    .vert-align{
+        width:100%;
+        padding:10px;
+        clear:both;
+    }
+
+    .img-section{
+        display:none;
+    }
+
+    .service-form>form{
+        width:100%;
+    }
+
+    .hor-align{
+        width:100%;
+        padding:5px;
+        clear:both;
+    }
+
+
+    .top-img{
+        display:none;
+    }
+
+    .sliders-row{
+        display:block;
+    }
+
+    .slider-column{
+        width:100%;
+        clear:both;
+    }
+
+    .slider-cnt{
+        padding:10px;
+    }
+    
+
+}
+

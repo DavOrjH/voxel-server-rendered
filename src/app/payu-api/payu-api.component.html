@@ -1,0 +1,187 @@
+<div class="loading" *ngIf="isLoading()" >
+    <img src="http://assets.voxel3d.net/graph-resources/loading.gif" alt="">
+</div>
+<div class="body-pg">
+    <div class="emptyState" *ngIf="!getProductList()[0]">
+            <a [routerLink]="['/store']" > 
+                <h1>Tu carrito está vacio</h1> 
+                <img class="img-responsive" src="http://assets.voxel3d.net/graph-resources/buy.png" alt="">
+                <h2>visita nuestra tienda para encontrar tu producto</h2>
+            </a>
+    
+    </div>
+    <div *ngIf="getProductList()[0]" >
+            <div class="section">
+                    <h1>Paso 1 - Selección de productos</h1>
+                    <div class="products-info" *ngIf="getProductList()[0]">
+
+                        <div class="prod_cnt" *ngFor="let product of getProductList() index as i" >
+                            <div class="prod_cnt1" >
+                                <div class="prod-name" >
+                                    <label >{{product.getName()}} </label>
+                                </div>
+                                <img class="img-responsive" src="{{product.getImgURL()}}" alt=""> 
+                            </div>
+                            <div class="price">
+                                <a > {{product.getPrice()| currency}} </a> 
+                                
+                            </div>
+                            <div class="del">
+                                <a (click)="delProd(i)" >
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="total-cnt">
+                            <div>
+                                <label class="total-label">TOTAL</label>
+                            </div>
+                            
+                            <a class="total-value"> {{getTotal() | currency}} </a>
+                        </div>
+
+                    </div>
+            </div>
+         
+            
+            <div class="section" >
+                <h1>Paso 2 - Verificación de datos</h1>
+               
+                   <div class="sect-2">
+                       <div class="info-ctn" >
+                            <div class="info-ctn-item">
+                                    <label >Nombre</label>
+                                    <a> {{currentUser?.getFirstName()}}</a> 
+                               </div>
+                       </div>
+                       <div class="info-ctn" >
+                            <div class="info-ctn-item">
+                                    <label >Correo</label>
+                                    <a> {{currentUser?.getEmail()}}</a> 
+                               </div>
+                       </div>
+                       <div class="info-ctn" >
+                            <div class="info-ctn-item">
+                                    <label >Teléfono</label>
+                                    <a> {{currentUser?.getPhone()}}</a> 
+                               </div>
+                       </div>
+                       <div class="info-ctn" >
+                            <div class="info-ctn-item">
+                                    <label >Ciudad</label>
+                                    <a> {{currentUser?.getCity()}}</a> 
+                               </div>
+                       </div>
+                       <div class="info-ctn">
+                            <label >
+                                    Si desea cambiar los datos debe ir a:
+                                    <a [routerLink]="['/my-account']" > Editar informacion</a>
+                            </label>
+                               
+                       </div>
+                   </div> 
+                
+        
+            </div>
+        
+            <div class="section"  > 
+                <h1>Paso 3 -  Selección del método de pago</h1>
+                <div class="pay-info">  
+                    <form name="form" (ngSubmit)="f1.form.valid && pay()" #f1="ngForm" novalidate>       
+                    
+                        <!-- div que utiliza la consulta a payU de los metodos de pago disponibles -->
+                        
+                        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !model.payMethod}" >
+                            <select name="payMethod" [(ngModel)]="model.payMethod" required>
+                                <option *ngFor="let method of getPayMethods() " value="{{method.val}}"  >
+                                    {{method.description}}</option>                              
+                            </select>
+                            <div *ngIf="f1.submitted && !model.country" class="help-block">Escoja un método de pago</div>
+                        </div>    
+                    
+                        <div class="form-group" *ngIf="isCredit(model.payMethod)" >
+                            <label for="dniType">Tipo de identificación</label>
+                            <select class="" name="dniType" [(ngModel)]="model.dniType">
+                                <option value="CC">Cédula de ciudadanía</option>
+                                <option value="CE">Cédula de extranjería</option>
+                                <option value="NIT">NIT (Empresa)</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                                <option value="PP">Pasaporte</option>
+                                <option value="IDC">Identificador único de cliente (Usuarios de servicios públicos)</option>
+                                <option value="CEL">Identificación a través de línea móvil</option>
+                                <option value="DE">Documento de identificación Extranjero</option>      
+                            </select>    
+                        </div>
+                    
+                        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !dni.valid}" *ngIf="isCredit(model.payMethod)" >
+                            <label for="dni">Documento de identificación</label>
+                            <input type="text" class="form-control input-dni" name="dni" [(ngModel)]="model.dni" #dni="ngModel" required />
+                            <div *ngIf="f1.submitted && !dni.valid" class="help-block">Se requiere el número del documento de identificación</div>       
+                        </div>
+                    
+                    
+                        
+                    
+                        <div *ngIf="isCredit(model.payMethod)" >
+                    
+                            Tarjeta de crédito
+                    
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !creditCardName.valid }">
+                                <label for="creditCardName">Nombre de la tarjeta</label>
+                                <input type="text" class="form-control" name="creditCardName" [(ngModel)]="model.creditCardName" #creditCardName="ngModel" required />
+                                <div *ngIf="f1.submitted && !creditCardName.valid" class="help-block">Se requieren el número de la tarjeta</div>            
+                            </div>
+                    
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !creditCardNumber.valid }">
+                                <label for="creditCardNumber">Número de la tarjeta</label>
+                                <input type="text" class="form-control input-cc" name="creditCardNumber" [(ngModel)]="model.creditCardNumber" #creditCardNumber="ngModel" required />
+                                <div *ngIf="f1.submitted && !isValidCard()" class="help-block">Número de tarjeta inválido. Por favor verifique el tipo de tarjeta de crédito </div>            
+                            </div>
+                    
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !creditCardSecCode.valid }">
+                                <label for="creditCardSecCode">Código de seguridad (CVV/CVC/)</label>
+                                <input type="password" class="form-control input-cvv" name="creditCardSecCode" maxlength="4" 
+                                [(ngModel)]="model.creditCardSecCode" #creditCardSecCode="ngModel" required />
+                                <div *ngIf="f1.submitted && !creditCardSecCode.valid" class="help-block">Se requieren el código de seguridad de la tarjeta</div>            
+                            </div>
+                            <label for="creditCardExpDate">Fecha de expiración de la tarjeta </label>
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !creditCardExpYear.valid }">
+                                <label for="creditCardExpYear">Año</label>
+                                <input type="text" class="form-control input-cc-year" name="creditCardExpYear" maxlength="4" 
+                                        [(ngModel)]="model.creditCardExpYear" #creditCardExpYear="ngModel" />  
+                                <label for="creditCardExpMonth">Mes</label>              
+                                <input type="text" class="form-control input-cc-month" name="creditCardExpMonth" maxlength="2"
+                                            [(ngModel)]="model.creditCardExpMonth" #creditCardExpMonth="ngModel" /> 
+                            </div>
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !creditCardExpMonth.valid }">
+                                                
+                            </div>
+                    
+                            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !model.creditQuotes}">
+                                <label for="creditQuotes">Cuotas</label>
+                                <select name="creditQuotes" class="input-cuota" [(ngModel)]="model.creditQuotes" required>
+                                    <option value="3">3</option>
+                                    <option value="6">6</option>
+                                    <option value="9">9</option>
+                                    <option value="12">12</option>
+                                    <option value="18">18</option>
+                                    <option value="24">24</option>
+                                </select>
+                                <div *ngIf="f1.submitted && !model.creditQuotes" class="help-block">Especifique el número de cuotas</div>
+                            </div>
+                    
+                        </div>
+                        <div class="pay-button" *ngIf="model.payMethod">
+                            <button (click)="pay()">Pagar</button>
+                        </div>
+                    </form> 
+                    
+                </div>
+            </div>
+    </div>
+    
+    
+
+  
+</div>

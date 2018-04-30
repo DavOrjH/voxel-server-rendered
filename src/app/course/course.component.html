@@ -1,0 +1,57 @@
+
+
+<div class="sidebar-icon">
+    <a (click) = "setMenuMobState(true)" [@iconMobState]="getIconMobState()"><span class="glyphicon glyphicon-cog"></span></a>
+  </div>
+  
+  <div class="sidebar-icon">
+    <a (click) = "setMenuMobState(true)" [@iconMobState]="getIconExitMobState()"><span class="glyphicon glyphicon-remove-circle"></span></a>
+  </div>
+
+  <div class="wait-cnt" *ngIf="!isGranted()">
+    <img src="http://assets.voxel3d.net/graph-resources/loading.gif" alt="">
+  </div>
+  
+
+<div class="course-title">
+  <h1>{{courseName}}</h1>
+</div>
+
+<!-- 
+<div class="completed-message" *ngIf="getIsCompleted()">      
+    <img src="http://assets.voxel3d.net/graph-resources/fireworks1.gif" alt="">
+    <a>Felicidades, has completado el curso {{courseName}}, contacta a nuestro departamento comercial para iniciar tu proceso de certificación.</a>
+    <img src="http://assets.voxel3d.net/graph-resources/fireworks2.gif" alt="">
+  </div> -->
+
+
+<div class="sidebar" [@menuMobState]="getMenuMobState()">
+  <div class="info-sidebar">
+    <a>Lecciones</a>
+  </div>
+  <hr>
+  <div class="option-cnt" *ngFor = "let lesson of courseLessons;index as i"  class="option-cnt">
+    <div >
+      <a (click)="setActiveLesson(i)" [ngClass]="{'selected': lesson.getIsCurrent(), 'completed':lesson.getIsAccomplished(), 'invisible': !lesson.getIsAccomplished()}"> {{i+1}}. {{lesson.getNameLesson()}}</a>
+      <a [ngClass]="{'selected': lesson.getIsCurrent(),'uncompleted':!lesson.getIsAccomplished(), 'invisible': lesson.getIsAccomplished()}"> {{i+1}}. {{lesson.getNameLesson()}}</a>
+    </div>
+  </div>
+</div>
+ 
+
+<div class="info-cnt">
+    <div *ngFor="let lesson of courseLessons;index as i">
+      <div *ngIf="lesson.getIsCurrent()">
+          <a class="lesson-title"> {{lesson.getNameLesson()}} </a>
+          <div class="video-cnt">             
+              <iframe [src] = "lesson.getVideoLesson() | safe" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+          </div>      
+          <a class="lesson-desc"> {{lesson.getDescLesson()}} </a>
+          <div class="buttons-cnt">
+            <a class="previous button" *ngIf="showButton(i,'previous')" (click)="prevLesson(i)">Lección previa</a>
+            <a class="next button"  *ngIf="showButton(i,'next')" (click)="nextLesson(i)">Siguiente lección </a>
+          </div>          
+      </div>           
+    </div>
+ 
+</div>

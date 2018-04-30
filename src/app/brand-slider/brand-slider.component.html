@@ -1,0 +1,10 @@
+<ul id={{id}}>
+    <li *ngFor="let brand of brands">
+        <a href="{{brand.getPageURL()}}" target="_blank">
+            <div class="icon-cnt">
+                <img class="img-responsive" src="{{brand.getImgURL()}}" alt="">
+            </div>            
+        </a>        
+    </li>                                            
+</ul> 
+

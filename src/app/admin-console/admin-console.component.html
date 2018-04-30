@@ -1,0 +1,1402 @@
+<!-- <div class="pretty-effect-cnt" [@pretty-effect-act] = "getPrettyEffectState()" (keypress)="handleInput($event)">
+  <div class="escape-button" (click) = "inactivePrettyState()" >
+    <a>
+      <img class="img-responsive escape-icon"src="../../assets/icons/close_white.png" alt="">
+    </a>
+  </div>
+    
+</div> -->
+<div class="sidebar-icon">
+  <a (click) = "setMenuMobState()" [@iconMobState]="getIconMobState()"><span class="glyphicon glyphicon-cog"></span></a>
+</div>
+<div class="sidebar-icon">
+  <a (click) = "setMenuMobState()" [@iconMobState]="getIconExitMobState()"><span class="glyphicon glyphicon-remove-circle"></span></a>
+</div>
+<div class="sidebar" [@menuMobState]="getMenuMobState()">
+  <div class="info-sidebar">
+    <label>Usuario: </label>
+    <a>{{(user|async)?.displayName}}</a>
+  </div>
+  <div class="info-sidebar">
+    <label>Rol: </label>
+    <a>{{userRole}}</a>
+  </div>
+  <hr>
+  <div *ngFor = "let options of sectionId;index as i"  class="option-cnt">
+    <a [@sectionState]="getSectionState(i)" (click)="setSectionActive(i)"><span class="{{getSectionIcon(i)}}" [ngClass]="{'glyphicon':true}"></span> {{getSectionName(i)}}</a>
+  </div>
+</div>
+<div class="info-cnt">
+  <!-- <div id="dashboard">
+    <a class ="title-section">DASHBOARD</a>
+    <hr>
+    <div class="gadget-cnt">
+      <div class="dash-gadget">
+        <a>Usuarios activos:</a>
+        <a class="info-gadget">200</a>
+        <hr>
+        <a class="gadget-date"><span class="glyphicon glyphicon-time"></span> Última hora</a>
+      </div>
+      <div class="dash-gadget">
+        <a >Compras:</a>
+        <a class="info-gadget">$99.999 k</a>
+        <hr>
+        <a class="gadget-date"><span class="glyphicon glyphicon-calendar"></span> Este mes</a>
+      </div>
+      <div class="dash-gadget">
+        <a>Estudiantes inscritos:</a>
+        <a class="info-gadget">20</a>
+        <hr>
+        <a class="gadget-date"><span class="glyphicon glyphicon-calendar"></span> Este mes</a>
+      </div>
+      <div class="dash-gadget">
+        <a>Seguidores:</a>
+        <a class="info-gadget">600 k</a>
+        <hr>
+        <a class="gadget-date"><span class="glyphicon glyphicon-calendar"></span> Este mes</a>
+      </div>
+    </div>
+    <div class="graph-cnt">
+      <label>Histórico de conexiones</label>
+      <img class="img-responsive" src="../assets/icons/Tumbleweed.gif" alt="">
+      <img class="img-responsive" src="../assets/icons/Tumbleweed.gif" alt="">
+    </div>
+  </div> -->
+  <div id="users">
+    <a class ="title-section">USUARIOS</a>
+    <hr>
+    <div class="user-panel">
+      <div class="options-cnt">
+        <label>Ordenar por: </label>
+        <select [(ngModel)]="searchModel.searchType" (click)="setModel()" >
+          <option *ngFor="let type of searchTypes" [value]="type.value"  >
+            {{type.text}}
+          </option>
+        </select>
+        <div *ngIf="searchModel.searchType==2" > 
+          <label for="">Correo electrónico: </label>
+          <input type="text" [(ngModel)]="searchModel.searchValue" >  
+        </div>
+        <div *ngIf="searchModel.searchType==1" > 
+          <label for="">Nombre: </label>
+          <input type="text" [(ngModel)]="searchModel.searchValue" >  
+        </div>
+        <div *ngIf="searchModel.searchType==4" > 
+          <label for="">Estado: </label>
+          <select [(ngModel)]="searchModel.searchValue">
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select> 
+        </div>
+        <div *ngIf="searchModel.searchType==3" > 
+          <label for="">Rol: </label>
+          <select [(ngModel)]="searchModel.searchValue" >
+            <option value="Admin">Admin</option>
+            <option value="Comercial">Comercial</option>
+            <option value="Regular">Regular</option>
+            <option value="Tutor">Tutor</option>
+            <option value="Technical">Soporte técnico</option>
+          </select> 
+        </div>
+        <a (click)="search()" *ngIf="searchModel.searchType" >Buscar</a>
+      </div>
+      <div class="titles-cnt" *ngIf="getUserFrame()">
+        <label >Imagen de perfil</label>
+        <label >Nombre(s)</label>
+        <label >Apellido(s)</label>
+        <label >Rol</label>
+        <label >Estado</label>
+        <label >Última conexión</label>
+      </div>
+      <div class="user-info" *ngIf="getUserFrame()">
+        <div class="one-user" *ngFor="let user of dataModel" >
+          <label class="title-resp">Imagen de perfil:</label> 
+          <a><img src="{{user.photoURL}}" ></a>
+          <label class="title-resp">Nombre(s:)</label> 
+          <a>{{user.firstName}}</a>
+          <label class="title-resp">Apellido(s):</label> 
+          <a>{{getLastName(user.lastName)}}</a>
+          <label class="title-resp">Rol:</label> 
+          <a><select [(ngModel)]="user.userRole">
+            <option value="Admin">Admin</option>
+            <option value="Comercial">Comercial</option>
+            <option value="Regular">Regular</option>
+            <option value="Tutor">Tutor</option>
+            <option value="Technical">Soporte técnico</option>
+            </select></a>
+          <label class="title-resp">Estado:</label> 
+          <a><select [(ngModel)]="user.active" >
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select></a>
+          <label class="title-resp" >Última conexión:</label>
+          <a>{{user.lastLogin}}</a>
+          <hr class="line-resp"> 
+        </div>      
+      </div> 
+      <div *ngIf="getUserFrame()" class="btn-opt">
+        <button (click)="saveChanges()" >Guardar</button>
+      </div>
+    </div>
+  </div>
+  <div id="sales">
+    <a class ="title-section">COMPRAS</a>
+    <hr>
+    <div class="product-creation" >
+      <!-- <a [ngClass]="{'active-tab' : getBuyView()=='promotionsCreate', 'inactive-tab': getBuyView() !='promotionsCreate'}" (click)="setBuyView('promotionsCreate')" > Nueva promoción</a>
+      <a [ngClass]="{'active-tab' : getBuyView()=='promotionsList', 'inactive-tab': getBuyView() !='promotionsList'}" (click)="setBuyView('promotionsList')" > Lista de promociones</a>
+      <a [ngClass]="{'active-tab' : getBuyView()=='promotionsEdit' }" *ngIf="getBuyView()=='promotionsEdit'"> Edición de promociones</a> -->
+      <a [ngClass]="{'active-tab' : getBuyView()=='slidesList', 'inactive-tab': getBuyView() !='slidesList'}" (click)="setBuyView('slidesList')"> Lista de Sliders</a>
+      <a [ngClass]="{'active-tab' : getBuyView()=='slidersCreate', 'inactive-tab': getBuyView() !='slidersCreate'}" (click)="setBuyView('slidersCreate')"> Nuevo Slider</a>
+      <a [ngClass]="{'active-tab' : getBuyView()=='sliderEdit' }" *ngIf="getBuyView()=='sliderEdit'"> Edición de sliders</a>
+    </div>
+    <!-- <div class="product-form tab-content" *ngIf="getBuyView()=='promotionsList'">            
+      <div class="products-list">
+        <div class="titles-cnt">
+          <label >Imagen</label>
+          <label >Nombre</label>
+          <label >Productos</label>
+          <label >Precio</label>
+          <label >Descuento</label>          
+          <label ></label>
+        </div>              
+        <div class="user-info">
+          <div class="one-user" *ngFor="let promotion of promotionDataModel;index as i" >
+            <label class="title-resp" >Imagen de la promoción:</label>
+            <a> <img src="{{promotion.imageURL}}" alt=""></a>
+            <label class="title-resp" >Nombre de la promoción:</label> 
+            <a>{{promotion.name}}</a>
+            <label class="title-resp" >Productos:</label>          
+            <a> <a *ngFor = "let products of promotion.productName" class="sub-list">-{{products}}</a></a>
+            <label class="title-resp" >Precio:</label>    
+            <a>{{showRounded(promotion.price*(1-promotion.discount),"price")}}</a>
+            <label class="title-resp" >Descuento:</label>  
+            <a>{{showRounded(promotion.discount,"discount")}}%</a>
+            <label class="title-resp" >Opciones:</label>              
+            <a (click)="editPromotion(i)" class="hover-pointer"> Editar </a>
+          </div>
+          <hr class="line-resp">
+        </div>
+      </div>              
+    </div>          -->
+    <!-- <div class="tab-content" *ngIf="getBuyView()=='promotionsCreate'" >
+      <form name="form" (ngSubmit)="f5.form.valid && addPromotion()" #f5="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !name.valid }">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="promotionModel.name" #name="ngModel" required />
+          <div *ngIf="f5.submitted && !name.valid" class="help-block">Nombre requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !description.valid }">
+          <label for="description"> Descripción</label>
+          <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="promotionModel.description" #description="ngModel" required></textarea>
+          <div *ngIf="f5.submitted && !description.valid" class="help-block">Descripción requerida</div>
+        </div>
+        <div class="form-group" >
+          <label for="products">Productos</label>
+          <select name="products" [(ngModel)]="prodId">
+            <option *ngFor="let products of productDataModel;index as i" value="{{products.$key}}">{{products.name}}</option>             
+          </select>          
+        </div>
+        <a (click)="pushProducts(prodId)" class="form-btn">Agregar</a>        
+        <ul class="form-list">
+          <li *ngFor="let selProd of promotionModel.idProduct;index as i" >
+            {{searchProductName(selProd.idProduct)}} <a (click)="removeProducts(i)" class="form-btn" >Eliminar</a>
+          </li>
+        </ul>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !imageURL.valid }">
+          <label for="imageURL"> URL de la imagen</label>
+          <input type="text" class="form-control" name="imageURL" [(ngModel)]="promotionModel.imageURL" #imageURL="ngModel" required/>
+          <div *ngIf="f5.submitted && !imageURL.valid" class="help-block">URL de la imagen requerida</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !dPrice.valid }">
+          <label for="dPrice"> Precio de la promoción</label>
+          <input type="text" class="form-control" name="dPrice" [(ngModel)]="promotionModel.dPrice" #dPrice="ngModel" required/>
+          <div *ngIf="f5.submitted && !dPrice.valid" class="help-block">Precio de la promoción requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && promotionModel.relatedProducts}">
+          <label for="relatedProducts">Productos Relacionados</label>
+          <select name="relatedProducts" [(ngModel)]="relProdId">
+            <option *ngFor="let relProd of courseDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of licenceDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of promotionDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option> 
+          </select>
+          <div *ngIf="f5.submitted && !promotionModel.relatedProducts" class="help-block">Escoja al menos un producto relacionado</div>
+        </div>
+          <a (click)="pushRelProd(relProdId,'promotion')" class="form-btn">Agregar</a>        
+          <ul class="form-list">
+            <li *ngFor="let selRelProd of promotionModel.relatedProducts;index as i">
+              {{searchProductName(selRelProd.idProduct)}}<a (click)="removeRelatedProduct(i,'promotion')" class="form-btn" >Eliminar </a>
+            </li>
+          </ul>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary orange-v">Crear Promoción</button>            
+        </div>        
+      </form>
+    </div> -->
+    <!-- <div class="tab-content" *ngIf="getBuyView()=='promotionsEdit'" >
+      <form name="form" (ngSubmit)="f6.form.valid && updatePromotion()" #f6="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f6.submitted && !name.valid }">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="promotionModel.name" #name="ngModel" required />
+          <div *ngIf="f6.submitted && !name.valid" class="help-block">Nombre requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f6.submitted && !description.valid }">
+          <label for="description"> Descripción</label>
+          <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="promotionModel.description" #description="ngModel" required></textarea> 
+          <div *ngIf="f6.submitted && !description.valid" class="help-block">Descripción requerida</div>
+        </div>
+        <div class="form-group" >
+          <label for="products">Productos</label>
+          <select name="products" [(ngModel)]="prodId">
+            <option *ngFor="let products of productDataModel;index as i" value="{{products.$key}}">{{products.name}}</option>             
+          </select>          
+        </div>
+        <a (click)="pushProducts(prodId)" class="form-btn" >Agregar</a>        
+        <ul class="form-list">
+          <li *ngFor="let selProd of promotionModel.idProduct;index as i" >
+            {{searchProductName(selProd.idProduct)}} <a (click)="removeProducts(i)" class="form-btn">Eliminar</a>
+          </li>
+        </ul>
+        <div class="form-group" [ngClass]="{ 'has-error': f6.submitted && !imageURL.valid }">
+          <label for="imageURL"> URL de la imagen</label>
+          <input type="text" class="form-control" name="imageURL" [(ngModel)]="promotionModel.imageURL" #imageURL="ngModel" required/>
+          <div *ngIf="f6.submitted && !imageURL.valid" class="help-block">URL de la imagen requerida</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f6.submitted && !dPrice.valid }">
+          <label for="dPrice"> Precio de la promoción</label>
+          <input type="text" class="form-control" name="dPrice" [(ngModel)]="promotionModel.dPrice" #dPrice="ngModel" required/>
+          <div *ngIf="f6.submitted && !dPrice.valid" class="help-block">Precio de la promoción requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f6.submitted && promotionModel.relatedProducts}">
+          <label for="relatedProducts">Productos Relacionados</label>
+          <select name="relatedProducts" [(ngModel)]="relProdId">
+            <option *ngFor="let relProd of courseDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of licenceDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of promotionDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option> 
+          </select>
+          <div *ngIf="f6.submitted && !promotionModel.relatedProducts" class="help-block">Escoja al menos un producto relacionado</div>
+        </div>
+          <a (click)="pushRelProd(relProdId,'promotion')" class="form-btn">Agregar</a>        
+          <ul class="form-list">
+            <li *ngFor="let selRelProd of promotionModel.relatedProducts;index as i">
+              {{searchProductName(selRelProd.idProduct)}} <a (click)="removeRelatedProduct(i,'promotion')" class="form-btn">Eliminar </a>
+            </li>
+          </ul>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary orange-v">Actualizar Promoción</button>            
+        </div>        
+      </form>
+    </div> -->
+    <div class="tab-content" *ngIf="getBuyView()=='slidesList'" >
+        <div class="products-list">
+            <div class="titles-cnt">
+              <label >Imagen</label>
+              <label >Título</label>
+              <label >Descripción</label>              
+              <label >Url</label>                       
+              <label></label>
+              <label></label>
+            </div>              
+            <div class="user-info">
+              <div class="one-user" *ngFor="let slide of slidersDataModel;index as i" >
+                <label class="title-resp" >Imagen del slider:</label>
+                <a> <img src="{{slide.imageURL}}" alt=""></a>
+                <label class="title-resp" >Título de la promoción:</label> 
+                <a> <a *ngIf = "slide.title" >{{slide.title}}</a> <img *ngIf ="!slide.title && slide.urlFirstImage" src="{{slide.imageURL}}" alt=""> </a>
+                <label class="title-resp" >Descripción:</label>          
+                <a>{{slide.description}}</a>
+                <label class="title-resp" >URL:</label>    
+                <a>{{slide.urlPage}}</a>
+                <label class="title-resp" >Opciones:</label>              
+                <a (click)="editSlider(i)" class="hover-pointer"> Editar </a>
+                <a (click)="deleteSlider(i)" class="hover-pointer"> Eliminar </a>
+              </div>
+              <hr class="line-resp">
+            </div>
+          </div>
+    </div>
+    <div class="tab-content" *ngIf="getBuyView()=='slidersCreate'" >
+        <form name="form" (ngSubmit)="f7.form.valid && createSlider()" #f7="ngForm" novalidate>
+            <div class="form-group" [ngClass]="{ 'has-error': f7.submitted && !title.valid }">
+              <label for="title">Título</label>
+              <input type="text" class="form-control" name="title" [(ngModel)]="sliderModel.title" #title="ngModel"/>              
+            </div>
+            <div class="form-group" >
+              <label for="description"> Descripción</label>
+              <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="sliderModel.description" #description="ngModel"></textarea>              
+            </div>
+             <div class="form-group">
+              <label for="imageURL"> URL de la imagen</label>
+              <input type="text" class="form-control" name="imageURL" [(ngModel)]="sliderModel.imageURL" #imageURL="ngModel"/>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f7.submitted && !urlPage.valid }">
+              <label for="urlPage"> URL de la página</label>
+              <input type="text" class="form-control" name="urlPage" [(ngModel)]="sliderModel.urlPage" #urlPage="ngModel" required/>
+              <div *ngIf="f7.submitted && !urlPage.valid" class="help-block">URL de la página requerida</div>
+            </div>
+            <div class="form-group" >
+              <label for="urlVideo"> URL de video</label>
+              <input type="text" class="form-control" name="urlVideo" [(ngModel)]="sliderModel.urlVideo" #urlVideo="ngModel"/>                
+            </div>
+            <div class="form-group" >
+              <label for="urlSecImage"> URL imagen secundaria</label>
+              <input type="text" class="form-control" name="urlSecImage" [(ngModel)]="sliderModel.urlSecImage" #urlSecImage="ngModel"/>                
+            </div>
+            <div class="form-group" >
+              <label for="urlFirstImage"> URL imagen primaria</label>
+              <input type="text" class="form-control" name="urlFirstImage" [(ngModel)]="sliderModel.urlFirstImage" #urlFirstImage="ngModel"/>                
+            </div>                 
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary orange-v">Crear Slide</button>            
+            </div>        
+          </form>
+      </div>
+    </div>
+
+    <div class="tab-content" *ngIf="getBuyView()=='sliderEdit'" >
+      <form name="form" (ngSubmit)="f8.form.valid && updateSlider()" #f8="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f8.submitted && !title.valid }">
+            <label for="title">Título</label>
+            <input type="text" class="form-control" name="title" [(ngModel)]="sliderModel.title" #title="ngModel" />            
+          </div>
+          <div class="form-group">
+            <label for="description"> Descripción</label>
+            <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="sliderModel.description" #description="ngModel"></textarea>
+            
+          </div>
+           <div class="form-group" >
+            <label for="imageURL"> URL de la imagen</label>
+            <input type="text" class="form-control" name="imageURL" [(ngModel)]="sliderModel.imageURL" #imageURL="ngModel"/>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f8.submitted && !urlPage.valid }">
+            <label for="urlPage"> URL de la página</label>
+            <input type="text" class="form-control" name="urlPage" [(ngModel)]="sliderModel.urlPage" #urlPage="ngModel" required/>
+            <div *ngIf="f8.submitted && !urlPage.valid" class="help-block">URL de la página requerida</div>
+          </div>
+          <div class="form-group" >
+              <label for="urlVideo"> URL de video</label>
+              <input type="text" class="form-control" name="urlVideo" [(ngModel)]="sliderModel.urlVideo" #urlVideo="ngModel"/>                
+            </div>
+            <div class="form-group" >
+              <label for="urlSecImage"> URL imagen secundaria</label>
+              <input type="text" class="form-control" name="urlSecImage" [(ngModel)]="sliderModel.urlSecImage" #urlSecImage="ngModel"/>                
+            </div>
+            <div class="form-group" >
+              <label for="urlFirstImage"> URL imagen primaria</label>
+              <input type="text" class="form-control" name="urlFirstImage" [(ngModel)]="sliderModel.urlFirstImage" #urlFirstImage="ngModel"/>                
+            </div>                              
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary orange-v">Actualizar Slide</button>            
+          </div>        
+        </form>
+ 
+  </div>
+  <div id="courses">
+    <a class ="title-section">CURSOS</a>
+    <hr>
+    <div class="product-creation" >
+      <a [ngClass]="{'active-tab' : getProductView()=='productCreate', 'inactive-tab': getProductView() !='productCreate'}" (click)="setProductView('productCreate')" > Nuevo curso</a>
+      <a [ngClass]="{'active-tab' : getProductView()=='newOnSiteCourse', 'inactive-tab': getProductView() !='newOnSiteCourse'}" (click) = "newOnSiteCourse()" > Nuevo curso presencial</a>
+      <a [ngClass]="{'active-tab' : getProductView()=='productList', 'inactive-tab': getProductView() !='productList'}" (click)="setProductView('productList')" > Lista de cursos</a>
+      <a [ngClass]="{'active-tab' : getProductView()=='OnSiteClass', 'inactive-tab': getProductView() !='OnSiteClass'}" (click)="setProductView('OnSiteClass')" > Lista de cursos presenciales</a>
+      <a [ngClass]="{'active-tab' : getProductView()=='productEdit'}" *ngIf="getProductView()=='productEdit'" > Edición de curso</a>
+      <a [ngClass]="{'active-tab' : getProductView()=='editOnSiteCourse'}" *ngIf="getProductView()=='editOnSiteCourse'" > Edición de curso presencial</a>
+      <a [ngClass]="{'active-tab' : getProductView()=='requestCourseList', 'inactive-tab': getProductView() !='requestCourseList'}" (click)="setProductView('requestCourseList')" > Lista de solicitud de cursos</a>
+      
+    </div>
+    <div class="product-form tab-content" *ngIf="getProductView()=='productCreate'" >      
+      <form name="form" (ngSubmit)="f.form.valid && addCourse()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="productModel.name" #name="ngModel" required />
+          <div *ngIf="f.submitted && !name.valid" class="help-block">Nombre requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cenefaURL.valid }" >
+          <label for="cenefaURl">Url Cenefa</label>
+          <input type="text" class="form-control" name="cenefaURL" [(ngModel)]="productModel.cenefaURL" #cenefaURL="ngModel" required/>
+          <div *ngIf="f.submitted && !cenefaURL.valid" class="help-block">URL de la cenefa requerida</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }" >
+          <label for="description"> Descripción</label>          
+          <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.description" #description="ngModel" required></textarea>
+          <div *ngIf="f.submitted && !description.valid" class="help-block">Descripción requerida</div>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !goal.valid }" >
+          <label for="goal"> Objetivo</label>          
+          <textarea name="goal" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.goal" #goal="ngModel" required></textarea>
+          <div *ngIf="f.submitted && !goal.valid" class="help-block">Objetivo requerido</div>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !goal.valid }" >
+          <label for="goal"> Dirigido a</label>          
+          <textarea name="addressedTo" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.addressedTo" #addressedTo="ngModel" required></textarea>
+          <div *ngIf="f.submitted && !addressedTo.valid" class="help-block">"Dirigido a" requerido</div>
+        </div>
+
+        <ul class="form-list">
+          <li *ngFor="let topic of productModel.topics">
+            {{topic.name}}
+            <a (click)="removeTopic(i)" class="form-btn"> Eliminar</a>
+          </li>
+        </ul>
+
+        <div class="form-group">
+          <label for="topicName">Nombre del tema</label>
+          <input type="text" class="form-control" name="topicName" [(ngModel)]="productModel.topic.name" #topicName="ngModel"  />
+        </div>
+
+        <a (click)="pushCourseTopic()" class="form-btn">Agregar tema del curso</a>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mainImageURL.valid }">
+          <label for="mainImageURL">URL de imagen principal</label>
+          <input type="text" class="form-control" name="mainImageURL" [(ngModel)]="productModel.mainImageURL" #mainImageURL="ngModel" required/>
+          <div *ngIf="f.submitted && !mainImageURL.valid" class="help-block">URL de la imagen principal requerida</div>
+        </div>
+        <ul class="form-list">
+          <li *ngFor="let image of productModel.images">
+            {{image.name}} - {{image.author}} - {{image.imageURL}}
+            <a (click)="removeImage(i)" class="form-btn"> Eliminar</a>
+          </li>
+        </ul>
+        <div class="form-group">
+          <label for="imageName">Nombre de la imagen</label>
+          <input type="text" class="form-control" name="imageName" [(ngModel)]="productModel.image.name" #imageName="ngModel"  />
+        </div>
+        <div class="form-group">
+          <label for="imageAuthor">Autor de la imagen</label>
+          <input type="text" class="form-control" name="imageAuthor" [(ngModel)]="productModel.image.author" #imageAuthor="ngModel"  />
+        </div>
+        <div class="form-group">
+          <label for="imageName">URL de la imagen</label>
+          <input type="text" class="form-control" name="imageURL" [(ngModel)]="productModel.image.imageURL" #imageURL="ngModel"  />
+        </div>
+        <a (click)="pushCourseImage()" class="form-btn">Agregar imagen</a>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !contentPDF.valid }" >
+          <label for="contentPDF">Pdf de contenidos</label>
+          <input type="text" class="form-control" name="contentPDF" [(ngModel)]="productModel.contentPDF" #contentPDF="ngModel" required />
+          <div *ngIf="f.submitted && !contentPDF.valid" class="help-block">Se requiere la url de pdf con contenidos</div>
+        </div>
+        <div class="form-group">
+          <label for="hasVirtual">Curso virtual</label>
+          <input type="checkbox" class="form-control" name="hasVirtual" [(ngModel)]="productModel.hasVirtual" #hasVirtual="ngModel" />
+        </div>
+        <ul *ngIf = "productModel.hasVirtual" class="form-list">
+          <li *ngFor="let lesson of productModel.lessons">
+            {{lesson.name}} - {{lesson.videoURL}} - {{lesson.desc}}
+            <a (click)="removeLesson(i)" class="form-btn" > Eliminar</a>
+          </li>
+        </ul>  
+        <div class="form-group" *ngIf = "productModel.hasVirtual">
+          <label for="lessonName">Nombre de la lección</label>
+          <input type="text" class="form-control" name="lessonName" [(ngModel)]="productModel.lesson.name" #lessonName="ngModel"  />
+        </div>
+        <div class="form-group" *ngIf = "productModel.hasVirtual">
+          <label for="videoURL">URL del video</label>
+          <input type="text" class="form-control" name="videoURL" [(ngModel)]="productModel.lesson.videoURL" #videoURL="ngModel"  />
+        </div>
+        <div class="form-group" *ngIf = "productModel.hasVirtual">
+          <label for="lessonDesc">Descripción de la lección</label>
+          <textarea name="lessonDesc" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.lesson.desc" #lessonDesc="ngModel"></textarea>
+        </div>
+        <a  *ngIf = "productModel.hasVirtual" (click)="pushCourseLesson()" class="form-btn">Agregar lección</a>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted &&  !productModel.virtualURL}">
+          <label for="virtualURL">Identificador del producto </label>
+          <input type="text" class="form-control" name="virtualURL" [(ngModel)]="productModel.virtualURL" #virtualURL="ngModel" required />
+          <div *ngIf="f.submitted && !virtualURL.valid" class="help-block">Se requiere el identificador</div>
+         </div> 
+         <div class="form-group" [ngClass]="{ 'has-error': f.submitted &&  !productModel.category}">
+            <label for="category">Categoría</label>
+            <select name="category" [(ngModel)]="productModel.category" >
+              <option value="product-design">Diseño de producto</option>
+              <option value="space-and-archit">Espacio y arquitectura</option>
+              <option value="animation-and-visual">Animación y visualización</option>
+              <option value="engineering-and-fab">Ingeniería y fabricación</option>
+              <option value="advanced-training">Cursos avanzados</option>
+            </select>
+            <div *ngIf="f.submitted && !productModel.category" class="help-block">Escoja una categoría</div>
+         </div>
+         <div  *ngIf="productModel.category=='advanced-training'" class="form-group" [ngClass]="{ 'has-error': f.submitted &&  productModel.subCat}">
+            <label for="subCat">SubCategoria</label>
+            <select name="subCat" [(ngModel)]="productModel.subCat" >
+              <option value="joyeria">Joyería</option>
+              <option value="calzado">Calzado</option>
+              <option value="programacion">Programación</option>
+              <option value="bio-cad">BIOCAD</option>
+              <option value="transporte">Transporte</option>
+              <option value="jugueteria">Juguetería</option>
+              <option value="arquietectura-naval">Arquitectura Naval</option>
+              <option value="arquitectura">Arquitectura</option>
+            </select>
+            <div *ngIf="f.submitted && !productModel.subCat" class="help-block">Escoja una SubCategoria</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && productModel.relatedProducts}">
+          <label for="relatedProducts">Productos Relacionados</label>
+          <select name="relatedProducts" [(ngModel)]="relProdId">
+            <option *ngFor="let relProd of courseDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of licenceDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option> 
+          </select>
+          <div *ngIf="f.submitted && !productModel.subCat" class="help-block">Escoja al menos un producto relacionado</div>
+        </div>
+        <a (click)="pushRelProd(relProdId,'course')" class="form-btn">Agregar</a>        
+        <ul class="form-list">
+          <li *ngFor="let selRelProd of productModel.relatedProducts;index as i">
+            {{searchProductName(selRelProd.idProduct)}} <a (click)="removeRelatedProduct(i,'course')" class="form-btn">Eliminar </a>
+          </li>
+        </ul>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && productModel.sectors}">
+          <label for="sectors">Sectores</label>
+          <select name="sectors" [(ngModel)]="productModel.sectorN">
+            <option value="productos">Diseño Industrial - Productos</option>
+            <option value="publicidad">Diseño Industrial - Publicidad</option>
+            <option value="sistemas-de-transporte">Diseño Industrial - Sistemas de Transporte</option>
+            <option value="calzado">Diseño Industrial - Calzado</option>
+            <option value="joyeria">Diseño Industrial - Joyería</option>
+            <option value="jugueteria">Diseño Industrial - Juguetería</option>
+            <option value="civil">Ingeniería - Civil</option>
+            <option value="mecanica">Ingeniería - Mecánica</option>
+            <option value="inversa">Ingeniería - Inversa</option>
+            <option value="diseño">Arquitectura - Diseño</option>
+            <option value="bim">Arquitectura - BIM</option>
+            <option value="odontologia">Medicina- Odontología</option>
+            <option value="protesis-ortesis">Medicina - Prótesis/Órtesis</option>
+            <option value="academico">Educación - Sector Académico</option>
+          </select>
+          <div *ngIf="f.submitted && !productModel.sectors" class="help-block">Escoja al menos un sector</div>
+        </div>
+        <a (click)="pushSector(productModel.sectorN)" class="form-btn">Agregar</a>        
+        <ul class="form-list">
+          <li *ngFor="let sector of productModel.sectors;index as i">
+            {{sector.name}} <a (click)="removeSector(i)" class="form-btn">Eliminar </a>
+          </li>
+        </ul>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !price.valid }" >
+          <label for="price">Precio</label>
+          <input type="text" class="form-control" name="price" [(ngModel)]="productModel.price" #price="ngModel" required />
+          <div *ngIf="f.submitted && !price.valid" class="help-block">Se requiere el precio del presencial</div>
+        </div>
+        <div class="form-group"  *ngIf="productModel.hasVirtual">
+          <label for="priceVirtual">Precio del curso virtual</label>
+          <input type="text" class="form-control" name="priceVirtual" [(ngModel)]="productModel.priceVirtual" #cat="ngModel"  />
+        </div>
+        <div class="form-group">
+          <label for="discount">Descuento</label>
+          <input type="text" class="form-control" name="discount" [(ngModel)]="productModel.discount" #discount="ngModel"/>
+        </div>
+        <div class="form-group">
+          <label for="virtualDiscount">Descuento Virtual</label>
+          <input type="text" class="form-control" name="virtualDiscount" [(ngModel)]="productModel.virtualDiscount" #virtualDiscount="ngModel"/>
+        </div>  
+        <div class="form-group">
+          <button class="btn btn-primary orange-v">Crear Curso</button>            
+        </div>         
+      </form>
+    </div>
+    <!-- EDICION DE CURSOS -->
+    <div class="product-form tab-content" *ngIf="getProductView()=='productEdit'">
+      
+      <form name="form" (ngSubmit)="f1.form.valid && updateCourse()" #f1="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !name.valid }">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="productModel.name" #name="ngModel" required />
+          <div *ngIf="f1.submitted && !name.valid" class="help-block">Nombre requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !cenefaURL.valid }" >
+          <label for="cenefaURl">Url Cenefa</label>
+          <input type="text" class="form-control" name="cenefaURL" [(ngModel)]="productModel.cenefaURL" #cenefaURL="ngModel" required/>
+          <div *ngIf="f1.submitted && !cenefaURL.valid" class="help-block">URL de la cenefa requerida</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !description.valid }" >
+          <label for="description"> Descripción</label>
+          <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.description" #description="ngModel" required></textarea>
+        <div *ngIf="f1.submitted && !description.valid" class="help-block">descripción requerida</div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !goal.valid }" >
+          <label for="goal"> Objetivo</label>          
+          <textarea name="goal" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.goal" #goal="ngModel" required></textarea>
+          <div *ngIf="f1.submitted && !goal.valid" class="help-block">Objetivo requerido</div>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !goal.valid }" >
+          <label for="goal"> Dirigido a</label>          
+          <textarea name="addressedTo" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.addressedTo" #addressedTo="ngModel" required></textarea>
+          <div *ngIf="f1.submitted && !addressedTo.valid" class="help-block">"Dirigido a" requerido</div>
+        </div>
+
+        <ul class="form-list">
+          <li *ngFor="let topic of productModel.topics">
+            {{topic.name}}
+            <a (click)="removeTopic(i)" class="form-btn"> Eliminar</a>
+          </li>
+        </ul>
+
+        <div class="form-group">
+          <label for="topicName">Nombre del tema</label>
+          <input type="text" class="form-control" name="topicName" [(ngModel)]="productModel.topic.name" #topicName="ngModel"  />
+        </div>
+
+        <a (click)="pushCourseTopic()" class="form-btn">Agregar tema del curso</a>
+
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !mainImageURL.valid }">
+          <label for="mainImageURL">URL de imagen principal</label>
+          <input type="text" class="form-control" name="mainImageURL" [(ngModel)]="productModel.mainImageURL" #mainImageURL="ngModel" required/>
+          <div *ngIf="f1.submitted && !mainImageURL.valid" class="help-block">URL de la imagen principal requerida</div>
+        </div>
+        <h3 class="form-subtitle">Imágenes del curso:</h3>
+        <ul class="form-list">
+          <li *ngFor="let image of productModel.images;index as i" >
+            {{image.name}}-{{image.author}}-{{image.imageURL}}
+            <a (click)="removeImage(i)" class="form-btn"> Eliminar</a>
+          </li>
+        </ul>
+        <a (click)="setProductEditState('add')" *ngIf="getProductEditState()=='show'" class="form-btn">Nueva Imagen</a>           
+        <div *ngIf="getProductEditState()=='add'" >
+          <div class="form-group">
+            <label for="imageName">Nombre de la imagen</label>
+            <input type="text" class="form-control" name="imageName" [(ngModel)]="productModel.image.name" #imageName="ngModel"  />
+          </div>
+          <div class="form-group">
+              <label for="imageAuthor">Autor de la imagen</label>
+              <input type="text" class="form-control" name="imageAuthor" [(ngModel)]="productModel.image.author" #imageAuthor="ngModel"  />
+          </div>
+          <div class="form-group">
+            <label for="imageName">URL de la imagen</label>
+            <input type="text" class="form-control" name="imageURL" [(ngModel)]="productModel.image.imageURL" #imageURL="ngModel"  />
+          </div>
+          <a (click)="pushCourseImage()" class="form-btn">Agregar</a>
+          <a (click)="setProductEditState('show')" *ngIf="getProductEditState()=='add'" class="form-btn">Cancelar</a> 
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !contentPDF.valid }" >
+          <label for="contentPDF">Pdf de contenidos</label>
+          <input type="text" class="form-control" name="contentPDF" [(ngModel)]="productModel.contentPDF" #contentPDF="ngModel" required />
+          <div *ngIf="f1.submitted && !contentPDF.valid" class="help-block">Se requiere la url de pdf con contenidos</div>
+        </div>
+        <div class="form-group">
+          <label for="hasVirtual">Curso virtual</label>
+          <input type="checkbox" class="form-control" name="hasVirtual" [(ngModel)]="productModel.hasVirtual" #hasVirtual="ngModel" />
+        </div>
+
+        <h3>Lista de lecciones</h3>
+        <ul class="form-list">
+          <li *ngFor="let lesson of productModel.lessons;index as i" >
+            {{lesson.name}}-{{lesson.videoURL}}-{{lesson.desc}}
+            <a (click)="removeLesson(i)" class="form-btn" > Eliminar</a>
+          </li>
+        </ul>
+        <a (click)="setProductEditLessonState('add')" *ngIf="getProductEditLessonState()=='show'" class="form-btn">Nueva lección</a>         
+        <div *ngIf="getProductEditLessonState()=='add'" >
+          <div class="form-group">
+            <label for="lessonName">Nombre de la lección</label>
+            <input type="text" class="form-control" name="lessonName" [(ngModel)]="productModel.lesson.name" #lessonName="ngModel"  />
+          </div>
+
+          <div class="form-group">
+            <label for="videoURL">URL del video</label>
+            <input type="text" class="form-control" name="videoURL" [(ngModel)]="productModel.lesson.videoURL" #videoURL="ngModel"  />
+          </div>
+
+          <div class="form-group">
+            <label for="lessonDesc">Descripción</label>            
+            <textarea name="lessonDesc" cols="30" rows="10" class="form-control" [(ngModel)]="productModel.lesson.desc" #lessonDesc="ngModel"></textarea>
+          </div>
+          <a (click)="pushCourseLesson()" class="form-btn" >Agregar</a>
+          <a (click)="setProductEditLessonState('show')" *ngIf="getProductEditLessonState()=='add'" class="form-btn" >Cancelar</a> 
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted &&  !productModel.virtualURL}">
+          <label for="virtualURL">Identificador del producto </label>
+          <input type="text" class="form-control" name="virtualURL" [(ngModel)]="productModel.virtualURL" #virtualURL="ngModel" required />
+          <div *ngIf="f1.submitted && !virtualURL.valid" class="help-block">Se requiere el identificador</div>
+        </div> 
+         <div class="form-group" [ngClass]="{ 'has-error': f1.submitted &&  !productModel.category}">
+          <label for="category">Categoría</label>
+          <select name="category" [(ngModel)]="productModel.category" >
+            <option value="product-design">Diseño de producto</option>
+            <option value="space-and-archit">Espacio y arquitectura</option>
+            <option value="animation-and-visual">Animación y visualización</option>
+            <option value="engineering-and-fab">Ingeniería y fabricación</option>
+            <option value="advanced-training">Cursos avanzados</option>
+          </select>
+          <div *ngIf="f1.submitted && !productModel.category" class="help-block">Escoja una categoría</div>
+        </div>
+        <div  *ngIf="productModel.category=='advanced-training'" class="form-group" [ngClass]="{ 'has-error': f1.submitted &&  productModel.subCat}">
+          <label for="subCat">SubCategoria</label>
+          <select name="subCat" [(ngModel)]="productModel.subCat" >
+            <option value="joyeria">Joyería</option>
+            <option value="calzado">Calzado</option>
+            <option value="programacion">Programación</option>
+            <option value="bio-cad">BIOCAD</option>
+            <option value="transporte">Transporte</option>
+            <option value="jugueteria">Juguetería</option>
+            <option value="arquietectura-naval">arquitectura Naval</option>
+            <option value="arquitectura">Arquitectura</option>
+          </select>
+          <div *ngIf="f1.submitted && !productModel.subCat" class="help-block">Escoja una SubCategoria</div>
+        </div>      
+        <div class="form-group" >
+          <label for="relatedProducts">Productos Relacionados</label>
+          <select name="relatedProducts" [(ngModel)]="relProdId"  >
+            <option *ngFor="let relProd of courseDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of licenceDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option> 
+          </select>          
+        </div>        
+        <a (click)="pushRelProd(relProdId,'course')" class="form-btn">Agregar</a>        
+        <ul class="form-list">
+          <li *ngFor="let selRelProd of productModel.relatedProducts;index as i" >
+            {{searchProductName(selRelProd.idProduct)}} <a (click)="removeRelatedProduct(i,'course')" class="form-btn">Eliminar</a>
+          </li>
+        </ul>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && productModel.sectors}">
+            <label for="sectors">Sectores</label>
+            <select name="sectors" [(ngModel)]="productModel.sectorN">
+              <option value="productos">Diseño Industrial - Productos</option>
+              <option value="publicidad">Diseño Industrial - Publicidad</option>
+              <option value="sistemas-de-transporte">Diseño Industrial - Sistemas de Transporte</option>
+              <option value="calzado">Diseño Industrial - Calzado</option>
+              <option value="joyeria">Diseño Industrial - Joyería</option>
+              <option value="jugueteria">Diseño Industrial - Juguetería</option>
+              <option value="civil">Ingeniería - Civil</option>
+              <option value="mecanica">Ingeniería - Mecánica</option>
+              <option value="inversa">Ingeniería - Inversa</option>
+              <option value="diseño">Arquitectura - Diseño</option>
+              <option value="bim">Arquitectura - BIM</option>
+              <option value="odontologia">Medicina- Odontología</option>
+              <option value="protesis-ortesis">Medicina - Prótesis/Órtesis</option>
+              <option value="academico">Educación - Sector Académico</option>
+            </select>
+            <div *ngIf="f1.submitted && !productModel.sectors" class="help-block">Escoja al menos un sector</div>
+          </div>
+          <a (click)="pushSector(productModel.sectorN)" class="form-btn">Agregar</a>        
+          <ul class="form-list">
+            <li *ngFor="let sector of productModel.sectors;index as i">
+              {{sector.name}} <a (click)="removeSector(i)" class="form-btn">Eliminar </a>
+            </li>
+          </ul>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !price.valid }" >
+          <label for="price">Precio</label>
+          <input type="text" class="form-control" name="price" [(ngModel)]="productModel.price" #price="ngModel" required />
+          <div *ngIf="f1.submitted && !price.valid" class="help-block">Se requiere el precio del presencial</div>
+        </div>
+        <div class="form-group"  *ngIf="productModel.hasVirtual">
+          <label for="priceVirtual">Precio del curso virtual</label>
+          <input type="text" class="form-control" name="priceVirtual" [(ngModel)]="productModel.priceVirtual" #cat="ngModel"  />
+        </div>
+        <div class="form-group">
+          <label for="discount">Descuento</label>
+          <input type="text" class="form-control" name="discount" [(ngModel)]="productModel.discount" #discount="ngModel"/>
+        </div>
+        <div class="form-group" *ngIf="productModel.hasVirtual" >
+          <label for="virtualDiscount">Descuento Virtual</label>
+          <input type="text" class="form-control" name="virtualDiscount" [(ngModel)]="productModel.virtualDiscount" #virtualDiscount="ngModel"/>
+        </div>   
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary orange-v">Actualizar Curso</button>            
+        </div>         
+      </form>
+    </div>
+    <!-- EDICION DE CURSOS PRESENCIALES -->    
+    <div class="product-form tab-content" *ngIf="getProductView()=='OnSiteClass'">
+      <div class="products-list">
+        <div class="titles-cnt">
+          <label >Nombre</label>
+          <label >Instructor</label>
+          <label >Fecha inicio</label>
+          <label >Fecha final</label>
+          <label >Lugar</label>
+          <label ></label>
+        </div>        
+        <div class="user-info">
+          <div class="one-user" *ngFor="let course of activeCourse;index as i" >
+            <label class="title-resp">Nombre:</label> 
+            <a>{{course.name}}</a>
+            <label class="title-resp">Instructor:</label>
+            <a>{{course.teacherName}}</a>
+            <label class="title-resp">Fecha de inicio:</label>
+            <a>{{course.dateStart}}</a>
+            <label class="title-resp">Fecha de final:</label>
+            <a>{{course.dateEnd}}</a>
+            <label class="title-resp">Ciudad:</label>
+            <a>{{course.city}}</a>
+            <label class="title-resp">Opciones:</label>
+            <a (click)="editOnSiteCourse(i)" class="hover-pointer"> Editar </a>
+          </div>
+          <hr class="line-resp"> 
+        </div>
+      </div>       
+    </div>   
+    <div class="product-form tab-content" *ngIf="getProductView()=='editOnSiteCourse'" >    
+      <form name="form" (ngSubmit)="f2.form.valid && updateActiveCourse()" #f2="ngForm" novalidate>
+        <div class="form-group">
+          <label for="course">Curso</label>
+          <select name="course" [(ngModel)]="activeModel.idCourse" >
+            <option *ngFor="let course of onSiteCourse" value="{{course.$key}}">{{course.name}}</option>
+          </select>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !dateStart.valid }" >
+          <label for="dateStart">Fecha de inicio</label>
+          <input type="date" class="form-control" name="dateStart" [(ngModel)]="activeModel.dateStart" #dateStart="ngModel" required />
+          <div *ngIf="f2.submitted && !dateStart.valid" class="help-block">Se requiere la fecha de inicio</div>
+        </div>  
+        <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !dateEnd.valid }" >
+          <label for="dateEnd">Fecha de finalización</label>
+          <input type="date" class="form-control" name="dateEnd" [(ngModel)]="activeModel.dateEnd" #dateEnd="ngModel" required />
+          <div *ngIf="f2.submitted && !dateEnd.valid" class="help-block">Se requiere la fecha de finalización</div>
+        </div>  
+        <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !capacity.valid }">
+          <label for="capacity">Máxima cantidad de estudiantes</label>
+          <input type="text" class="form-control" name="capacity" [(ngModel)]="activeModel.capacity" #capacity="ngModel" required />
+          <div *ngIf="f2.submitted && !capacity.valid" class="help-block">Se requiere la cantidad máxima de estudiantes (el mínimo es uno)</div>
+        </div>  
+        <div class="form-group">
+          <label for="teacher">Tutor a cargo</label>
+          <select name="teacher" [(ngModel)]="activeModel.idTeacher" >
+            <option *ngFor="let teacher of teacherData" value="{{teacher.$key}}">{{teacher.firstName + teacher.lastName }}</option>
+          </select>
+        </div>  
+        <div class="form-group">
+          <label for="isSameSchedule">Mismo horario todos los días</label>
+          <input type="checkbox" class="form-control" name="isSameSchedule" [(ngModel)]="activeModel.isSameSchedule" #isSameSchedule="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "activeModel.isSameSchedule">
+          <label for="sameScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="sameScheduleStart" [(ngModel)]="activeModel.sameScheduleStart" #sameScheduleStart="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "activeModel.isSameSchedule">
+          <label for="sameScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="sameScheduleEnd" [(ngModel)]="activeModel.sameScheduleEnd" #sameScheduleEnd="ngModel"/>                
+        </div> 
+        <div class="form-group">
+            <label for="monday">Lunes</label>
+            <input type="checkbox" class="form-control" name="monday" [(ngModel)]="activeModel.schedule.monday.isTrue" #monday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.monday.isTrue">
+          <label for="mondayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="mondayScheduleStart" [(ngModel)]="activeModel.schedule.monday.start" #mondayScheduleStart="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.monday.isTrue">
+          <label for="mondayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="mondayScheduleEnd" [(ngModel)]="activeModel.schedule.monday.end" #mondayScheduleEnd="ngModel"/>                
+        </div>            
+        <div class="form-group">
+            <label for="tuesday">Martes</label>
+            <input type="checkbox" class="form-control" name="tuesday" [(ngModel)]="activeModel.schedule.tuesday.isTrue" #tuesday="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.tuesday.isTrue">
+          <label for="tuesdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="tuesdayScheduleStart" [(ngModel)]="activeModel.schedule.tuesday.start" #tuesdayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.tuesday.isTrue">
+          <label for="tuesdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="tuesdayScheduleEnd" [(ngModel)]="activeModel.schedule.tuesday.end" #tuesdayScheduleEnd="ngModel"/>                
+        </div>  
+        <div class="form-group">
+          <label for="wednesday">Miércoles</label>
+          <input type="checkbox" class="form-control" name="wednesday" [(ngModel)]="activeModel.schedule.wednesday.isTrue" #wednesday="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.wednesday.isTrue">
+          <label for="wednesdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="wednesdayScheduleStart" [(ngModel)]="activeModel.schedule.wednesday.start" #wednesdayScheduleStart="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.wednesday.isTrue">
+          <label for="wednesdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="wednesdayScheduleEnd" [(ngModel)]="activeModel.schedule.wednesday.end" #wednesdayScheduleEnd="ngModel"/>                
+        </div>  
+        <div class="form-group">
+          <label for="thursday">Jueves</label>
+          <input type="checkbox" class="form-control" name="thursday" [(ngModel)]="activeModel.schedule.thursday.isTrue" #thursday="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.thursday.isTrue">
+          <label for="thursdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="thursdayScheduleStart" [(ngModel)]="activeModel.schedule.thursday.start" #thursdayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.thursday.isTrue">
+          <label for="thursdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="thursdayScheduleEnd" [(ngModel)]="activeModel.schedule.thursday.end" #thursdayScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group">
+          <label for="friday">Viernes</label>
+          <input type="checkbox" class="form-control" name="friday" [(ngModel)]="activeModel.schedule.friday.isTrue" #friday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.friday.isTrue">
+          <label for="fridayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="fridayScheduleStart" [(ngModel)]="activeModel.schedule.friday.start" #fridayScheduleStart="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.friday.isTrue">
+          <label for="fridayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="fridayScheduleEnd" [(ngModel)]="activeModel.schedule.friday.end" #fridayScheduleEnd="ngModel"/>                
+        </div>  
+        <div class="form-group">
+          <label for="saturday">Sábado</label>
+          <input type="checkbox" class="form-control" name="saturday" [(ngModel)]="activeModel.schedule.saturday.isTrue" #saturday="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.saturday.isTrue">
+          <label for="saturdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="saturdayScheduleStart" [(ngModel)]="activeModel.schedule.saturday.start" #saturdayScheduleStart="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.saturday.isTrue">
+          <label for="saturdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="saturdayScheduleEnd" [(ngModel)]="activeModel.schedule.saturday.end" #saturdayScheduleEnd="ngModel"/>                
+        </div>  
+        <div class="form-group">
+          <label for="sunday">Domingo</label>
+          <input type="checkbox" class="form-control" name="sunday" [(ngModel)]="activeModel.schedule.sunday.isTrue" #sunday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.sunday.isTrue">
+          <label for="sundayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="sundayScheduleStart" [(ngModel)]="activeModel.schedule.sunday.start" #sundayScheduleStart="ngModel"/>                
+        </div>  
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.sunday.isTrue">
+          <label for="sundayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="sundayScheduleEnd" [(ngModel)]="activeModel.schedule.sunday.end" #sundayScheduleEnd="ngModel"/>                
+        </div> 
+        <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !city.valid }">
+          <label for="city">Ciudad</label>
+          <input type="text" class="form-control" name="ciudad" [(ngModel)]="activeModel.city" #city="ngModel" required />
+          <div *ngIf="f2.submitted && !city.valid" class="help-block">Se requiere la ciudad</div>
+        </div> 
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary orange-v">Actualizar Curso</button>            
+        </div>             
+      </form>
+    </div>      
+    <div class="product-form tab-content" *ngIf="getProductView()=='newOnSiteCourse'" >      
+      <form name="form" (ngSubmit)="f3.form.valid && addActiveCourse()" #f3="ngForm" novalidate>
+        <div class="form-group">
+            <label for="course">Curso</label>
+            <select name="course" [(ngModel)]="activeModel.idCourse" >
+              <option *ngFor="let course of onSiteCourse" value="{{course.$key}}">{{course.name}}</option>
+            </select>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !dateStart.valid }" >
+            <label for="dateStart">Fecha de inicio</label>
+            <input type="date" class="form-control" name="dateStart" [(ngModel)]="activeModel.dateStart" #dateStart="ngModel" required />
+            <div *ngIf="f3.submitted && !dateStart.valid" class="help-block">Se requiere la fecha de inicio</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !dateEnd.valid }" >
+            <label for="dateEnd">Fecha de finalización</label>
+            <input type="date" class="form-control" name="dateEnd" [(ngModel)]="activeModel.dateEnd" #dateEnd="ngModel" required />
+            <div *ngIf="f3.submitted && !dateEnd.valid" class="help-block">Se requiere la fecha de finalización</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !capacity.valid }">
+            <label for="capacity">Máxima cantidad de estudiantes</label>
+            <input type="text" class="form-control" name="capacity" [(ngModel)]="activeModel.capacity" #capacity="ngModel" required />
+            <div *ngIf="f3.submitted && !capacity.valid" class="help-block">Se requiere la cantidad máxima de estudiantes (el mínimo es uno)</div>
+        </div>
+        <div class="form-group">
+            <label for="teacher">Tutor a cargo</label>
+            <select name="teacher" [(ngModel)]="activeModel.idTeacher" >
+              <option *ngFor="let teacher of teacherData" value="{{teacher.$key}}">{{teacher.firstName + teacher.lastName }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="isSameSchedule">Mismo horario todos los días</label>
+          <input type="checkbox" class="form-control" name="isSameSchedule" [(ngModel)]="activeModel.isSameSchedule" #isSameSchedule="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "activeModel.isSameSchedule">
+          <label for="sameScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="sameScheduleStart" [(ngModel)]="activeModel.sameScheduleStart" #sameScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "activeModel.isSameSchedule">
+          <label for="sameScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="sameScheduleEnd" [(ngModel)]="activeModel.sameScheduleEnd" #sameScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group">
+          <label for="monday">Lunes</label>
+          <input type="checkbox" class="form-control" name="monday" [(ngModel)]="activeModel.schedule.monday.isTrue" #monday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.monday.isTrue">
+          <label for="mondayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="mondayScheduleStart" [(ngModel)]="activeModel.schedule.monday.start" #mondayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.monday.isTrue">
+          <label for="mondayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="mondayScheduleEnd" [(ngModel)]="activeModel.schedule.monday.end" #mondayScheduleEnd="ngModel"/>                
+        </div>            
+        <div class="form-group">
+          <label for="tuesday">Martes</label>
+          <input type="checkbox" class="form-control" name="tuesday" [(ngModel)]="activeModel.schedule.tuesday.isTrue" #tuesday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.tuesday.isTrue">
+          <label for="tuesdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="tuesdayScheduleStart" [(ngModel)]="activeModel.schedule.tuesday.start" #tuesdayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.tuesday.isTrue">
+          <label for="tuesdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="tuesdayScheduleEnd" [(ngModel)]="activeModel.schedule.tuesday.end" #tuesdayScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group">
+          <label for="wednesday">Miércoles</label>
+          <input type="checkbox" class="form-control" name="wednesday" [(ngModel)]="activeModel.schedule.wednesday.isTrue" #wednesday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.wednesday.isTrue">
+          <label for="wednesdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="wednesdayScheduleStart" [(ngModel)]="activeModel.schedule.wednesday.start" #wednesdayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.wednesday.isTrue">
+          <label for="wednesdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="wednesdayScheduleEnd" [(ngModel)]="activeModel.schedule.wednesday.end" #wednesdayScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group">
+          <label for="thursday">Jueves</label>
+          <input type="checkbox" class="form-control" name="thursday" [(ngModel)]="activeModel.schedule.thursday.isTrue" #thursday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.thursday.isTrue">
+          <label for="thursdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="thursdayScheduleStart" [(ngModel)]="activeModel.schedule.thursday.start" #thursdayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.thursday.isTrue">
+          <label for="thursdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="thursdayScheduleEnd" [(ngModel)]="activeModel.schedule.thursday.end" #thursdayScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group">
+          <label for="friday">Viernes</label>
+          <input type="checkbox" class="form-control" name="friday" [(ngModel)]="activeModel.schedule.friday.isTrue" #friday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.friday.isTrue">
+          <label for="fridayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="fridayScheduleStart" [(ngModel)]="activeModel.schedule.friday.start" #fridayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.friday.isTrue">
+          <label for="fridayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="fridayScheduleEnd" [(ngModel)]="activeModel.schedule.friday.end" #fridayScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group">
+          <label for="saturday">Sábado</label>
+          <input type="checkbox" class="form-control" name="saturday" [(ngModel)]="activeModel.schedule.saturday.isTrue" #saturday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.saturday.isTrue">
+          <label for="saturdayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="saturdayScheduleStart" [(ngModel)]="activeModel.schedule.saturday.start" #saturdayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.saturday.isTrue">
+          <label for="saturdayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="saturdayScheduleEnd" [(ngModel)]="activeModel.schedule.saturday.end" #saturdayScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group">
+          <label for="sunday">Domingo</label>
+          <input type="checkbox" class="form-control" name="sunday" [(ngModel)]="activeModel.schedule.sunday.isTrue" #sunday="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.sunday.isTrue">
+          <label for="sundayScheduleStart">Hora inicio</label>
+          <input type="time" class="form-control" name="sundayScheduleStart" [(ngModel)]="activeModel.schedule.sunday.start" #sundayScheduleStart="ngModel"/>                
+        </div>
+        <div class="form-group" *ngIf = "!activeModel.isSameSchedule && activeModel.schedule.sunday.isTrue">
+          <label for="sundayScheduleEnd">Hora fin</label>
+          <input type="time" class="form-control" name="sundayScheduleEnd" [(ngModel)]="activeModel.schedule.sunday.end" #sundayScheduleEnd="ngModel"/>                
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !city.valid }">
+          <label for="city">Ciudad</label>
+          <input type="text" class="form-control" name="ciudad" [(ngModel)]="activeModel.city" #city="ngModel" required />
+          <div *ngIf="f3.submitted && !city.valid" class="help-block">Se requiere la ciudad</div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary orange-v">Crear Curso</button>            
+        </div>         
+      </form>         
+    </div> 
+    <div class="products-list tab-content" *ngIf="getProductView()=='productList'">
+      <div class="titles-cnt">
+        <label >Imagen</label>
+        <label >Nombre</label>
+        <label >Es virtual</label>
+        <label >Categoria</label>
+        <label ></label>
+        <label ></label>
+      </div>
+      <div class="user-info">
+        <div class="one-user" *ngFor="let course of courseDataModel;index as i" >
+          <label class="title-resp">Imagen de la cenefa:</label> 
+          <a><img src="{{course.cenefaURL}}" ></a>
+          <label class="title-resp">Nombre del curso:</label> 
+          <a>{{course.name}}</a>
+          <label class="title-resp">Es virtual:</label>
+          <a>{{course.hasVirtual}}</a>
+          <label class="title-resp">Categoría:</label>
+          <a>{{course.category}}</a>
+          <label class="title-resp">Opciones:</label>
+          <a (click)="editCourse(i)" class="hover-pointer" >Editar</a>
+          <a (click)="detailsCourse(i)">Detalles</a>
+        </div>
+        <hr class="line-resp">
+      </div>
+    </div>
+    <div class="products-list tab-content" *ngIf="getProductView()=='requestCourseList'">
+      <div class="titles-cnt">
+        <label >Curso</label>
+        <label >Nombre</label>
+        <label >Correo</label>
+        <label >Teléfono</label>
+        <label >Fecha</label>
+        <label ></label>
+      </div>
+      <div class="user-info">
+        <div class="one-user" *ngFor="let request of requestCourseModel;index as i" >
+          <label class="title-resp">Curso:</label> 
+          <a>{{searchCourseName(request.courseId)}}</a>
+          <label class="title-resp">Nombre del usuario:</label> 
+          <a>{{searchUserInformartion(request.userId,"name")}}</a>
+          <label class="title-resp">Correo:</label>
+          <a>{{searchUserInformartion(request.userId,"email")}}</a>
+          <label class="title-resp">Teléfono:</label>
+          <a>{{searchUserInformartion(request.userId,"phone")}}</a>
+          <label class="title-resp">Fecha:</label>
+          <a>{{request.date}}</a>
+          <a>
+            <a (click)="agreeRequest(i)" class="hover-pointer">Habilitar</a>
+            <a (click)="denyRequest(i)" class="hover-pointer">Eliminar</a>
+          </a>
+        </div>
+        <hr class="line-resp">
+      </div>
+    </div>
+  </div>
+  <div id="licences">
+    <a class ="title-section">LICENCIAS</a>
+    <hr>
+    <div class="product-creation" >
+      <a [ngClass]="{'active-tab' : getLicenceView()=='licenceCreate', 'inactive-tab': getLicenceView()!='licenceCreate'}" (click)="setLicenceView('licenceCreate')" >Nueva licencia </a>
+      <a [ngClass]="{'active-tab' : getLicenceView()=='licenceList', 'inactive-tab': getLicenceView()!='licenceList'}" (click)="setLicenceView('licenceList')" >Lista de licencias</a>
+      <a [ngClass]="{'active-tab' : getLicenceView()=='licenceRequest', 'inactive-tab': getLicenceView()!='licenceRequest'}" (click)="setLicenceView('licenceRequest')">Lista de solicitudes de licencias</a>
+      <a [ngClass]="{'active-tab' : getLicenceView()=='licenceEdit', 'inactive-tab': getLicenceView()!='licenceEdit'}" *ngIf="getLicenceView()=='licenceEdit'">Edición de licencias</a>
+    </div>
+    <div class="product-form tab-content" *ngIf="getLicenceView()==='licenceList'">       
+      <div class="products-list">
+        <div class="titles-cnt">
+          <label >Imagen</label>
+          <label >Nombre</label>
+          <label >Casa Matriz</label>
+          <label >Precio</label>
+          <label >Persona a cargo</label>
+          <label ></label>
+        </div>    
+        <div class="user-info">
+          <div class="one-user" *ngFor="let licence of licenceDataModel;index as i" > 
+            <a><img src="{{licence.imageURL}}" alt=""></a>
+            <label class="title-resp" >Imagen</label>
+            <a>{{licence.name}}</a>
+            <label class="title-resp" >Nombre:</label>
+            <a>{{licence.parentCompany}}</a>
+            <label class="title-resp" >Precio:</label>
+            <a>{{licence.price}}</a>
+            <label class="title-resp" >Persona a cargo:</label>
+            <a>{{licence.namePersonOnCharge}}</a>
+            <label class="title-resp" >Opciones:</label>
+            <a (click)="editLicence(i)" class="hover-pointer"> Editar </a>
+          </div>
+        </div>
+      </div>           
+    </div>
+    <div class="product-form tab-content" *ngIf="getLicenceView()==='licenceCreate'">
+      <form name="form" (ngSubmit)="f4.form.valid && addLicence()" #f4="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f4.submitted && !name.valid }">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="licence.name" #name="ngModel" required />
+          <div *ngIf="f4.submitted && !name.valid" class="help-block">Nombre requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f4.submitted && !imageURL.valid }" >
+          <label for="imageURL">URL de la imagen</label>
+          <input type="text" class="form-control" name="imageURL" [(ngModel)]="licence.imageURL" #imageURL="ngModel" required/>
+          <div *ngIf="f4.submitted && !imageURL.valid" class="help-block">URL de la imagen requerida</div>
+        </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f4.submitted && !description.valid }" >
+          <label for="description"> Descripción</label>
+          <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="licence.description" #description="ngModel" required></textarea>
+          <div *ngIf="f4.submitted && !description.valid" class="help-block">Descripción requerida</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f4.submitted && !licence.parentCompany}">
+          <label for="category">Casa matriz</label>
+          <select name="parentCompany" [(ngModel)]="licence.parentCompany" >
+            <option value="mcneel">McNeel</option>
+            <option value="chaosgroup">ChaosGroup</option>
+            <option value="tdm-solutions">TDM Solutions</option>
+            <option value="asunicad">AsuniCAD</option>
+          </select>
+          <div *ngIf="f4.submitted && !licence.parentCompany" class="help-block">Escoja una casa matriz</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'mcneel'" [ngClass]="{ 'has-error': f4.submitted && !licence.licenceMain}">
+          <label for="category">Producto de Mcneel</label>
+          <select name="licenceMain" [(ngModel)]="licence.licenceMain" >
+            <option value="rhinoceros">Rhinoceros</option>
+            <option value="flamingo">Flamingo</option>
+            <option value="penguin">Penguin</option>
+            <option value="bongo">Bongo</option>
+            <option value="brazil">Brazil</option>
+          </select>
+          <div *ngIf="f4.submitted && !licence.licenceMain" class="help-block">Escoja un producto</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'chaosgroup'" [ngClass]="{ 'has-error': f4.submitted && !licence.licenceMain}">
+          <label for="category">Producto de ChaosGroup</label>
+          <select name="parentCompany" [(ngModel)]="licence.licenceMain" >
+            <option value="v-ray">V-Ray</option>         
+          </select>
+          <div *ngIf="f4.submitted && !licence.licenceMain" class="help-block">Escoja un producto</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'tdm-solutions'" [ngClass]="{ 'has-error': f4.submitted && !licence.licenceMain}">
+          <label for="category">Producto de Tdm Solutions</label>
+          <select name="licenceMain" [(ngModel)]="licence.licenceMain">
+            <option value="clayoo">Clayoo</option>
+            <option value="rhinonest">RhinoNest</option>
+            <option value="rhinogold">RhinoGold</option>
+            <option value="rhinoshoe">RhinoShoe</option>
+          </select>
+          <div *ngIf="f4.submitted && !licence.licenceMain" class="help-block">Escoja un producto</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'asunicad'" [ngClass]="{ 'has-error': f4.submitted && !licence.licenceMain}">
+          <label for="category">Producto de AsuniCAD</label>
+          <select name="licenceMain" [(ngModel)]="licence.licenceMain" >
+            <option value="visualarq">VisualARQ</option>            
+          </select>
+          <div *ngIf="f4.submitted && !licence.licenceMain" class="help-block">Escoja una casa matriz</div>
+        </div>
+
+        <div class="form-group">
+          <label for="technical">Persona a cargo</label>
+          <select name="technical" [(ngModel)]="licence.idTechnical" >
+            <option *ngFor="let technical of techData" value="{{technical.$key}}">{{technical.firstName + technical.lastName }}</option>
+          </select>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f4.submitted && !licence.virtualURL}">
+          <label for="virtualURL">Identificador del producto </label>
+          <input type="text" class="form-control" name="virtualURL" [(ngModel)]="licence.virtualURL" #virtualURL="ngModel" required />
+          <div *ngIf="f4.submitted && !virtualURL.valid" class="help-block">Se requiere el identificador</div>
+        </div>        
+        <div class="form-group" >
+          <label for="relatedProducts">Productos Relacionados</label>
+         <select name="relatedProducts" [(ngModel)]="relProdId"  >
+            <option *ngFor="let relProd of courseDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of licenceDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option> 
+          </select>          
+        </div>
+        <a (click)="pushRelProd(relProdId,'licence')" class="form-btn">Agregar</a>        
+        <ul class="form-list">
+          <li *ngFor="let selRelProd of licence.relatedProducts;index as i" >
+            {{searchProductName(selRelProd.idProduct)}} <a (click)="removeRelatedProduct(i,'licence')" class="form-btn" >Eliminar</a>
+          </li>
+        </ul>            
+        <div class="form-group" [ngClass]="{ 'has-error': f4.submitted && !price.valid }" >
+          <label for="price">Precio</label>
+          <input type="text" class="form-control" name="price" [(ngModel)]="licence.price" #price="ngModel" required />
+          <div *ngIf="f4.submitted && !price.valid" class="help-block">Se requiere el precio </div>
+        </div>
+        <div class="form-group">
+          <label for="discount">Descuento</label>
+          <input type="text" class="form-control" name="discount" [(ngModel)]="licence.discount" #discount="ngModel"/>
+        </div>     
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary orange-v">Crear Licencia</button>            
+        </div>         
+      </form>
+    </div>    
+    <div class="product-form tab-content" *ngIf="getLicenceView()==='licenceEdit'">      
+      <form name="form" (ngSubmit)="f5.form.valid && updateLicence()" #f5="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !name.valid }">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="licence.name" #name="ngModel" required />
+          <div *ngIf="f5.submitted && !name.valid" class="help-block">Nombre requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !imageURL.valid }" >
+          <label for="imageURL">URL de la imagen</label>
+          <input type="text" class="form-control" name="imageURL" [(ngModel)]="licence.imageURL" #imageURL="ngModel" required/>
+          <div *ngIf="f5.submitted && !imageURL.valid" class="help-block">URL de la imagen requerida</div>
+        </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !description.valid }" >
+          <label for="description"> Descripción</label>
+          <textarea name="description" cols="30" rows="10" class="form-control" [(ngModel)]="licence.description" #description="ngModel" required></textarea>
+          <div *ngIf="f5.submitted && !description.valid" class="help-block">Descripción requerida</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !licence.parentCompany}">
+          <label for="category">Casa matriz</label>
+          <select name="parentCompany" [(ngModel)]="licence.parentCompany" >
+            <option value="mcneel">McNeel</option>
+            <option value="chaosgroup">ChaosGroup</option>
+            <option value="tdm-solutions">TDM Solutions</option>
+            <option value="asunicad">AsuniCAD</option>
+          </select>
+          <div *ngIf="f5.submitted && !licence.parentCompany" class="help-block">Escoja una casa matriz</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'mcneel'" [ngClass]="{ 'has-error': f5.submitted && !licence.licenceMain}">
+          <label for="category">Producto de Mcneel</label>
+          <select name="licenceMain" [(ngModel)]="licence.licenceMain" >
+            <option value="rhinoceros">Rhinoceros</option>
+            <option value="flamingo">Flamingo</option>
+            <option value="penguin">Penguin</option>
+            <option value="bongo">Bongo</option>
+            <option value="brazil">Brazil</option>
+          </select>
+          <div *ngIf="f5.submitted && !licence.licenceMain" class="help-block">Escoja un producto</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'chaosgroup'" [ngClass]="{ 'has-error': f5.submitted && !licence.licenceMain}">
+          <label for="category">Producto de ChaosGroup</label>
+          <select name="parentCompany" [(ngModel)]="licence.licenceMain" >
+            <option value="v-ray">V-Ray</option>         
+          </select>
+          <div *ngIf="f5.submitted && !licence.licenceMain" class="help-block">Escoja un producto</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'tdm-solutions'" [ngClass]="{ 'has-error': f5.submitted && !licence.licenceMain}">
+          <label for="category">Producto de Tdm Solutions</label>
+          <select name="licenceMain" [(ngModel)]="licence.licenceMain">
+            <option value="clayoo">Clayoo</option>
+            <option value="rhinonest">RhinoNest</option>
+            <option value="rhinogold">RhinoGold</option>
+            <option value="rhinoshoe">RhinoShoe</option>
+          </select>
+          <div *ngIf="f5.submitted && !licence.licenceMain" class="help-block">Escoja un producto</div>
+        </div>
+
+        <div class="form-group" *ngIf="licence.parentCompany == 'asunicad'" [ngClass]="{ 'has-error': f4.submitted && !licence.licenceMain}">
+          <label for="category">Producto de AsuniCAD</label>
+          <select name="licenceMain" [(ngModel)]="licence.licenceMain" >
+            <option value="visualarq">VisualARQ</option>            
+          </select>
+          <div *ngIf="f5.submitted && !licence.licenceMain" class="help-block">Escoja una casa matriz</div>
+        </div>
+
+        <div class="form-group">
+          <label for="technical">Persona a cargo</label>
+          <select name="technical" [(ngModel)]="licence.idTechnical" >
+            <option *ngFor="let technical of techData" value="{{technical.$key}}">{{technical.firstName + technical.lastName }}</option>
+          </select>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !licence.virtualURL}">
+          <label for="virtualURL">Identificador del producto </label>
+          <input type="text" class="form-control" name="virtualURL" [(ngModel)]="licence.virtualURL" #virtualURL="ngModel" required />
+          <div *ngIf="f5.submitted && !virtualURL.valid" class="help-block">Se requiere el identificador</div>
+        </div>          
+        <div class="form-group" >
+          <label for="relatedProducts">Productos Relacionados</label>
+          <select name="relatedProducts" [(ngModel)]="relProdId"  >
+            <option *ngFor="let relProd of courseDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option>
+            <option *ngFor="let relProd of licenceDataModel;index as i" value="{{relProd.$key}}">{{relProd.name}}</option> 
+          </select>          
+        </div>
+        <a (click)="pushRelProd(relProdId,'licence')" class="form-btn">Agregar</a>          
+        <ul class="form-list">
+          <li *ngFor="let selRelProd of licence.relatedProducts;index as i" >
+            {{searchProductName(selRelProd.idProduct)}} <a (click)="removeRelatedProduct(i,'licence')" class="form-btn" >Eliminar</a>
+          </li>
+        </ul>             
+        <div class="form-group" [ngClass]="{ 'has-error': f5.submitted && !price.valid }" >
+          <label for="price">Precio</label>
+          <input type="text" class="form-control" name="price" [(ngModel)]="licence.price" #price="ngModel" required />
+          <div *ngIf="f5.submitted && !price.valid" class="help-block">Se requiere el precio </div>
+        </div>
+        <div class="form-group">
+          <label for="discount">Descuento</label>
+          <input type="text" class="form-control" name="discount" [(ngModel)]="licence.discount" #discount="ngModel"/>
+        </div>               
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary orange-v">Actualizar Licencia</button>            
+        </div>          
+      </form>
+    </div>    
+  </div>
+</div>
+
+  

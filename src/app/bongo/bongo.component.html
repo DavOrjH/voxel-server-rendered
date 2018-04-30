@@ -1,0 +1,201 @@
+<div class="title-img-cnt">
+    <img class="img-responsive" src="http://assets.voxel3d.net/licences/BONGO.jpg" alt="">
+  </div>
+  <div class="options-cnt">
+    <div class="option-button" [ngClass]="{'option-inactive': getInfoView() != 'global-vision','option-active':getInfoView() == 'global-vision'}" (click)="setInfoView('global-vision')"><a >Visión de conjunto</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'specifications' ,'option-active':getInfoView() == 'specifications'}" (click)="setInfoView('specifications')"><a >Especificaciones</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'software' ,'option-active':getInfoView() == 'software' }" (click)="setInfoView('software')"><a >Productos</a> </div>   
+  </div>
+  <hr>
+  <div class="info-cnt" >
+    <div class="global-vision" *ngIf="getInfoView() == 'global-vision'">
+  
+      <h1 class="first-title">
+        La herramienta de animación para diseñadores integrada con Rhino.
+      </h1>
+      <p>
+        Usando Bongo puede animar moviendo, escalando y rotando objetos de Rhino sin tener que exportarlos.
+        Los objetos y las vistas animadas son editables en la ventana de Rhino con solo arrastrar y soltar.
+        Modifique sus objetos y datos de animación sin tener que perder valioso tiempo cambiando de programa.
+        Con Bongo puede fácilemte previsualizar sus animaciones dentro de Rhino, en tiempo real, con cualquier
+        modo de sombreado con tan solo desplazarse a través de la línea de tiempo o reproduciendo la animación.
+        Luego puede hacer la renderización usando cualquier renderizador de Rhino, incluyendo wire-frame,
+        OpenGL, render preview, render, TreeFrog, Flamingo y Penguin.  
+      </p>
+      <!-- <div class="video-cnt">
+        <iframe width="{{videoWidth}}" height="{{videoHeight}}" src="https://www.youtube.com/embed/V6zL_rxsrWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>      
+      </div> -->
+      <h1 class="info-title">Características y beneficios</h1>
+      <ul>
+        <li><strong>Cinemática Directa</strong> - Mover, Rotar y Escalar.<li>
+        <li><strong>Restricción</strong> de objetos a curvas.</li>
+        <li><strong>Forzar objetos</strong>a mirar a otros objetos.</li>
+        <li><strong>Capacidad de restringir a vistas.</strong>.</li>
+        <li><strong>Vistas animadas</strong> por fotogramas.</li>
+        <li><strong>Capacidad de restringir localizaciones de cámara</strong> para vistas animadas y enfoque de objetivos.</li>
+        <li><strong>Relaciones jerárquicas</strong>entre objetos animados.</li>
+        <li><strong>Renderizado de frames individuales o archivos .AVI</strong> usando un plugin de render compatible con Rhino.</li>        
+        <li><strong>Previsualización en tiempo real</strong> a través de Rhino.</li>
+        <li><strong>Depuración en línea de tiempo</strong> para cualquier tipo de sombra.</li>
+        <li><strong>Uso de interfaz de línea de tiempo</strong> estándar de la industria.</li>
+        <li><strong>Manipulación de fotogramas</strong> a través de arrastrar y soltar.</li>
+        <li><strong>Adición sencilla de fotogramas</strong> en el modo de animación mediante arrastre.</li>
+        <li><strong>Almacenamiento de todos los archivos a través del formato .3dm.</strong>No hay necesidad de importar y/o exportar.</li>
+        <li><strong>Controlador</strong>de objetos.</li>
+        <li>Interfaz acomodable.</li>
+      </ul>
+
+     <h1 class="info-title">Nuevo en esta versión</h1>
+      <ul>
+        <li><strong>Acercamiento y alejamiento</strong> en la línea de tiempo y un nuevo editor de curvas, que permiten un mayor control en la animación.<li> 
+        <li><strong>Capacidad de salvar múltiples animaciones</strong>por archivo.</li>
+        <li><strong>Control de una mayor cantidad de parámetros</strong>con el nuevo editor de fotogramas y el entrelazado mejorado.</li>
+        <li><strong>Creación de animaciones arquitectónicas</strong>a través de vistas nombradas.</li>
+        <li><strong>Expresiones, modificación de objetos, animación de capas, estudios de sol, nuevos formatos de video y mucho más.</strong></li>
+        <li><strong>Compatibilidad para Rhino en 64 bits.</strong></li>
+      </ul>
+    </div>
+    <div class="specifications" *ngIf="getInfoView() == 'specifications'">
+      <h1 class="info-title">Información del producto</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Nombre del producto</a>
+          </div>
+          <div class="column-cell">
+            <a>Bongo 2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Versión</a>
+          </div>
+          <div class="column-cell">
+            <a>2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Fabricante</a>
+          </div>
+          <div class="column-cell">
+            <a>McNeel & Associates</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Plataformas</a>
+          </div>
+          <div class="column-cell">
+            <a>Windows</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Soporte y mantenimiento</a>
+          </div>
+          <div class="column-cell">
+            <a>Contacta a nuestros asesores comerciales para obtener más información</a>
+          </div>
+        </div>    
+    </div>
+  
+      <h1 class="info-title">Requisitos del sistema</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>CPU</a>
+          </div>
+          <div class="column-cell">
+            <a>Intel PEntium IV o superior</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Espacio en disco</a>
+          </div>
+          <div class="column-cell">
+            <a>600 MB de espacio en disco.</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Memoria RAM</a>
+          </div>
+          <div class="column-cell">
+            <a>Al menos 8GB (recomendado)</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Sistemas operativos</a>
+          </div>
+          <div class="column-cell">
+           <ul>
+             <li>Windows 2000 SP4</li>
+             <li>Windows XP Pro(SP2+)</li>
+             <li>Windows XP Home (SP2+)</li>
+             <li>Windows Vista (requiere Rhino 4.0 SR7 o superior)</li>
+             <li>Windows 7 (requiere Rhino 4.0 SR7 o superior)</li>
+             <li>BootCamp en Intel MAC</li>
+           </ul>
+          </div>
+        </div>
+      </div>
+  
+      <h1 class="info-title">Información adicional</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 2.0</a>
+          </div>
+          <div class="column-cell">
+           <a>No</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 3.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Yes</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 4.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 5.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si, solo en modo de 32 bits</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Requerimientos de instalación</a>
+          </div>
+          <div class="column-cell">
+            <a class="cursor" [routerLink]="['/rhinoceros']">Rhinoceros</a>
+          </div>
+        </div>
+      </div>  
+  
+    <div class="software" *ngIf="getInfoView() == 'software'">
+      <div class="product-cnt" *ngFor="let product of licenceDataModel;index as i">
+        <div class="img-cnt">
+            <img class="img-responsive" src="{{product.imageURL}}" alt="">
+        </div>
+        <div class="info-cnt">
+            <a>{{product.name}}</a>
+            <a [routerLink]="['/product-detail', product.productId]" class="redirect-button">Ver producto</a>  
+        </div>    
+      </div>      
+    </div>  
+  </div>

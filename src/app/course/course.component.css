@@ -1,0 +1,266 @@
+.course-title{
+    padding-top:60px;
+    padding-bottom:10px;
+    color: rgb(255,159,10);
+    padding-left:30px;
+    padding-right:30px;
+}
+
+div.sidebar::-webkit-scrollbar-track
+{
+	--webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+div.sidebar::-webkit-scrollbar
+{
+	width: 3px;
+	background-color: #F5F5F5;
+}
+
+div.sidebar::-webkit-scrollbar-thumb
+{
+	background-color: #BDB9B8;
+}
+
+.wait-cnt{
+  position:fixed;
+  width: 100%;
+  height:calc(100% - 96px);
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 10;
+}
+
+.wait-cnt>img{
+border-radius: 50%;
+}
+
+.sidebar{
+    width:20%;
+    float:left;
+    font-family: 'Varela Round', sans-serif;
+    padding:2%;
+    background-color: white;
+    z-index:3;
+    overflow-y:auto;
+    max-height : 600px;
+    overflow-y: scroll;
+  }
+  
+  .sidebar-icon{
+    position:fixed;
+    top:0;
+    right:0;
+    font-size:30px;
+    z-index:5;
+    padding-top:9px;
+    padding-bottom:9px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display:none;
+  }
+  .sidebar-icon>a{
+    color:rgb(0,0,0);
+    background-color: rgb(255,255,255);
+  }
+  
+  .info-sidebar{
+    display:flex;
+    justify-content: center;
+  }
+  
+  .info-sidebar>a{
+  margin-left: 5px;
+  text-decoration: none;
+  color:rgb(179,179,179);
+  }
+  
+  .info-sidebar>label{
+  color:rgb(179,179,179);
+  }
+
+  .option-cnt{
+    clear:both;
+    float:left;
+    width:100%;
+  }
+  
+  .option-cnt>div>a{
+    text-decoration:none;
+    text-align: center;
+    float:left;
+    width:100%;
+    border-radius: 5px;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    /* color:rgb(179,179,179); */
+    font-size:16px;
+  }
+
+  .option-cnt>div>a:hover{
+    cursor:pointer;
+  }
+
+  .option-cnt>div>a.selected{
+    color:rgb(255,255,255);
+    background-color: rgb(179,179,179);
+  }
+
+  .completed{
+    color:rgb(255,159,10);
+  }
+
+  .uncompleted{
+    color:rgb(179,179,179);
+  }
+
+  .invisible{
+    display:none;
+  }
+
+  .info-cnt{
+    width:80%;
+    float:right;
+    padding:5%;
+    font-family: 'Varela Round', sans-serif;
+  }
+
+  .lesson-title{
+    float:left;
+    width:100%;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-size: 20px;
+    text-decoration:none;
+    color: rgb(179,179,179);
+  }
+
+  .lesson-desc{
+    float:left;
+    width:100%;
+    text-decoration:none;
+    font-size:16px;
+    text-align: justify;
+    color: rgb(179,179,179);
+    margin-top:30px;
+  }
+
+  .video-cnt{
+    width:100%;
+    display:flex;
+    float:left;
+    justify-content: center;
+  }
+
+  .buttons-cnt{
+    float:left;
+    width:100%;
+    margin-top:30px;
+  }
+
+  .button{
+    border-radius: 5px;
+    background-color: rgb(171,171,171);
+    padding:10px;
+    width:133px;
+    margin-bottom:10px;
+    margin-right:5px;
+    margin-left:5px;
+    margin-top: 20px;
+    color: rgb(255,255,255);
+    text-decoration: none;
+    text-align:center;
+    font-size:14px;
+    float:right;
+  }
+
+  .button:hover{
+    cursor:pointer;
+  }
+  .next{
+    float:right;
+  }
+
+  .previous{
+    float:left;
+  }
+
+  .completed-message{
+    float:left;
+    width:100%;
+    margin-top:30px;
+    padding-left:30px;
+    padding-right:30px;
+    display:flex;
+    align-items: center;
+  }
+
+  .completed-message>img{
+    width:10%;
+    float:left;
+  }
+
+  .completed-message>a{
+    width:80%;
+    float:left;
+    text-decoration:none;
+    color: rgb(179,179,179);
+    text-align:center;
+  }
+
+
+  hr{
+    width:100%;
+    border-top: 1px solid rgb(179,179,179);
+  }
+
+  @media screen and (max-width: 942px){
+    
+      .sidebar-icon{
+        display:block;
+      }
+    
+      .info-cnt{
+        width:100%;
+      }
+    
+      .sidebar{
+        padding:2%;
+        width:40%;
+        height:calc(100% - 60px);
+        right:100%;
+        font-family: 'Varela Round', sans-serif;
+        position:fixed;
+        top:60px;
+      }
+
+      .info-det{
+        display:block;
+        margin-bottom:20px;
+        float:left;
+      
+      }
+      
+      .info-det>img{
+        width:80%;
+        margin:auto;
+      }
+      
+      .info-txt{
+        padding:1%;
+        width:100%; 
+        float:left       
+      }
+      
+      .info-txt>a{
+        color:rgb(179,179,179);
+        width:100%;
+        float:left;
+        text-align:justify;
+        text-decoration:none;
+      }
+    }
+ 

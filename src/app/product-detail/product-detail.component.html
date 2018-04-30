@@ -1,0 +1,154 @@
+  <div class="top-img"></div>  
+  
+  <div class="body-pg">
+    <div class="product-view">
+        <h1 class ="prod-des-h">{{product.getName()}}</h1> 
+      
+        <div class="info-det">
+          <img class="img-responsive" src="{{product.getImgURL()}}" alt="">
+          <div class="info-txt">
+            <p> {{product.getDesc()}} </p>
+          </div>
+        </div>
+            
+        <div class="price-det">
+          <div class="price-det-left">
+            <div class="prices-det">              
+                <a class="strikethrough-det" *ngIf="product.getHasDiscount() && product.getPrice() != 0 "> US ${{(product.getHasDiscount()? showRounded(product.getPrice()/(1-product.getDiscount())): showRounded(product.getPrice())).toFixed(0)}}</a>
+                <a class="real-det" *ngIf="product.getPrice() != 0" > US ${{showRounded(product.getPrice())}}  </a>
+                <a class="real-det" *ngIf="product.getPrice() == 0"> GRATIS  </a>
+              </div>              
+          </div>
+          <div class="price-det-right">
+            <div class="buy-det-main" *ngIf="product.getType() != 'course' &&  product.getPrice() != 0">
+                <a (click)="addShoppingcart(product)" >Agregar al carrito <span class="glyphicon glyphicon-shopping-cart"></span></a>                
+            </div>
+            <div class="buy-det-main" *ngIf="product.getType() === 'course'">
+              <a (click)="showSchedule()">Me interesa el curso </a>                
+            </div>
+            <div class="buy-det-main" *ngIf="product.getPrice() == 0 && product.getType() === 'virtual-course'">
+              <a [routerLink]="['/login-firebase']" *ngIf="!user" > Inicia sesión para acceder </a>
+              <a [routerLink]="['/my-account']" *ngIf="userState == 'incompleto'" >Completa tu información para acceder </a>
+              <a (click)="getNow()" *ngIf="userState =='porRegistrar'" > Adquirir ahora </a>
+              <a  *ngIf="userState =='habilitado'" > Curso adquirido </a>
+            </div>    
+          </div>            
+        </div>
+        <div class="schedule-tbl-cnt" *ngIf="product.getType() === 'course' && showScheduleB" >
+          <a class="title-section">Cursos agendados</a>
+          <hr>
+          <div class="schedule-tbl" *ngIf="schedule[0]">
+              <div class="schedule-title">
+                <a>Fecha</a>
+                <a>Horario</a>
+                <a>Ciudad</a>
+                <a></a>
+              </div>
+              <div class= "schedule-tbl-body">
+                  <div class="schedule-row" *ngFor="let course of schedule">                      
+                    <div class="schedule-column">
+                      <a class="title-resp">Fecha: </a>
+                      <a> Del {{getCourseDay(course.dateStart)}}</a>
+                      <a *ngIf = "getCourseMonth(course.dateStart) != getCourseMonth(course.dateEnd)" > de {{getCourseMonth(course.dateStart)}}</a>
+                      <a *ngIf = "getCourseYear(course.dateStart) != getCourseYear(course.dateEnd)"> del {{getCourseYear(course.dateStart)}}</a>
+                      <a>al</a>
+                      <a> {{getCourseDay(course.dateEnd)}}</a>
+                      <a> de {{getCourseMonth(course.dateEnd)}}</a>
+                      <a> del {{getCourseYear(course.dateEnd)}}</a>
+                    </div>            
+                    <div class="schedule-column">
+                        <a class="title-resp">Horario: </a>
+                        <div *ngIf="course.isSameSchedule">
+                          <a *ngIf="course.schedule.monday.isTrue">Lunes</a>
+                          <a *ngIf="course.schedule.tuesday.isTrue">Martes</a>
+                          <a *ngIf="course.schedule.wednesday.isTrue">Miércoles</a>
+                          <a *ngIf="course.schedule.thursday.isTrue">Jueves</a>
+                          <a *ngIf="course.schedule.friday.isTrue">Viernes</a>
+                          <a *ngIf="course.schedule.saturday.isTrue">Sábado</a>
+                          <a *ngIf="course.schedule.sunday.isTrue">Domingo</a>
+                          <a> de {{course.sameScheduleStart}} a {{course.sameScheduleEnd}} </a>     
+                        </div>
+    
+                        <div *ngIf="!course.isSameSchedule">
+                          <a *ngIf="course.schedule.monday.isTrue">Lunes de {{course.schedule.monday.start}} a 
+                              {{course.schedule.monday.end}}
+                          </a>
+                          <a *ngIf="course.schedule.tuesday.isTrue">Martes de {{course.schedule.tuesday.start}} a 
+                              {{course.schedule.tuesday.end}}
+                          </a>
+                          <a *ngIf="course.schedule.wednesday.isTrue">Miércoles de {{course.schedule.wednesday.start}} a 
+                              {{course.schedule.wednesday.end}}
+                          </a>
+                          <a *ngIf="course.schedule.thursday.isTrue">Jueves de {{course.schedule.thursday.start}} a 
+                              {{course.schedule.thursday.end}}
+                          </a>
+                          <a *ngIf="course.schedule.friday.isTrue">Viernes de {{course.schedule.friday.start}} a 
+                              {{course.schedule.friday.end}}
+                          </a>
+                          <a *ngIf="course.schedule.saturday.isTrue">Sábado de {{course.schedule.saturday.start}} a 
+                              {{course.schedule.saturday.end}}
+                          </a>
+                          <a *ngIf="course.schedule.sunday.isTrue">Domingo de {{course.schedule.sunday.start}} a 
+                              {{course.schedule.sunday.end}}
+                          </a>
+          
+                        </div>                        
+                    </div>
+                    <div class="schedule-column">
+                        <a class="title-resp">Ciudad: </a>
+                        <a> {{course.city}} </a>
+                    
+                    </div>
+
+
+                    <div class="schedule-column">
+                      <a class="schedule-btn">
+                        <div (click)="sendMessage(product.getName())" class="buy-det-schedule" *ngIf = "course.capacity != 0" >
+                            <a> Reservar cupo <span class="glyphicon glyphicon-copy"></span></a>
+                        </div>
+                        <div class="buy-det-schedule sold-out" *ngIf = "course.capacity === 0" >
+                            <a> Agotado</a>
+                        </div>
+                      </a>                    
+                    </div>
+              </div>           
+            </div>
+          </div>
+          <div class="schedule-no" *ngIf="!schedule[0]">
+              <a>Por el momento no hay cursos agendados</a>
+          </div>
+        </div>
+      
+        <div class="rel-prod" id="rel-prod-cnt">
+          <a class="title-section">Productos relacionados</a>
+          <hr>
+          <div class="rel-prod-cnt">
+            <div *ngFor = "let relProd of relProducts ;index as j">
+                <div class = "products-gadget" id="{{'rel-products-gadget'+ relProd.getIdStore() + 'j' + j}}" >
+                    <div class="name-product">
+                        <a  (click)="newProduct(relProd.getIdStore())" >{{relProd.getName()}}</a>
+                      </div>
+                      <div class="info-product">
+                        <img class="img-responsive" src="{{relProd.getImgURL()}}" alt="" >
+                      </div>
+                      <div class="prices">              
+                          <a class="strikethrough" *ngIf="relProd.getHasDiscount() && relProd.getPrice() != 0 "> US ${{(relProd.getHasDiscount()? showRounded(relProd.getPrice()/(1-relProd.getDiscount())): showRounded(relProd.getPrice())).toFixed(0)}}</a>
+                          <a class="real" *ngIf="relProd.getPrice() != 0"> US ${{showRounded(relProd.getPrice())}}  </a>
+                          <a class="real" *ngIf="relProd.getPrice() == 0"> GRATIS  </a>
+                        </div>
+                      <div class="buy-opt">
+                        <a (click)="newProduct(relProd.getIdStore())" *ngIf="relProd.type === 'virtual-course' && relProd.getPrice() == 0">Ver mas información</a>
+                        <a (click)="addShoppingcart(relProd)" *ngIf="relProd.type === 'virtual-course' && relProd.price != 0">Agregar al carrito <span class="glyphicon glyphicon-shopping-cart"></span></a>
+                        <a (click)="addShoppingcart(relProd)" *ngIf="relProd.type === 'promotion' && relProd.price != 0">Agregar al carrito <span class="glyphicon glyphicon-shopping-cart"></span></a>
+                        <a (click)="newProduct(relProd.getIdStore())" *ngIf="relProd.type === 'course'">Ver más información </a>
+                        <a (click)="newProduct(relProd.getIdStore())" *ngIf="relProd.type === 'licence'">Ver más información </a>               
+                      </div> 
+                </div>                    
+              </div> 
+
+          </div>               
+        </div>        
+      </div>     
+  </div>
+  
+  

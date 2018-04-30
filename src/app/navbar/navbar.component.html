@@ -1,0 +1,142 @@
+
+
+ <!-- Mobile ---------------------------------------------------------------------------------------------------------------->
+<nav class="nav navbar-fixed-top menu-mob">
+  <div class="headmob">
+    <a class="icon"   (click)="setmobState()" [@iconmobState]='getmobState()'>&#9776;</a>
+    <a class="title-mob-click" (click)="setmobState()" [routerLink]="['/home']" (click)="scrollTop()">
+      <img  class="title-mob" src="../../assets/nav-bar/logo-voxel-300.png" alt="">
+    </a>
+  </div>
+</nav>
+
+<div class="topnav" id="myTopnav" [@menumobState]='getmobState()'>
+
+<div *ngIf="!(user|async)" class="login-mob-inact">
+    <a   (click)="setmobState()" [routerLink]="['/login-firebase']">
+      <img class="icon-log-mob" src="../../assets/icons/Login final.png" alt="">
+      <div class="log-inf-cnt">
+        <div class="login-txt"> Login </div>
+      </div>
+    </a>
+  </div>
+
+  <div *ngIf="(user|async)" class="login-mob-active" >
+      <img class="icon-log-mob" src="{{(user | async)?.photoURL}}" alt="">
+      <div class="log-inf-cnt">
+        <div class="name-inf">
+          <a class="welcome">Bienvenido</a>
+          <a class="user-name">{{ (user | async)?.displayName}}</a>
+        </div>
+
+        <div >
+          <a (click)="setmobState()" [routerLink]="['./my-account']" class="my-account"> Mi cuenta</a> <br>
+          <a *ngIf="isAdmin()" (click)="setmobState()" [routerLink]="['/admin-console']" class="admin-console">Consola de Administración</a>
+          <a (click)="logout()" [routerLink]="['./home']" class="logout"> Salir</a>
+        </div>
+      </div>
+  </div>
+  <hr width="90%">
+
+  <div class="menu-list-mob">
+    <div class="menu-cntmob" *ngFor="let menu of getMenuBar();index as i" >
+      <div class="mobsub" (click)="showSubcat(i)" > <a>{{menu.getName()}} </a></div>
+      <div>
+        <div *ngFor="let submenu of menu.getSubMenus()" [ngClass]="{'subMen subMenuActivet':menu.getActive(),'subMen':true}">
+          <a [routerLink]="[submenu.getUrl()]" (click)="setMobStateScroll()">{{submenu.getName()}}</a>
+          <div class="items">
+            <div [routerLink]="[item.getUrl()]" *ngFor="let item of submenu.getItems()" (click)="setMobStateScroll()">
+              <a > {{item.getName()}}</a>
+            </div>
+          </div>
+        </div>
+      </div>     
+    </div>
+    <div class="menu-cntmob">
+      <div class="mobsub" (click)="setmobState()" [routerLink]="['./contacto']" ><a><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Contacto </a></div>
+      <div class="mobsub" (click)="setmobState()" [routerLink]="['./store']" ><a><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Tienda </a></div>
+      <div class="mobsub" (click)="setmobState()" [routerLink]="['./pay']"><a><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Pagar </a></div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="ghost">
+  <div class="top-bar">
+    <a href="#" class="top-bar-icon" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+  </div>
+      <img class="titleg" src="../../assets/nav-bar/logo-voxel-300.png" alt="">
+</div>
+
+ <!-- Desktop ---------------------------------------------------------------------------------------------------------------->
+
+<nav class="menu nav object-aling navbar-fixed-top ">
+  <div class="top-bar">
+    <div class="icons-topbar">
+      <a [routerLink]="['/contacto']" class="top-bar-icon"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></a>
+      <a [routerLink]="['/store']" class="top-bar-icon"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+      <a [routerLink]="['/pay']" class="top-bar-icon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></a>
+      
+    </div>
+
+  </div>
+
+  <div>
+    <div (mouseleave) = "setOverFalse()">
+      <a [routerLink]="['/home']" (click)="scrollTop()"><img class="title" src="../../assets/nav-bar/logo-voxel-300.png" alt=""></a>
+
+      <a *ngIf="!(user|async)" class="login" (click)="activePrettyState()" > <img class="login-icon" src="../../assets/icons/Login 2.png" alt=""> LOGIN</a>
+      <a *ngIf="(user|async)" class="login" (mouseenter) = "setOverTrue()" > Hola {{ (user | async)?.displayName}}  <img class="login-icon" src="{{(user | async)?.photoURL}}" alt=""></a>
+      <div *ngIf="getMenuListStatus()" class="login-submenu" (mouseenter) = "setOverTrue()" (mouseleave) = "setOverFalse()">
+        <div class="arrow-point">
+        </div>
+        <div class="arrow-point-back">
+        </div>
+       <div class="button-cnt">
+        <a [routerLink]="['./my-account']" (click)="setMenuListStatus()"> Mi cuenta </a>
+        <a *ngIf="isAdmin()" [routerLink]="['/admin-console']">Consola de Administración</a>
+        <a (click)="logout()" [routerLink]="['./home']"> Salir</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="menu-cnt">
+        <div *ngFor="let menu of getMenuBar();index as i"
+          role="presentation" class="submen-ctn" (mouseover)="setActive(i)">
+          <a [@menubarState]="menu.getState()">{{menu.getName()}}
+            <!-- <span class="glyphicon glyphicon-chevron-down"></span> -->
+          </a>
+        </div>
+      </div>
+  </div>
+  <div class="contmen object-aling">
+    <div class="menucont" *ngFor="let menu of getMenuBar();index as i"
+        [@menuState]="menu.getState()" (mouseleave)="setActive(ALL)" >
+        <div class="content-sub" *ngFor="let submenu of menu.getSubMenus()">
+          <a [routerLink]="[submenu.getUrl()]"  (click)="scrollSetActive(i)" [ngClass]="{'sub-click content-sub-click':submenu.isClickeable(),'sub-click':true}">{{submenu.getName()}}</a>
+          <div class="item-desk" *ngFor="let item of submenu.getItems()">
+            <a [routerLink]="[item.getUrl()]" (click)="scrollSetActive(i)" >{{item.getName()}}</a>
+          </div>
+        </div>
+    </div>
+  </div>
+</nav>
+
+<!-------------------------------POP UP-------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<div class="pretty-slider-cnt" [@pretty-slider-act] = "getPrettySliderState()" >
+  <div class="escape-button" (click) = "inactivePrettyState()" >
+    <a>
+      <img class="img-responsive escape-icon"src="../../assets/icons/close.png" alt="">
+    </a>
+  </div>    
+   
+  <div class="login-cnt">
+    <div class="login-scroll">
+        <login-firebase></login-firebase> 
+    </div>
+    
+  </div>
+    
+      
+</div>

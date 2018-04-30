@@ -1,0 +1,21 @@
+<div class="pretty-slider-cnt" [@pretty-slider-act] = "getPrettySliderState()" >
+  <div class="escape-button" (click) = "inactivePrettyState()" >
+    <a>
+      <img class="img-responsive escape-icon"src="../../assets/icons/close.png" alt="">
+    </a>
+  </div>     
+  <app-pretty-slider [images] = 'getImagesArray()' [index] = "getSliderIndex()" > </app-pretty-slider>      
+</div>
+
+<div class="images-section">
+  <div *ngFor="let image of getImagesArray();index as i" class="img-cnt" (click)="setPrettySlider(i)" (mouseenter) = "setInfoTrue(i)" (mouseleave) = "setInfoFalse(i)">
+      <div class="img-hover" *ngIf=isInfoActive(i)>
+        <a> Haga click en la imagen para ampliarla</a>
+      </div>
+    <img src="{{image.getImages()}}" alt="">
+  </div>
+</div>
+
+<div class="images-section-resp">
+    <app-pretty-slider [images] = 'getImagesArray()' [index] = '0' > </app-pretty-slider>    
+</div>

@@ -1,0 +1,58 @@
+<div class="pretty-effect-cnt" [@pretty-effect-act] = "getPrettyEffectState()" >
+    <div class="escape-button" (click) = "inactivePrettyState()" >
+      <a>
+        <img class="img-responsive escape-icon"src="../../assets/icons/close white.png" alt="">
+      </a>
+    </div>
+    
+  </div>
+
+
+<div class="sidebar-icon">
+  <a (click) = "setMenuMobState(true)" [@iconMobState]="getIconMobState()"><span class="glyphicon glyphicon-cog"></span></a>
+</div>
+
+<div class="sidebar-icon">
+  <a (click) = "setMenuMobState(true)" [@iconMobState]="getIconExitMobState()"><span class="glyphicon glyphicon-remove-circle"></span></a>
+</div>
+
+<div class="sidebar" [@menuMobState]="getMenuMobState()">
+  <div class="info-sidebar">
+    <a>Categorías</a>
+  </div>
+  <hr>
+  <div *ngFor = "let category of sectionName;index as i"  class="option-cnt">
+    <a [@sectionState]="getSectionState(i)" (click)="setSectionActive(i,true)"><span class="{{getSectionIcon(i)}}" [ngClass]="{'glyphicon':true}"></span> {{getSectionName(i)}}</a>
+  </div>
+</div>
+
+<div class="info-cnt">
+    <div *ngFor="let category of sectionName;index as i" id="{{sectionId[i]}}">
+     <a class ="title-section" >{{getSectionName(i)}}</a>
+        <hr>
+      <div class="products-cnt" id="product-cnt">
+        <div class="products-gadget" *ngFor="let product of getProductArray(i);index as j" id="{{'products-gadget'+'i' + i + 'j' + j}}">
+          <div class="name-product">
+            <a [routerLink]="['/product-detail', product.getIdStore()]" >{{product.getName()}}</a>
+          </div>
+          <div class="info-product">
+            <img class="img-responsive" src="{{product.getImgURL()}}" alt=""  >
+          </div>
+          <div class="prices">              
+             <a class="strikethrough" *ngIf="product.getHasDiscount() && product.getPrice() != 0 "> US  ${{(product.getHasDiscount()? showRounded(product.getPrice()/(1-product.getDiscount())) : showRounded(product.getPrice())).toFixed(0)}}</a>
+             <a class="real"  *ngIf="product.getPrice() != 0"> US ${{showRounded(product.getPrice())}}  </a>
+             <a class="real"  *ngIf="product.getPrice() == 0" > GRATIS  </a>
+            </div>
+          <div class="buy-opt">
+              <a *ngIf="product.getType() === 'virtual-course' && product.getPrice() != '0' " (click)="addShoppingCart(product)">Agregar al carrito <span class="glyphicon glyphicon-shopping-cart"></span></a>
+              <a *ngIf="product.getType() === 'promotion' && product.getPrice() != '0' " (click)="addShoppingCart(product)">Agregar al carrito <span class="glyphicon glyphicon-shopping-cart"></span></a>
+              <a [routerLink]="['/product-detail', product.getIdStore()]" *ngIf="product.getType() === 'course'">Ver más información </a>
+              <a [routerLink]="['/product-detail', product.getIdStore()]" *ngIf="product.getType() === 'licence'">Ver más información </a>
+              <a *ngIf="product.getPrice() == 0 && product.getType() === 'virtual-course' ">Adquirir ahora</a>                  
+          </div>       
+        </div>
+      </div>
+    </div>
+   
+</div>
+

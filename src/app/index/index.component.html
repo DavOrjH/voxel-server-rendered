@@ -1,0 +1,123 @@
+<div class="public-cnt">
+  <slider [slides]="slides" [id]="id1"></slider>
+</div>
+
+<div class="test-div">
+  <div class="test-cnt">
+    <h3>Testimonio de usuarios y clientes</h3>
+      <testimony-slider [testimony] = "testimonies" [id]="id2"></testimony-slider>
+  </div>
+</div>
+
+<div class="body-pg">
+
+    
+  <div class="projects-sliders-cnt">
+    <h3>Proyectos de estudiantes e instructores</h3>
+    <div class="info-row">        
+          <div class="info-column twenty-five">
+            <h4>Arquitectura</h4>
+            <div class="photo-slider-cnt">
+              <app-pretty-photo-viewer [images]="arquitectura" ></app-pretty-photo-viewer>
+            </div>
+          </div> 
+          <div class="info-column twenty-five">
+            <h4>Diseño de producto</h4>
+            <div class="photo-slider-cnt">
+              <app-pretty-photo-viewer [images]="disenoProducto" ></app-pretty-photo-viewer>
+            </div>
+          </div> 
+          <div class="info-column twenty-five">
+            <h4>Joyería</h4>
+            <div class="photo-slider-cnt">
+              <app-pretty-photo-viewer [images]="joyeria" ></app-pretty-photo-viewer>
+            </div>
+          </div> 
+          <div class="info-column twenty-five">
+              <h4>Juguetería</h4>
+              <div class="photo-slider-cnt">
+                <app-pretty-photo-viewer [images]="jugueteria" ></app-pretty-photo-viewer>
+              </div>
+            </div>       
+        </div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-column thirty-three">
+      <!-- <div class="img-cnt">
+        <img class="img-responsive" src="http://assets.voxel3d.net/index/certificacion.jpg" alt="">
+      </div> -->
+      
+      <h3>Certificación Oficial</h3>
+      <p>Reciba entrenamiento de primer nivel de una empresa con más de 10 años de experiencia.</p>
+
+    </div>
+    <div class="info-column thirty-three">
+      <!-- <div class="img-cnt">
+        <img class="img-responsive" src="http://assets.voxel3d.net/index/instructores.jpg" alt="">
+      </div> -->
+      
+      <h3>Nuestros Instructores</h3>
+      <p>Estudie Rhino y sus plugins con entrenadores que han desarrollado y aplicado su conocimiento en el mercado real.</p>
+        
+    </div>
+    <div class="info-column thirty-three">
+      <!-- <div class="img-cnt">
+        <img class="img-responsive" src="http://assets.voxel3d.net/index/evolucion.jpg" alt="">
+      </div> -->
+     
+      <h3>Evolución profesional</h3>
+      <p>Desarrolle sus competencias manejando las herramientas CAD-CAM-CAE más avanzadas.</p>
+        
+    </div>
+  </div>
+
+</div>
+
+<div class="back-img">
+  <div class="back-dark">
+    <div class="body-pg ">
+        <div class="info-row full">
+          <div class="info-column thirty-three back-txt">           
+            <p><a class="plus">Representamos</a> más de 5 casas matrices de software de Norteamérica y Europa.</p>
+          </div>
+          <div class="info-column thirty-three back-txt">
+            <p> <a class="plus">Más</a> de 2000 estudiantes provenientes de más de diez países.</p>
+              
+          </div>
+          <div class="info-column thirty-three back-txt">
+            <p><a class="plus">Somos</a> centro autorizado de entrenamiento desde 2007 y manejamos Rhino desde 1996.</p>        
+          </div>
+        </div>  
+      </div>
+  </div>
+</div>
+
+<div class="body-pg">
+    <div class="slider-3d">
+        <h3>Galería de modelos 360:</h3>
+        <app-pretty3dslider [models3d] = "models3d" ></app-pretty3dslider>
+      </div>
+      
+<div class="brand-slider-sec">
+    <h3>Nuestros Clientes:</h3>
+    <div class="brand-slider-cnt">
+      <brand-slider [id]="id3" [brands]="brand" [visibleItems]="8"> </brand-slider>
+    </div>
+</div>
+
+
+<div class="brand-slider-sec">
+    <h3>Somos distribuidores de:</h3>
+    <div class="brand-slider-cnt">        
+      <brand-slider [id]="id4" [brands]="brand2" [visibleItems]="5"></brand-slider>
+    </div>
+</div>
+
+
+</div>
+
+
+
+  
+

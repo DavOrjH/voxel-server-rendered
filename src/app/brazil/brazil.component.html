@@ -1,0 +1,266 @@
+<div class="title-img-cnt">
+    <img class="img-responsive" src="http://assets.voxel3d.net/licences/BRAZIL.jpg" alt="">
+  </div>
+  <div class="options-cnt">
+    <div class="option-button" [ngClass]="{'option-inactive': getInfoView() != 'global-vision','option-active':getInfoView() == 'global-vision'}" (click)="setInfoView('global-vision')"><a >Visión de conjunto</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'specifications' ,'option-active':getInfoView() == 'specifications'}" (click)="setInfoView('specifications')"><a >Especificaciones</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'software' ,'option-active':getInfoView() == 'software' }" (click)="setInfoView('software')"><a >Productos</a> </div>   
+  </div>
+  <hr>
+  <div class="info-cnt" >
+    <div class="global-vision" *ngIf="getInfoView() == 'global-vision'">
+  
+      <h1 class="first-title">
+        Herramientas de renderizado para profesionales.
+      </h1>
+      <p>
+        Con Brazil los usuarios de Rhino ahora pueden usar la misma tecnología de renderizado más demandada por los artistas
+        de computación gráfica sin tener que abandonar Rhino. Los más reconocidos artistas de computación gráfica de todas las
+        áreas de la industria y de todas partes del mundo confían en Brazil para sus trabajos más demandantes. Brazil es el estándar
+        para terminados en alta calidad, flexibilidad, confiabilidad y ambiente de trabajo amigable para el artista en Rhino.
+      </p>
+      <!-- <div class="video-cnt">
+        <iframe width="{{videoWidth}}" height="{{videoHeight}}" src="https://www.youtube.com/embed/V6zL_rxsrWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>      
+      </div> -->
+      <h1 class="info-title">Trazado de rayos</h1>
+      <p>
+        El motor de renderizado de Brazil usa el método de trazado de rayos (en contraparte 
+        al método de líneas de exploración o de los renderizadores de hardware). El trazado de rayos
+        (o raytracing) tiene la ventaja de simular la forma en que los fotones realmente se comportan; sin embargo este método
+        no solo se limita a soluciones realísticas. El motor avanzado de trazado de rayos de Brazil simula un amplio rango de efectos entre los que se incluye:
+      </p>
+      <ul>
+        <li>Reflexión</li>
+        <li>Refracción(transparencia)</li>
+        <li>Dispersión (Efecto prismático del arco iris) </li>
+        <li><a href="https://en.wikipedia.org/wiki/Subsurface_scattering" target="_blank">SSS</a> (Transmisión difusa de luz en materiales como cera o piel)</li>
+        <li>Reflexión de brillos (Materiales difuminados o cepillaldos)</li>
+      
+      </ul>
+      <h1 class="info-title">Iluminación Avanzada</h1>
+      <p>Rhino soporta objetos de luz de punto, foco, direccionales, lineales y rectangulares con propiedades como color, zona de cobertura y proyección de sombras.
+        Brazil 2.0 adiciona más de 100 propiedades de luz. El número de propiedades puede ser intimidante pero muchos de estos ajsutes solo se usa en casos específicos.
+      Las propiedades de luz de Brazil 2.0 que se incluyen son:
+      </p>
+      <ul>
+        <li>Reducción de iluminación (Oscurecimiento en función de la distancia de la fuente) </li>
+        <li>Atenuación (Aumento del brillo en función de la distancia de la fuente)</li>
+        <li>Control de enfoque (Rectangular, cónico, cilíndrico)</li>
+        <li>Proyección (Emisión de una imagen o textura procedural en vez de color)</li>
+        <li>Lista de exclusión (Luces omiten objetos seleccionados dentro de la escena)</li>        
+      </ul>
+      <p>
+        Brazil 2.0 visualiza los conos focales y atenuaciones esféricas para las luces seleccionadas en la vista, de tal forma que se pueda apreciar los ajustes de las propiedades en tiempo real.
+      </p>
+      <h1 class="info-title">Caricatura y Render no-fotorealista </h1>
+      <p>
+        Brazil 2.0 incluye efectos no-fotorealistas como las sombreado de caricatura. Este sombreado coopera con sombreados fotorealistas que permite mezclar vidrio, metal cepillado
+        y el efecto caricatura en un sola escena sin perder la habilidad de generar iluminación indirecta, profundidad de campo u otro efecto adicional.
+        Puede determinar el comportamiento del relleno y la tinta del sombreado además de: 
+      </p>
+      <ul>
+        <li>Paleta de colores de relleno (Aplicación de color según luminosidad)</li>
+        <li>Relleno tipo Gooch (Graduación continua)</li>
+      </ul>
+      <h1 class="info-title">Profundidad de campo</h1>
+      <p>
+        La profundidad de campo simula las propiedades de las imprecisiones de enfoque de
+        los sistemas de lentes físicas como el ojo biológico y las cámaras. La profundidad de campo
+        añade realismo a un render al generar zonas de desenfoque. También se puede usar para enmascarar
+        areas de la escena como si se encontraran alejadas del observador. Las herramientas para profundidad
+        de campo incluyen:        
+      </p>
+      <ul>
+        <li>Distancia focal</li>
+        <li>Radio</li>
+        <li>F-stop</li>
+        <li>Aberraciones de Bokeh (la apariencia de las áreas fuera de foco en una imagen producida
+          por el lente de una cámara usando una profundidad de campo bastante baja.
+        </li>        
+      </ul>
+      <h1 class="info-title">Texturas procedurales</h1>
+      <p>
+        Brazil soporta mapas de bits y teturas procedimentales. Los mapas de bits usan imágenes (una malla de pixeles
+        coloreados). Por otro lado, las texturas procedurales, son definidas a partir de funciones matemáticas. Las texturas
+        procedurales no sufren problemas de resolución o pixelamiento, y su comportamiento puede ser
+        fácilmente modificable. LAs texturas procedurales son simuladas en la vista de Rhino para poder
+        hacerles ajustes con mayor facilidad. Las funciones acopladas son:
+      </p>
+      <ul>
+        <li>Corrector</li>
+        <li>Puntos</li>
+        <li>Gradientes</li>
+        <li>Mármol</li>
+        <li>Ruido</li>
+        <li>Azulejos</li>
+        <li>Rugosidad</li>
+      </ul>
+      <p>Las definiciones avanzadas pueden ser usadas para crear otros materiales realísticos como madera y piedra.</p>
+      
+      <h1 class="info-title">Colores de alto rendimiento dinámico</h1>
+      <p>Brazil es un motor de alto rango dinámico <a href="https://es.wikipedia.org/wiki/Im%C3%A1genes_de_alto_rango_din%C3%A1mico" target="_blank">(HDRI)</a>
+         Con un motor de renderizado HDRI, los colores no están limitados al rango de blanco y negro. Los colores
+         pueden ser mas brillantes que el blanco y más oscuros que el negro. Los colores "mas brillantes que el blanco"
+          son  muy importantes, aunque no puedan ser visualizados en las pantallas de los ordenadores, debido a que en un render los colores
+          usualmente son diluidos por reflexiones o refracciones parciales.
+      </p>
+      <h1 class="info-title">Iluminación global</h1>
+      <p>
+        La iluminación global es una característica que se puede encontrar en la mayoría de plataformas
+        de renderizado incluyendo a Brazil. Esta iluminación usa iluminación tanto directa como indirecta
+        para generar una imagen realista. La iluminación directa es el proceso donde los objetos luminosos
+        emiten luz sobre otros objetos creando áreas brillantes en las superficies que están de cara a la fuente
+        de luz, áreas con baja iluminación en superficies que no están de cara a la fuente de luz y sombras cuando la luz
+        sobre la superficie se encuentra obstruida directamente por un objeto. Después de que una superficie 
+        ha sido iluminada directamente, esta emite fotones, algunos de estos fotones son atrapados por otras superficies y a su vez
+        unos pocos fotones restantes son finalmente captados por nuestros ojos o una cámara. El efecto de la
+        iluminación indirecta es relativamente pequeño comparado con el de la iluminación directa. Aun así, es muy
+        importante para la calidad del realismo de la imagen. 
+      </p>
+     
+
+     
+    </div>
+    <div class="specifications" *ngIf="getInfoView() == 'specifications'">
+      <h1 class="info-title">Información del producto</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Nombre del producto</a>
+          </div>
+          <div class="column-cell">
+            <a>Brazil 2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Versión</a>
+          </div>
+          <div class="column-cell">
+            <a>2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Fabricante</a>
+          </div>
+          <div class="column-cell">
+            <a>McNeel & Associates</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Plataformas</a>
+          </div>
+          <div class="column-cell">
+            <a>Windows</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Soporte y mantenimiento</a>
+          </div>
+          <div class="column-cell">
+            <a>Contacta a nuestros asesores comerciales para obtener más información</a>
+          </div>
+        </div>    
+    </div>
+  
+      <h1 class="info-title">Requisitos del sistema</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>CPU</a>
+          </div>
+          <div class="column-cell">
+            <a>Intel Pentium IV o superior</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Espacio en disco</a>
+          </div>
+          <div class="column-cell">
+            <a>600 MB de espacio en disco.</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Memoria RAM</a>
+          </div>
+          <div class="column-cell">
+            <a>1 GB)</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Sistemas operativos</a>
+          </div>
+          <div class="column-cell">
+           <ul>
+             <li>Windows 2000 </li>
+             <li>Windows XP </li>             
+             <li>Windows Vista </li>
+             <li>Windows 7</li>
+             <li>Windows 8</li>
+           </ul>
+          </div>
+        </div>
+      </div>
+  
+      <h1 class="info-title">Información adicional</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 2.0</a>
+          </div>
+          <div class="column-cell">
+           <a>No</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 3.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Yes</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 4.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 5.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si, solo en modo de 32 bits</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Requerimientos de instalación</a>
+          </div>
+          <div class="column-cell">
+            <a class="cursor" [routerLink]="['/rhinoceros']">Rhinoceros</a>
+          </div>
+        </div>
+      </div>  
+  
+    <div class="software" *ngIf="getInfoView() == 'software'">
+      <div class="product-cnt" *ngFor="let product of licenceDataModel;index as i">
+        <div class="img-cnt">
+            <img class="img-responsive" src="{{product.imageURL}}" alt="">
+        </div>
+        <div class="info-cnt">
+            <a>{{product.name}}</a>
+            <a [routerLink]="['/product-detail', product.productId]" class="redirect-button">Ver producto</a>  
+        </div>    
+      </div>      
+    </div>  
+  </div>

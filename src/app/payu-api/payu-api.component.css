@@ -1,0 +1,240 @@
+.body-pg{
+  max-width: 1240px;
+  margin: auto;
+  font-family: 'Varela Round', sans-serif;
+  padding-left:30px;
+  padding-right:30px;
+  padding-bottom:20px;
+}
+.loading{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+.loading>img{
+  border-radius: 50%;
+}
+.pay-info{
+  float:left;
+  width:100%;
+  padding-left:20px;
+  padding-right:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.products-info{
+  float:right;
+  width:100%;
+  padding-left:20px;
+  padding-right:20px;  
+}
+
+.prod_cnt{
+  float:left;
+  padding-top:5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prod-name{
+  float:left;
+  color:rgb(0, 0, 0);
+  font-size: 20px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+.price{
+  width: 15%;
+  color: rgb(128, 128, 128);
+  font-size: 20px;
+  float:left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.price>a{
+  text-decoration: none;
+  color: rgb(128, 128, 128);
+}
+
+.prod-price{
+  float:right;  
+  color:rgb(179,179,179);
+  text-decoration:none;
+}
+
+.total-cnt{
+  float:left;
+  width:100%;
+  padding-top:15px;
+}
+
+.total-label{  
+  float:left;
+  font-size:16px;
+}
+
+.total-value{
+  color:rgb(0,0,0);
+  float:right;
+  font-size:16px;
+}
+.section{
+  position: relative;
+}
+.section>h1{
+  background-color:rgba(255, 128, 0, 0.1);
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  color:rgb(25,25,25); 
+  float: left;
+  width: 100%;
+}
+.emptyState{
+
+}
+.emptyState>a{
+  text-decoration: none;
+  text-align: center;
+}
+.emptyState>a>h1{
+  background-color:rgba(255, 128, 0, 0.1);
+  padding-bottom: 40px;
+  padding-top: 40px;
+  color:rgb(51, 51, 51); 
+}
+.emptyState>a>img{
+  width: 35%;
+  margin: auto;
+}
+.prod_cnt1{
+  float: left;
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+.prod_cnt1>img{
+  width: 20%;
+}
+.del{
+  width: 15%;
+  float: left;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 40px;
+}
+.del>a{
+  cursor: pointer;
+  color: rgb(255, 128, 0);
+}
+
+.info-ctn{
+float: left;
+width: 100%;
+display: flex;
+position: relative;
+margin-bottom: 10px;
+}
+.info-ctn-item{
+  float: left;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  color:rgb(51, 51, 51); 
+  width: 60%;
+  margin: auto;
+  padding: 10px;
+}
+.info-ctn-item>label{
+  color: rgb(255, 128, 0);
+  width: 100%;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.info-ctn-item>a{
+  font-size: 16px;
+  text-decoration: none;
+  width: 100%;
+  color:rgb(51, 51, 51); 
+}
+.sect-2{
+  width: 100%;
+  float: left;
+  margin-top: 40px;
+}
+.info-ctn>label{
+  float: left;
+  color:rgb(51, 51, 51); 
+  width: 60%;
+  margin: auto;
+  padding: 10px;
+}
+.form-group>select{
+  width: 60%;
+
+}
+
+.form-group>label{
+  width: 100%;
+}
+.pay-info>form{
+}
+.input-dni{
+  width: 50%;
+}
+.input-cc{
+  width: 60%;
+}
+.input-cvv{
+  width: 10%;
+}
+.input-cc-year{
+  width: 10%;
+}
+.input-cc-month{
+  width: 10%;
+}
+.input-cuota{
+  width: 12%;
+}
+.pay-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.pay-button>button{
+  background-color: rgb(255, 159, 10);
+  color: rgb(255,255,255);
+  border-color: rgb(255, 159, 10);
+  border-radius: 5px;
+  font-size: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin:10px;
+}

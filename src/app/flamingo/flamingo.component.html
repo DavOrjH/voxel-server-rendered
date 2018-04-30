@@ -1,0 +1,226 @@
+<div class="title-img-cnt">
+    <img class="img-responsive" src="http://assets.voxel3d.net/licences/FLAMINGO.jpg" alt="">
+  </div>
+  <div class="options-cnt">
+    <div class="option-button" [ngClass]="{'option-inactive': getInfoView() != 'global-vision','option-active':getInfoView() == 'global-vision'}" (click)="setInfoView('global-vision')"><a >Visión de conjunto</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'specifications' ,'option-active':getInfoView() == 'specifications'}" (click)="setInfoView('specifications')"><a >Especificaciones</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'software' ,'option-active':getInfoView() == 'software' }" (click)="setInfoView('software')"><a >Productos</a> </div>   
+  </div>
+  <hr>
+  <div class="info-cnt" >
+    <div class="global-vision" *ngIf="getInfoView() == 'global-vision'">
+  
+      <h1 class="first-title">
+        Flamingo: poderoso plugin de renderizado fotorrealista al mejor precio.
+      </h1>
+      <p>
+          Flamingo nXt ofrece renderizado en trazado de rayos y radiosidad para Rhino. Este plugin fácil de usar
+          añade espectaculares funcionalidades de renderizado y animación a las poderosas características de Rhino.
+          Sin mucho esfuerzo puede obtener imágenes fotorrealísticas en alta calidad de sus diseños
+      </p>
+      <p>
+          Flamingo corre dentro de Rhino y tiene los mismos requerimientos que este. Ambos programas corren
+          en computadores de escritorio y portátiles con Windows.    
+      </p>
+      <!-- <div class="video-cnt">
+        <iframe width="{{videoWidth}}" height="{{videoHeight}}" src="https://www.youtube.com/embed/V6zL_rxsrWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>      
+      </div> -->
+      <h1 class="info-title">Características y beneficios</h1>
+      <ul>
+        <li><strong>Imágenes fotométricamente precisas</strong> con reflejos, refracción, difusión, translucidez, transparencia, teñido del color, sombras, profundidad de campo y luz indirecta<li>
+        <li><strong>Precisión</strong> necesaria para diseñar, prototipar, diseñar, analizar y fabricar cualquier cosa, desde un avión hasta joyas.</li>
+        <li><strong>Vistas animadas</strong> para recorridos a pie y aéreos, y animación de luz solar para estudios de sombras.</li>
+        <li><strong>Genere procedimentalmente</strong> materiales en 2D, 3D y nubes; plantas a través de fractales, refinamiento progresivo para visualizaciones rápidas además de librerias extensas de materiales, plantas y fondos.</li>
+        <li><strong>Accesible</strong>. Tan fácil de aprender y usar que puede enfocarse en el diseño y la visualización sin distraerse con el software.</li>       
+      </ul>
+    </div>
+    <div class="specifications" *ngIf="getInfoView() == 'specifications'">
+      <h1 class="info-title">Información del producto</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Nombre del producto</a>
+          </div>
+          <div class="column-cell">
+            <a>Flamingo nXt 2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Versión</a>
+          </div>
+          <div class="column-cell">
+            <a>2.0</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Fabricante</a>
+          </div>
+          <div class="column-cell">
+            <a>McNeel & Associates</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Plataformas</a>
+          </div>
+          <div class="column-cell">
+            <a>Windows</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Soporte y mantenimiento</a>
+          </div>
+          <div class="column-cell">
+            <a>Contacta a nuestros asesores comerciales para obtener más información</a>
+          </div>
+        </div>    
+    </div>
+  
+      <h1 class="info-title">Requisitos del sistema</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>CPU</a>
+          </div>
+          <div class="column-cell">
+            <a>Se recomienda un procesador de múltiples núcleos con aceleración de renderizado</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Espacio en disco</a>
+          </div>
+          <div class="column-cell">
+            <a>Los requerimientos de hardware coinciden con los de las versiones compatibles de Rhino</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Memoria RAM</a>
+          </div>
+          <div class="column-cell">
+            <a>1 GB o más (Recomendado)</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Sistemas operativos</a>
+          </div>
+          <div class="column-cell">
+            <a> Windows 7, Windows Vista, Windows XP (32 y 64 bits) </a>
+          </div>
+        </div>
+      </div>
+  
+      <h1 class="info-title">Información adicional</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 2.0</a>
+          </div>
+          <div class="column-cell">
+           <a>No</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 3.0</a>
+          </div>
+          <div class="column-cell">
+            <a>No</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 4.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Corre en Rhino 5.0</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Trazado de rayos</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Radiosidad</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Vistas animadas de recorrido y aérea</a>
+          </div>
+          <div class="column-cell">
+            <a>Si</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Resolución de salida</a>
+          </div>
+          <div class="column-cell">
+            <a>Hasta 16000 x 16000 px</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Tarjeta de video</a>
+          </div>
+          <div class="column-cell">
+            <a>La velocidad de la tarjeta de video no afecta el rendimiento de Flamingo</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Notas</a>
+          </div>
+          <div class="column-cell">
+            <a>Flamingo se ejecutará como un proceso de 32 bits cuando se ejecute Rhino 4.0 en
+              cualquier sistema operativo (esto limita a Flamingo a emplear hasta 2GB de memoria únicamente).
+              Para aprovechar por completo las ventajas de los sistemas operativos de 64-bit se requiere de Rhino
+              5.0 a 64 bit. Máquinas MAcintosch con Bootcamp son uno de los sistemas operativos para los cuales hay
+              compatibilidad del software.</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Requerimeintos de instalación</a>
+          </div>
+          <div class="column-cell">
+            <a class="cursor" [routerLink]="['/rhinoceros']">Rhinoceros</a>
+          </div>
+        </div>
+
+      </div>  
+    </div>
+    <div class="software" *ngIf="getInfoView() == 'software'">
+      <div class="product-cnt" *ngFor="let product of licenceDataModel;index as i">
+        <div class="img-cnt">
+            <img class="img-responsive" src="{{product.imageURL}}" alt="">
+        </div>
+        <div class="info-cnt">
+            <a>{{product.name}}</a>
+            <a [routerLink]="['/product-detail', product.productId]" class="redirect-button">Ver producto</a>  
+        </div>    
+      </div>      
+    </div>  
+  </div>

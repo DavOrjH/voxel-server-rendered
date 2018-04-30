@@ -1,0 +1,189 @@
+
+<div class="top-img">
+</div>
+    
+
+<div class="body-pg">
+        <h1 class="contact-h">CONTÁCTANOS</h1>
+  
+  <div class="pg-column">
+    
+    <div class="commertial-section">
+        <h1>Departamento Comercial</h1>
+        <div class="sales-person-cnt" *ngFor="let salesPerson of commercialData;index as i">
+            <a class="cont-name">{{salesPerson.firstName}}  {{salesPerson.lastName}}</a>
+            <a class="cont-phone">57 + {{salesPerson.phone}}</a>
+            <a class="cont-email">{{salesPerson.email}}</a>            
+        </div>
+    </div>
+
+    <div class="form-cnt">
+        <h1>Envíanos tu mensaje</h1>
+        
+        <form name="form" (ngSubmit)="f1.form.valid && sendMessage()" #f1="ngForm" novalidate>
+    
+            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !name.valid }">
+                <label for="name">Tu Nombre</label>
+                <input type="name" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+                <div *ngIf="f1.submitted && !name.valid" class="help-block">Nombre requerido</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !checkEmail(model.email) }">
+                <label for="email">Tu E-mail</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+                <div *ngIf="f1.submitted && !checkEmail(model.email)" class="help-block">Correo electrónico no válido</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !phone.valid }">
+                <label for="phone">Tu Teléfono</label>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required />
+                <div *ngIf="f1.submitted && !phone.valid" class="help-block">Número de teléfono requerido</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !subject.valid }">
+                <label for="subject">El Asunto</label>
+                <input type="text" class="form-control" name="subject" [(ngModel)]="model.subject" #subject="ngModel" required />
+                <div *ngIf="f1.submitted && !subject.valid" class="help-block">Asunto requerido</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !message.valid }">
+                <label for="message">Tu Mensaje</label>            
+                <textarea name="text" id="" cols="30" rows="10" class="form-control message" [(ngModel)]="model.message" #message="ngModel" required></textarea>
+                <div *ngIf="f1.submitted && !message.valid" class="help-block">Mensaje requerido</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !agreement.valid }">
+                <a [routerLink]="['/politica-de-datos']"><label for="agreement" >Acepto la política de privacidad de datos</label></a> 
+                <input type="checkbox" class="form-check" name="agreement" [(ngModel)]="model.agreement" #agreement="ngModel"  required  />
+                <div *ngIf="f1.submitted && !agreement.valid" class="help-block">Debes aceptar la política de privacidad de datos</div>
+            </div>
+    
+            <div class="form-group" >
+                <button [disabled]="loading" class="btn btn-primary">Enviar</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+        </form>
+    </div>
+
+  </div>
+  <div class="pg-column">
+    <div class="map-cnt">
+        <h1>Bogotá</h1>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.945460971015!2d-74.07183448497254!3d4.603789096655481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a3a647035d%3A0x8a2b1e4a4e07ba2b!2sVoxel+C+y+T!5e0!3m2!1ses!2sco!4v1510238673464" width="260" height="450" frameborder="15px" style="border:0" allowfullscreen></iframe> 
+    </div>
+
+    <div class="info-cnt">
+        <h1>Información de interés</h1>
+        <div class="options-cnt">        
+            <div (click)="setSectionActive('comingWay')">
+                <div class="option-img"><img src="http://assets.voxel3d.net/contacto/avion.png" alt=""></div>            
+                <a>¿Cómo llegar?</a>
+            </div>
+            <div (click)="setSectionActive('hotels')">
+                <div class="option-img"><img src="http://assets.voxel3d.net/contacto/hotel.png" alt=""></div>            
+                <a>Hoteles</a>
+            </div>
+            <div (click)="setSectionActive('restaurants')">
+                <div class="option-img"><img src="http://assets.voxel3d.net/contacto/cubiertos.png" alt=""></div>            
+                <a>Restaurantes</a>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="info-limit" id="info-limit">      
+  </div>
+  <div class="pg-whole" *ngIf="getIsComingWayActive()">
+    <h1>Formas de llegar</h1>
+    <div class="options-cnt">        
+        <div>
+            <div class="option-img img-responsive">
+                <a href="https://eldorado.aero/" target="_blank"><img src="http://assets.voxel3d.net/contacto/avion2.png" alt=""></a>                
+            </div>
+            <div class="option-txt">
+                <h3>Aeropuerto El Dorado</h3>
+                <a>El aeropuerto el Dorado de Bogotá se encuentra a 22 km. de nuestras instalaciones.</a>
+            </div>                      
+        </div>
+        <div>
+            <div class="option-img img-responsive">
+                <a href="https://www.google.com/maps/dir/Aeropuerto+Internacional+El+Dorado,+Bogot%C3%A1,+Colombia/Voxel+C+y+T,+Bogot%C3%A1,+Colombia/@4.6507947,-74.1392749,13z/am=t/data=!4m15!4m14!1m5!1m1!1s0x8e3f9cb6430f8607:0x8eea5954ef14af30!2m2!1d-74.1444969!2d4.7014128!1m5!1m1!1s0x8e3f99a3a647035d:0x8a2b1e4a4e07ba2b!2m2!1d-74.0696458!2d4.6037891!3e3!5i2" target="_blank"><img src="http://assets.voxel3d.net/contacto/bus.png" alt=""></a>
+            </div>
+            <div class="option-txt">
+                <h3>Transmilenio</h3>
+                <a>El sistema de transporte Transmilenio conecta toda la ciudad, para llegar a nuestras instalaciones desde el aeropuerto se debe tomar el alimentador hasta el portal El Dorado, luego tomar el Transmilenio J6 hasta la estación universidades.</a>
+            </div>  
+        </div>
+        <div>
+            <div class="option-img img-responsive">
+                <a href="https://www.google.com/maps/dir/Aeropuerto+Internacional+El+Dorado,+Bogot%C3%A1,+Colombia/Voxel+C+y+T,+Bogot%C3%A1,+Colombia/@4.6526001,-74.140449,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x8e3f9cb6430f8607:0x8eea5954ef14af30!2m2!1d-74.1444969!2d4.7014128!1m5!1m1!1s0x8e3f99a3a647035d:0x8a2b1e4a4e07ba2b!2m2!1d-74.0696458!2d4.6037891!3e0" alt="" target="_blank"><img src="http://assets.voxel3d.net/contacto/taxi.png" alt=""></a>
+            </div>
+            <div class="option-txt">
+                <h3>Taxi</h3>
+                <a>Si se toma un taxi en el aeropuerto para llegar a nuestras instalaciones se debe tomar la Av. Calle 26 hasta el centro de Bogotá en la carrera 3 y la calle 19.</a>
+            </div>  
+        </div>
+    </div>     
+  </div>
+  <div class="pg-whole" *ngIf="getIsHotelsActive()">
+        <h1>Hoteles cercanos</h1>
+        <div class="options-cnt">        
+            <div>
+                <div class="option-img img-responsive">
+                    <a href="http://www.hotelesdann.com/avenida19/" target="_blank"><img src="http://assets.voxel3d.net/contacto/dann.jpg" alt=""> </a> 
+                </div>
+                <div class="option-txt">
+                    <h3>Hotel Dann</h3>
+                    <a>Hotel dann ubicado a 300 metros de Voxel 3D.</a>
+                </div>                      
+            </div>
+            <div>
+                <div class="option-img img-responsive">
+                    <a href="http://www.hotelinterbogota.com/" target="_blank"><img src="http://assets.voxel3d.net/contacto/inter.jpg" alt=""></a>  
+                </div>
+                <div class="option-txt">
+                    <h3>Hotel Inter Bogotá</h3>
+                    <a>Hotel inter Bogotá ubicado a 107 metros de Voxel 3D.</a>
+                </div>  
+            </div>
+            <div>
+                <div class="option-img img-responsive">
+                    <a href="http://www.bhbicentenario.com/default-es.html" target="_blank"><img src="http://assets.voxel3d.net/contacto/bicentenario.jpg" alt=""></a> 
+                </div>
+                <div class="option-txt">
+                    <h3>Hotel bh Bicentenario </h3>
+                    <a>Bh bicentenario hotel ubicado a 308 metros de Voxel 3D.</a>
+                </div>  
+            </div>
+        </div>     
+    </div>
+    
+    <div class="pg-whole" *ngIf="getIsRestaurantsActive()">
+        <h1>Restaurantes cercanos</h1>
+        <div class="options-cnt">        
+            <div>
+                <div class="option-img img-responsive">
+                    <a href="http://zonacbogota.com/candelario-restaurante-bar/" target="_blank"><img src="http://assets.voxel3d.net/contacto/calendario.jpg" alt=""></a> 
+                </div>
+                <div class="option-txt">
+                    <h3>Candelario</h3>
+                    <a>Ubicado a 684 metros de Voxel (10 min). Una gran propuesta para la diversión y el baile en Bogotá. La mejor excusa para ir al centro y disfrutar de buena música,  licor y compañía. A demás cuenta con una variada carta con 19 platos típicos de la cocina Colombiana.</a>
+                </div>                      
+            </div>
+            <div>
+                <div class="option-img img-responsive">
+                   <a href="http://www.restaurantechibchombia.com/" target="_blank"><img src="http://assets.voxel3d.net/contacto/chibchombia.jpg" alt=""></a>  
+                </div>
+                <div class="option-txt">
+                    <h3>Chibchombia</h3>
+                    <a>Ubicado a 1 km de Voxel  (7 min.).  Cocina típica regional de todas partes del país, toda la tradición colombiana a la mesa.</a>
+                </div>  
+            </div>
+            <div>
+                <div class="option-img img-responsive">
+                   <a href="http://www.restaurantelapuertafalsa.inf.travel/company/section" target="_blank"><img src="http://assets.voxel3d.net/contacto/laPuertaFalsa.jpg" alt=""></a> 
+                </div>
+                <div class="option-txt">
+                    <h3>La Puerta Falsa</h3>
+                    <a>Ubicado a 900 mts de Voxel (15 min.). La Puerta Falsa es visitada por locales y visitantes para así tener un contacto directo con las preparaciones de la gastronomía santafereña y experimentar un ambiente que evoca la antigua Candelaria.</a>
+                </div>  
+            </div>
+        </div>     
+    </div>     
+</div>
+
+  

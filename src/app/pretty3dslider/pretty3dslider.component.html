@@ -1,0 +1,42 @@
+<div class="pretty-slider-cnt" [@pretty-slider-act] = "getPrettySliderState()">
+  <div class="escape-button" (click) = "inactivePrettyState()" >
+    <a>
+      <img class="img-responsive escape-icon" src="../../assets/icons/close.png" alt="">
+    </a>
+  </div>    
+  <div class="info-cnt">
+    <div class="frame-cnt">
+      <iframe [id]="'iframe-3d'" [src]="getUrl() | safe" allowfullscreen style="top: 0px; left: 0px; width: 100%; max-width: 720px; max-height:360px; position: relative;" frameborder="0" scrolling="no"> </iframe>
+      <a *ngIf="isVertical()">De vuelta al dispositivo para ampliar la imagen </a>
+    </div>        
+  </div>  
+  <a class="left carousel-control" (click)="setLeftModel()" >
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" (click)="setRightModel()" >
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+  <ol *ngFor="let slice of slices;index as i" [ngClass]="{'':true, 'dot-bar-visible': setDotBarActive(i)}">
+    <li *ngFor="let item of slices[i];index as j" [ngClass]="{'':true, 'it-act':setDotActive(i,j)}"></li>
+  </ol>        
+</div>
+
+
+<div class="slider-cnt" [id] ="'slider-cnt'">
+  <div class="slide-cnt" *ngFor="let slice of slices;index as i" [id] = "'slide-cnt' + i" [@slide-act] = "getSliceState(i)" >
+    <div class="img-cnt" *ngFor="let image of slices[i];index as j" [id] = "'img-cnt' + i + j" (mouseenter) = "setInfoTrue(i,j)" (mouseleave) = "setInfoFalse(i,j)">
+      <a (click)="setPrettyModel(i,j)">
+        <div class="data-slider">
+            <p *ngIf="image.isProjectNameHere()">Nombre del proyecto: {{item.getProjectNames()}}</p>
+            <p *ngIf="image.isProjectAuthorHere()" >Autor: {{item.getDesignedBy()}}</p>
+          </div>
+        <div class="img-hover" *ngIf=isInfoActive(i,j)>
+          <a> Haga click en la imagen para ampliarla</a>
+        </div>
+        <img class="img-resposive" src="{{image.getMainImage()}}" alt="">
+      </a> 
+    </div>
+  </div>
+  <a class="slice-left" (click)="leftSlice()" *ngIf="isArrowVisible()"> <span class="glyphicon glyphicon-menu-left"></span></a>
+  <a class="slice-right" (click)="rightSlice()" *ngIf="isArrowVisible()"><span class="glyphicon glyphicon-menu-right"></span></a>
+</div>

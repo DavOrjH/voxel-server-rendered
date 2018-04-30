@@ -1,0 +1,246 @@
+.account-title{
+  background-color:rgb(252,226,197);
+  width:100;
+  display: flex;
+  justify-content: center center;
+  font-family: 'Varela Round', sans-serif;
+
+}
+
+.account-title>h1{
+  width:100%;
+  max-width: 992px;
+  margin:auto;
+  color:rgb(102,102,102);
+  padding:30px 2%;
+  font-size:30px;
+}
+
+.body-pg{
+  max-width: 1240px;
+  margin: auto;
+  font-family: 'Varela Round', sans-serif;
+  padding-left:30px;
+  padding-right:30px;
+  padding-bottom:20px;
+}
+
+.active{
+  display:block !important;
+}
+
+.info-cnt>div>label, .info-cnt>form>div>label{
+  font-size:16px;
+  font-weight:bold;
+  color:rgb(102,102,102);
+}
+.info-cnt>div>a{
+  font-size:16px;
+}
+
+.account-info, .edit-info{  
+  width:80%;
+  padding:2%;
+  float:left;
+  position:relative;
+  display:none; 
+  margin-bottom:20px;
+  margin-left:10%;
+  margin-right:10%;
+}
+
+.account-info{
+  font-size:20px;
+}
+
+.edit-info{
+  font-size:15px;
+}
+
+.image-cnt{
+  width:37.5%;
+  padding:10px;
+  float:left;
+  text-align: center;
+}
+
+.image-cnt>img{
+  border-radius:5%;
+  float:none;
+  margin:auto;
+}
+
+.info-cnt{
+  width:62.5%;
+  float:left;
+  padding: 2%;
+  color: rgb(179,179,179);
+}
+
+.info-cnt>div {
+  width:100%;
+  float:left;
+  margin-bottom:5px;
+}
+
+.info-cnt>form>div>input {
+  width:100%;
+  float:left;
+  margin-bottom:5px;
+  clear:both;
+  background-color: rgb(242,242,242);
+}
+
+.info-cnt>button, .info-cnt>form>div>button, .info-cnt>form>div>a {
+  font-size:16px;
+  padding:7px;  
+  background-color:rgb(255,159,10);
+  color:rgb(255,255,255);
+  border: none; 
+  border-radius: 5px;
+  margin-top:10px;
+  float:right;
+  text-decoration:none;
+  margin-left: 5px;
+}
+
+.info-user{
+text-decoration: none;
+color : rgb(179,179,179);
+cursor: default;
+}
+
+hr{
+  color: rgb(179,179,179);
+  position:relative;
+  width:100%;
+}
+
+.my-courses, .my-buys{
+width: 80%;
+padding:2%;
+text-align:center;
+margin:auto;
+clear:both;
+}
+
+.section-title{
+  float: left;
+  width:100%;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.section-title>img{
+  width:10%;
+  float: left; 
+}
+
+.section-title>h1>span{
+  background-color: white;
+  font-size:30px;
+  color:rgb(102,102,102);  
+  position: relative;
+  z-index: 1;
+}
+
+.section-title>h1{
+  width:90%;
+  float: left;
+  text-align:left;
+  padding: 10px;
+  position:relative;
+}
+
+.section-title>h1:before{
+  background-color:rgb(179,179,179);
+  content: "";
+  display: block;
+  height: 2px;
+  position: absolute;
+  width: 100%;
+  bottom:15px;
+}
+
+.my-courses-info, .my-buys-info{
+float:left;
+padding:15px;
+margin-bottom:10px;
+width:100%;
+}
+
+.course-data, .buy-data{  
+  padding:10px;
+  border-style: solid;
+  border-radius:10px; 
+  border-color: rgb(255,159,10);  
+  margin-bottom:15px;
+  float:left;
+  width:100%;
+}
+
+.cenefa-cnt{
+  width:70%;
+  float:left;
+}
+
+.main-img-cnt{
+  width:30%;
+  float:left;
+}
+
+@media screen and (max-width: 942px){
+
+  .account-info, .edit-info{
+    width:100%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+
+  .info-cnt{
+    width:100%;
+    float:left;
+    clear:both;
+  }
+
+  .image-cnt{
+    width:100%;
+  }
+
+  .image-cnt>img{
+    width: 70%;
+    position:relative;
+    margin:auto;
+  }
+
+  .info-cnt{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .account-info>button, .edit-info>button{
+    position:relative;
+    float:left;
+    width:100%;
+    clear:both;
+    top:auto;
+    right:auto;
+  }
+
+  .account-info>h1, .edit-info>h1{
+    text-align:center;
+  }
+
+  .my-courses{
+    width:100%;
+  }
+
+  .my-buys{
+    width:100%;
+    clear:both;
+  }
+
+
+}

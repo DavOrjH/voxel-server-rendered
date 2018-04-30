@@ -1,0 +1,68 @@
+
+.body-pg{
+  width: 100%;
+  height:100%;
+}
+p {
+  text-align : justify;
+  color:#a3a3a3;
+  font-family: 'Varela Round', sans-serif;
+  font-size:large;
+}
+
+h1 {
+  text-align : left;
+  color:#a3a3a3;
+
+  padding-bottom:15px;
+  font-family: 'Varela Round', sans-serif;
+}
+
+
+.content-right{
+  width:50%;
+  float:right;
+  box-sizing: border-box;
+}
+
+.content-left{
+  width:50%;
+  float:left;
+  padding:15px;
+}
+
+.general{
+  display:block;
+  /*position:relative;*/
+  margin-top:10px;
+
+}
+
+.object-aling{
+  /*position: relative;*/
+  max-width: 1240px;
+  margin:auto;
+}
+
+.shadow{
+-webkit-box-shadow: 9px 11px 18px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 9px 11px 18px 0px rgba(0,0,0,0.75);
+box-shadow: 9px 11px 18px 0px rgba(0,0,0,0.75);
+}
+
+.image-ctn{
+  margin-bottom: 35px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:20px;
+}
+
+@media screen and (max-width: 1200px){
+.content-left{
+  width:100%;
+}
+.content-right{
+  width:100%;
+  position:relative;
+  float:left;}
+}

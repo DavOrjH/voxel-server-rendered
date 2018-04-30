@@ -1,0 +1,227 @@
+<div class="top-img">
+</div>
+
+<div class="body-pg">
+  <h1 class ="page-title">IMPRESIÓN 3D</h1> 
+
+  <div class="info-cnt">
+    <p>Prestamos servicios de impresión para el sector académico, aplicaciones industriales, aplicaciones Biomédicas. Envíenos su archivo en Formato 3dm, IGES, 
+      STEP, Sldprt o STL para recibir la cotización.</p>
+  </div>
+  <div class="img-section">
+    <div class="img-cnt hor-align">
+      <img class="img-responsive" src="http://assets.voxel3d.net/prototipado-rapido/Impresion3d.jpg" alt="">
+      
+    </div>
+  </div>
+
+  <div class="sliders-row">
+    <div class="slider-column">
+      <h3>Impresiones Estereolitográficas</h3> 
+      <div class="slider-cnt">
+          <app-pretty-photo-viewer [images]="stlSlider" ></app-pretty-photo-viewer>
+      </div>
+      <a (click)="setSltActive()">Envía tu cotización para impresión S.L.T aquí.</a>
+    </div>
+    <div class="slider-column">
+        <h3>Impresiones F.F.F.</h3>
+      <div class="slider-cnt">
+          <app-pretty-photo-viewer [images]="fffSlider" ></app-pretty-photo-viewer>
+      </div>
+      <a (click)="setFffActive()" >Envía tu cotización para impresión F.F.F. aquí.</a>
+    </div>
+  </div>
+
+  <div  class="service-form" *ngIf = "isSltActive()" id="'stl-form'" >
+      <form name="form" (ngSubmit)="f1.form.valid && sendStlRequest()" #f1="ngForm" novalidate>
+        <h3>Impresión STL - Envíanos tu cotización</h3>
+        <h4>1. Datos del cotizante </h4>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !name.valid }">
+            <label for="name">Tu Nombre Completo</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+            <div *ngIf="f1.submitted && !name.valid" class="help-block">Nombre requerido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !city.valid }">
+            <label for="city">Tu Ciudad</label>
+            <input type="text" class="form-control" name="city" [(ngModel)]="model.city" #city="ngModel" required />
+            <div *ngIf="f1.submitted && !city.valid" class="help-block">Ciudad requerida</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !checkEmail(model.email) }">
+            <label for="email">Tu E-mail</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+            <div *ngIf="f1.submitted && !checkEmail(model.email)" class="help-block">Correo electrónico no válido</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !phone.valid }">
+            <label for="phone">Tu Teléfono</label>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required />
+            <div *ngIf="f1.submitted && !phone.valid" class="help-block">Número de teléfono requerido</div>
+        </div>
+        <div class="form-group" >
+            <label for="subject">Tipo de entidad</label>
+            <select name="subCat" [(ngModel)]="model.entity" >                
+                <option value="empresa">Empresa</option>
+                <option value="educativa">Educativa</option>
+                <option value="estado">Estado</option>
+                <option value="independiente">Independiente</option> 
+            </select>
+        </div>
+        <div class="form-group" *ngIf="model.entity != 'independiente'">
+            <label for="entityName">Nombre de la entidad</label>
+            <input type="text" class="form-control" name="entityName" [(ngModel)]="model.entityName" #entityName="ngModel" />
+        </div>
+       
+        <h4>2. Datos de la pieza</h4>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !size.valid }">
+            <label for="size">Dimensiones X-Y-Z (en mm)</label>            
+            <input type="text" class="form-control" name="size" [(ngModel)]="model.size" #size="ngModel" required />
+            <div *ngIf="f1.submitted && !size.valid" class="help-block">Medidas de la pieza requeridas</div>
+        </div>
+
+        <div class="form-group" >
+            <label for="subject">Tipo de resina</label>
+            <select name="subCat" [(ngModel)]="model.resinType" >
+              <option value="casteable">Resina casteable</option>
+              <option value="dura">Resina dura</option>        
+            </select>
+        </div>
+
+        <div class="form-group" >
+            <label for="subject">Resolución</label>
+            <select name="subCat" [(ngModel)]="model.resolution" >
+              <option value="altísima">Altísima: 15µ Z * 30µ XY</option>
+              <option value="alta">Alta: 30µ Z * 30µ XY</option>
+              <option value="media">Media: 30µ Z * 50µ XY</option>
+              <option value="baja">Baja: 40µ Z * 50µ XY</option>         
+            </select>
+        </div>
+
+
+        <h4>3. Información adicional</h4>
+
+        <div class="form-group">
+           <label for="agreement" >Caucho de alta definición</label>
+            <input type="checkbox" class="form-check" name="rubber" [(ngModel)]="model.isRubber" #rubber="ngModel"/>            
+        </div>
+
+        <div class="form-group">
+            <label for="foundry" >Fundición para resina casteable</label>
+             <input type="checkbox" class="form-check" name="foundry" [(ngModel)]="model.isFoundry" #foundry="ngModel"/>            
+         </div>
+
+         <div class="form-group">
+            <label for="addInfo">Información adicional</label>            
+            <textarea name="text" id="" cols="30" rows="10" class="form-control message" [(ngModel)]="model.addInfo" #addInfo="ngModel"></textarea>            
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f1.submitted && !agreement.valid }">
+            <a [routerLink]="['/terminos-y-condiciones']"><label for="agreement" class="agreement" >Acepto la política de privacidad de datos</label></a> 
+            <input type="checkbox" class="form-check" name="agreement" [(ngModel)]="model.agreement" #agreement="ngModel"  required  />
+            <div *ngIf="f1.submitted && !agreement.valid" class="help-block">Debes aceptar la política de privacidad de datos</div>
+        </div>
+
+        <div class="form-group" >
+            <button [disabled]="loading" class="btn btn-primary form-btn">Enviar</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </form>
+  </div>
+
+  <div class="service-form"  *ngIf = "isFffActive()"> 
+        <form name="form" (ngSubmit)="f2.form.valid && sendFffRequest()" #f2="ngForm" novalidate>
+            <h3>Impresión FFF - Envíanos tu cotización</h3>
+            <h4>1. Datos del cotizante </h4>
+            <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !name.valid }">
+                <label for="name">Tu Nombre Completo</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="model2.name" #name="ngModel" required />
+                <div *ngIf="f2.submitted && !name.valid" class="help-block">Nombre requerido</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !city.valid }">
+                <label for="city">Tu Ciudad</label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="model2.city" #city="ngModel" required />
+                <div *ngIf="f2.submitted && !city.valid" class="help-block">Ciudad requerida</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !checkEmail(model.email) }">
+                <label for="email">Tu E-mail</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="model2.email" #email="ngModel" required />
+                <div *ngIf="f2.submitted && !checkEmail(model2.email)" class="help-block">Correo electrónico no válido</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !phone.valid }">
+                <label for="phone">Tu Teléfono</label>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="model2.phone" #phone="ngModel" required />
+                <div *ngIf="f2.submitted && !phone.valid" class="help-block">Número de teléfono requerido</div>
+            </div>
+            <div class="form-group" >
+                <label for="subject">Tipo de entidad</label>
+                <select name="subCat" [(ngModel)]="model2.entity" >
+                    <option value="empresa">Empresa</option>
+                    <option value="educativa">Educativa</option>
+                    <option value="estado">Estado</option>
+                    <option value="independiente">Independiente</option> 
+                    </select>
+            </div>
+            <div class="form-group" *ngIf="model2.entity != 'independiente'">
+                <label for="entityName">Nombre de la entidad</label>
+                <input type="text" class="form-control" name="entityName" [(ngModel)]="model2.entityName" #entityName="ngModel" required />
+                <div *ngIf="f2.submitted && !entityName.valid" class="help-block">Nombre de la entidad requerido</div>
+            </div>
+
+            <h4>2. Datos de la pieza</h4>
+    
+            <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !size.valid }">
+                <label for="size">Dimensiones X-Y-Z (en mm)</label>            
+                <input type="text" class="form-control" name="size" [(ngModel)]="model2.size" #size="ngModel" required />
+                <div *ngIf="f2.submitted && !size.valid" class="help-block">Medidas de la pieza requeridas</div>
+            </div>
+    
+            <div class="form-group" >
+                <label for="materialType">Tipo de resina</label>
+                <select name="materialType" [(ngModel)]="model2.materialType" >
+                    <option value="pla">PLA</option>
+                    <option value="abs">ABS</option>
+                    <option value="tpu">TPU</option>
+                    <option value="other">Otro</option>          
+                </select>
+            </div>
+
+            <div class="form-group" *ngIf="model2.materialType == 'other'">
+                <label for="otherMaterial">¿Otro material? ¿Cúal?</label>            
+                <input type="text" class="form-control" name="otherMaterial" [(ngModel)]="model2.otherMaterial" #otherMaterial="ngModel" required />
+            </div>
+
+            <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !color.valid }">
+                    <label for="color">Color</label>            
+                    <input type="text" class="form-control" name="color" [(ngModel)]="model2.color" #color="ngModel" required />
+                    <div *ngIf="f2.submitted && !color.valid" class="help-block">Medidas de la pieza requeridas</div>
+                </div>
+    
+            <div class="form-group" >
+                <label for="subject">Resolución</label>
+                <select name="subCat" [(ngModel)]="model2.resolution" >
+                    <option value="alta">Alta: 0,1 mm</option>
+                    <option value="media">Media: 0,15 mm</option>
+                    <option value="baja">Baja: 0,2 mm</option>         
+                </select>
+            </div>
+    
+            <h4>3. Información adicional</h4>
+    
+            <div class="form-group">
+                <label for="addInfo">Información adicional</label>            
+                <textarea name="text" id="" cols="30" rows="10" class="form-control message" [(ngModel)]="model.addInfo" #addInfo="ngModel"></textarea>            
+            </div>
+    
+            <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !agreement.valid }">
+                <a [routerLink]="['/politica-de-datos']"><label for="agreement" class="agreement" >Acepto la política de privacidad de datos</label></a> 
+                <input type="checkbox" class="form-check" name="agreement" [(ngModel)]="model2.agreement" #agreement="ngModel"  required  />
+                <div *ngIf="f2.submitted && !agreement.valid" class="help-block">Debes aceptar la política de privacidad de datos</div>
+            </div>
+    
+            <div class="form-group" >
+                <button [disabled]="loading" class="btn btn-primary form-btn">Enviar</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+        </form>   
+  </div>   
+</div>
+

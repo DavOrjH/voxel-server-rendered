@@ -1,0 +1,180 @@
+<div class="title-img-cnt">
+    <img class="img-responsive" src="http://assets.voxel3d.net/licences/CLAYOO.jpg" alt="">
+  </div>
+  <div class="options-cnt">
+    <div class="option-button" [ngClass]="{'option-inactive': getInfoView() != 'global-vision','option-active':getInfoView() == 'global-vision'}" (click)="setInfoView('global-vision')"><a >Visión de conjunto</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'specifications' ,'option-active':getInfoView() == 'specifications'}" (click)="setInfoView('specifications')"><a >Especificaciones</a></div>
+    <div class="option-button" [ngClass]="{'option-inactive':getInfoView() != 'software' ,'option-active':getInfoView() == 'software' }" (click)="setInfoView('software')"><a >Productos</a> </div>   
+  </div>
+  <hr>
+  <div class="info-cnt" >
+    <div class="global-vision" *ngIf="getInfoView() == 'global-vision'">
+  
+      <h1 class="first-title">
+        El último y más avanzado modelador orgánico 3D.
+      </h1>
+      <p>
+       Clayoo es el nuevo software de formas libres desarrollado por TDM Solutions, es una apliación avanzada de modelado
+       con la habilidad de crear cualquier forma sin mucho esfuerzo, eficientemente y con precisión, sin importar lo compleja que sea.
+      </p>
+      <p>
+        Es casi como modelar con las manos: este es el concepto de Clayoo, no importa si se empieza desde un borrador, una curva o un objeto 3D.
+        Se trata de lo fácil que es halar, presionar y mover hasta que su idea se vuelva realidad. 
+      </p>
+      <p>
+        Ideal para diseño arquitectónico, joyería, productos de consumo, juguetes, industria aeroespacial, marina, moviliario, y cualquier otro sector que requiera crear formas libres y complejas debería considerar el uso de este plugin.
+      </p>
+      <p>
+        Cuando la precisión es una necesidad Clayoo ofrece herramientas en tiempo real para analizar distancias,
+        variaciones, etc. Igualmente, herramientas estándar de Rhino como draft angle, thickness analysis, permiten trabajar
+        en tiempo real.
+      </p>
+      <p>
+        No solo modelado, también manufactura: Clayoo es perfecto para manufacturar prototipos, moldes, etc.
+        Exportando el archivo STL, automáticamente se generar mallas cerradas.
+      </p>
+      <p>
+        Clayoo se vuelve esencial para ingeniería inversa con herramientas avanzadas como "Retopología", que permite crear fácilmente
+        superficies sobre objetos digitalizados, pudiendo convertir el resultado en superficies con NURBS.
+      </p>
+
+
+      <!-- <div class="video-cnt">
+        <iframe width="{{videoWidth}}" height="{{videoHeight}}" src="https://www.youtube.com/embed/V6zL_rxsrWI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>      
+      </div> -->
+  
+      <h1 class="info-title">Beneficios clave</h1>
+  
+      <ul>
+        <li><strong>Posibilidades infinitas:</strong> Creación ilimitada y modificación dentro de Rhino - Facilidad de crear y
+        modificar formas libres y diseños orgánicos, incluso los más complejos, vinculando una de las tecnologías más versátiles, las NURBS, y combinado
+      con las tecnologías de SubD, Emboss y Sculpted de Clayoo.</li>
+      <li><strong>Es como modelar con las manos: </strong> Empiece con un borrador, curva u objeto 3D - El concepto de Clayoo es materializar su visión estirando, oprimiendo, y moviendo
+      un objeto hasta que su idea cobre vida.</li>
+      <li><strong>Ingeniería inversa: </strong> Importe datos de escaneo o archivos STL - Clayoo hace posible la ingeniería inversa
+      con herramientas avanzadas, como "Retopología", que permite fácilmente la creación de superficies sobre objetos digitalizados 
+      y luego su transformación en una superficie de NURBS.</li>
+      <li><strong>Gran desempeño en la definición de áreas detalladas: </strong> Clayoo permite diversos niveles de detalle a través de un objeto. Por ejemplo, cuando se modela una cara 
+      puede usar la menor definición a través de la mayoría de esta pero puede escoger la definición más alta alrededor los ojos y las cejas.</li>
+      <li><strong>Compatibilidad completa: </strong> Importe a Clayoo diferentes tipos de archivos 3D, esta es probablemente una de las mejores características del plugin.
+      Importe sus archivos desde otros plugins de Rhino u otros software y conviértalos en objetos de Clayoo para seguir con el modelado.  </li>
+      <li><strong>Soporte y entrenamiento: </strong> Obtenga lo más que pueda de Clayoo, TDM Solutions ofrece clases de entrenamiento comprensibles y a la mano, un foro de usuarios,
+      soporte técnico, y todo tipo de material de aprendizaje complementario.  </li>            
+      </ul>
+   </div>
+    <div class="specifications" *ngIf="getInfoView() == 'specifications'">
+      <h1 class="info-title">Información del producto</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Nombre del producto</a>
+          </div>
+          <div class="column-cell">
+            <a>Clayo 2.6</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Versión</a>
+          </div>
+          <div class="column-cell">
+            <a>2.6</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Fabricante</a>
+          </div>
+          <div class="column-cell">
+            <a>TDM Solutions</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Plataformas</a>
+          </div>
+          <div class="column-cell">
+            <a>Windows</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Soporte y mantenimiento</a>
+          </div>
+          <div class="column-cell">
+            <a>Contacta a nuestros asesores comerciales para obtener más información</a>
+          </div>
+        </div>    
+    </div>
+  
+      <h1 class="info-title">Requisitos del sistema</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>CPU</a>
+          </div>
+          <div class="column-cell">
+            <ul>
+              <li>Intel Core i5 o superior (mínimo)</li>
+              <li>Intel Core i7 o superior (recomendado)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Espacio en disco</a>
+          </div>
+          <div class="column-cell">
+            <a>200 MB (500 MB recomendado).</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Memoria RAM</a>
+          </div>
+          <div class="column-cell">
+            <a>2 GB ( 8GB recomendado)</a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Sistemas operativos</a>
+          </div>
+          <div class="column-cell">
+           <a> Windows 7, 8, 8.1, 10 (64 bits) </a>
+          </div>
+        </div>
+      </div>
+  
+      <h1 class="info-title">Información adicional</h1>
+      <div class="table-cnt">
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Tarjeta gráfica</a>
+          </div>
+          <div class="column-cell">
+           <a>Compatible con OpenGL 4.3 o superior (Tarjeta Nvidia preferiblemente). </a>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="column-cell column-title">
+            <a>Requerimientos de instalación</a>
+          </div>
+          <div class="column-cell">
+            <a class="cursor" [routerLink]="['/rhinoceros']">Rhinoceros</a>
+          </div>
+        </div>
+      </div>  
+  
+    <div class="software" *ngIf="getInfoView() == 'software'">
+      <div class="product-cnt" *ngFor="let product of licenceDataModel;index as i">
+        <div class="img-cnt">
+            <img class="img-responsive" src="{{product.imageURL}}" alt="">
+        </div>
+        <div class="info-cnt">
+            <a>{{product.name}}</a>
+            <a [routerLink]="['/product-detail', product.productId]" class="redirect-button">Ver producto</a>  
+        </div>    
+      </div>      
+    </div>  
+  </div>

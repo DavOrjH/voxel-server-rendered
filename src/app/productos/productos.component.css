@@ -1,0 +1,152 @@
+.body-pg{
+    max-width: 1240px;
+    margin:auto;
+    font-family: 'Varela Round', sans-serif;
+    padding-left:30px;
+    padding-right:30px;
+}
+
+.top-img{
+    background-image: url('http://assets.voxel3d.net/top-images/sectores.jpg');
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display:block;
+}
+
+.page-title{
+    font-size:30px;
+    font-weight:bold;
+    padding-top:60px;
+    padding-bottom:60px;
+    color: rgb(255,159,10);
+}
+
+.info-cnt, .info-cnt>p{
+    float:left;
+    width:100%;    
+    color: rgb(179,179,179);
+    font-size:16px;
+    text-align: justify;
+}
+
+.img-section{
+    float:left;
+    width:100%;
+    clear:both;
+    margin-top:30px;
+}
+
+.img-cnt{
+    float:left;       
+   
+}
+
+.img-cnt>img{
+    width:100%;
+    height:auto;
+}
+
+.vert-align{
+    width:50%;
+    padding:10px;
+}
+
+.hor-align{
+    width:100%;
+    padding:20px;
+    clear:both;
+}
+
+.slider-cnt{
+    float:left;
+    width:100%;
+    margin-top:60px;
+    margin-bottom:60px;
+}
+
+.products-cnt, .products-cnt>div>a {
+    float:left;
+    width:100%;
+    position:relative;
+}
+
+.products-cnt>div{
+    margin-top:5px;
+}
+
+.products-cnt>div>a>img{
+    width:80%;
+    margin:auto;
+}
+
+.products-cnt{
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.products-title{
+    width:100%;
+    clear:both;
+    float:left;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+  
+  .products-title-h{
+    position: relative;
+    text-align: left;
+  
+  }
+  
+  .products-title-h>span{
+    background-color: white;
+    font-size:30px;
+    color:rgb(179,179,179);
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .products-title-h:before{
+    background-color:rgb(179,179,179);
+    content: "";
+    display: block;
+    height: 3px;
+    position: absolute;
+    width: 100%;
+    top:50%;
+    }
+
+    .product-slider-cnt{
+        position:relative;
+        padding-top:60px;
+        padding-bottom:60px;
+        width:60%;
+        margin:auto;
+    }
+
+
+
+@media screen and (max-width: 942px){
+
+    .vert-align{
+        width:100%;
+        padding:10px;
+        clear:both;
+    }
+
+    .products-title-h{
+        text-align: center;
+    }
+
+    .top-img{
+        display:none;
+    }
+
+    .product-slider-cnt{
+        width:100%;
+    }
+
+}
+
